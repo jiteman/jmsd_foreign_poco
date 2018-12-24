@@ -18,13 +18,13 @@
    tested frequently.
 
    XMLCALL    - The calling convention to use for all calls across the
-                "library boundary."  This will default to cdecl, and
-                try really hard to tell the compiler that's what we
-                want.
+				"library boundary."  This will default to cdecl, and
+				try really hard to tell the compiler that's what we
+				want.
 
    XMLIMPORT  - Whatever magic is needed to note that a function is
-                to be imported from a dynamically loaded library
-                (.dll, .so, or .sl, depending on your platform).
+				to be imported from a dynamically loaded library
+				(.dll, .so, or .sl, depending on your platform).
 
    The XMLCALL macro was added in Expat 1.95.7.  The only one which is
    expected to be directly useful in client code is XMLCALL.
@@ -59,7 +59,7 @@
 /* using Expat from an application */
 
 #ifdef XML_USE_MSC_EXTENSIONS
-#define XMLIMPORT __declspec(dllimport)
+//#define XMLIMPORT __declspec(dllimport)
 #endif
 
 #endif
