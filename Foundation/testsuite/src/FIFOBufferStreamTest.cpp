@@ -166,7 +166,7 @@ void FIFOBufferStreamTest::onReadable(bool& b)
 {
 	if (b) ++_notToReadable;
 	else ++_readableToNot;
-};
+}
 
 
 void FIFOBufferStreamTest::onWritable(bool& b)
