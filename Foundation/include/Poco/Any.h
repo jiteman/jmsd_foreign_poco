@@ -527,14 +527,25 @@ ValueType AnyCast(Any& operand)
 	if (!result)
 	{
 		std::string s = "RefAnyCast: Failed to convert between Any types ";
-		if (operand._pHolder)
-		{
-			s.append(1, '(');
-			s.append(operand._pHolder->type().name());
-			s.append(" => ");
-			s.append(typeid(ValueType).name());
-			s.append(1, ')');
-		}
+#if !defined( POCO_NO_SOO )
+	if (operand._valueHolder.content())
+	{
+		s.append(1, '(');
+		s.append(operand._valueHolder.content()->type().name());
+		s.append(" => ");
+		s.append(typeid(ValueType).name());
+		s.append(1, ')');
+	}
+#else
+	if (operand._pHolder)
+	{
+		s.append(1, '(');
+		s.append(operand._pHolder->type().name());
+		s.append(" => ");
+		s.append(typeid(ValueType).name());
+		s.append(1, ')');
+	}
+#endif
 		throw BadCastException(s);
 	}
 	return *result;
