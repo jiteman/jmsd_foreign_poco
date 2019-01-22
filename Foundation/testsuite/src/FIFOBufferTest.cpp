@@ -47,7 +47,7 @@ void FIFOBufferTest::onReadable(bool& b)
 {
 	if (b) ++_notToReadable;
 	else ++_readableToNot;
-};
+}
 
 
 void FIFOBufferTest::onWritable(bool& b)
