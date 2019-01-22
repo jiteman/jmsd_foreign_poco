@@ -89,7 +89,7 @@ public:
 private:
 #endif
 	typedef typename std::aligned_storage<SizeV + 1>::type AlignerType;
-	
+
 	PlaceholderT* pHolder;
 	mutable char  holder [SizeV + 1];
 	AlignerType   aligner;
@@ -97,7 +97,7 @@ private:
 	friend class Any;
 	friend class Dynamic::Var;
 	friend class Dynamic::VarHolder;
-	template <class> friend class Dynamic::VarHolderImpl;
+	template <class, class Enable> friend class Dynamic::VarHolderImpl;
 };
 
 
@@ -130,7 +130,7 @@ public:
 #if !defined(POCO_MSVC_VERSION) || (defined(POCO_MSVC_VERSION) && (POCO_MSVC_VERSION > 80))
 private:
 #endif
-	
+
 	PlaceholderT* pHolder;
 
 	friend class Any;
@@ -236,7 +236,7 @@ public:
 		construct(rhs);
 		return *this;
 	}
-	
+
 	Any& operator = (const Any& rhs)
 		/// Assignment operator for Any.
 	{
@@ -247,14 +247,14 @@ public:
 
 		return *this;
 	}
-	
+
 	bool empty() const
 		/// Returns true if the Any is empty.
 	{
 		char buf[POCO_SMALL_OBJECT_SIZE] = { 0 };
 		return 0 == std::memcmp(_valueHolder.holder, buf, POCO_SMALL_OBJECT_SIZE);
 	}
-	
+
 	const std::type_info & type() const
 		/// Returns the type information of the stored content.
 		/// If the Any is empty typeid(void) is returned.
@@ -269,7 +269,7 @@ private:
 	class ValueHolder
 	{
 	public:
-	
+
 		virtual ~ValueHolder()
 		{
 		}
@@ -338,7 +338,7 @@ private:
 		else
 			_valueHolder.erase();
 	}
-	
+
 	void destruct()
 	{
 		content()->~ValueHolder();
@@ -567,6 +567,17 @@ const ValueType& RefAnyCast(const Any & operand)
 {
 	ValueType* result = AnyCast<ValueType>(const_cast<Any*>(&operand));
 	std::string s = "RefAnyCast: Failed to convert between Any types ";
+
+#if !defined( POCO_NO_SOO )
+	if (operand._valueHolder.content())
+	{
+		s.append(1, '(');
+		s.append(operand._valueHolder.content()->type().name());
+		s.append(" => ");
+		s.append(typeid(ValueType).name());
+		s.append(1, ')');
+	}
+#else
 	if (operand._pHolder)
 	{
 		s.append(1, '(');
@@ -575,6 +586,7 @@ const ValueType& RefAnyCast(const Any & operand)
 		s.append(typeid(ValueType).name());
 		s.append(1, ')');
 	}
+#endif
 	return *result;
 }
 
@@ -590,6 +602,17 @@ ValueType& RefAnyCast(Any& operand)
 	if (!result)
 	{
 		std::string s = "RefAnyCast: Failed to convert between Any types ";
+
+#if !defined( POCO_NO_SOO )
+		if (operand._valueHolder.content())
+		{
+			s.append(1, '(');
+			s.append(operand._valueHolder.content()->type().name());
+			s.append(" => ");
+			s.append(typeid(ValueType).name());
+			s.append(1, ')');
+		}
+#else
 		if (operand._pHolder)
 		{
 			s.append(1, '(');
@@ -598,6 +621,7 @@ ValueType& RefAnyCast(Any& operand)
 			s.append(typeid(ValueType).name());
 			s.append(1, ')');
 		}
+#endif
 		throw BadCastException(s);
 	}
 	return *result;
