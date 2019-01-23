@@ -95,7 +95,6 @@
 //
 #ifndef POCO_NO_SOO
 #ifndef POCO_ENABLE_SOO
-#error
 #define POCO_NO_SOO
 #endif
 #endif
