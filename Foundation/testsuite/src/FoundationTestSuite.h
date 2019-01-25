@@ -17,7 +17,10 @@
 #include "Poco/CppUnit/TestSuite.h"
 
 
-class FoundationTestSuite
+#include "tp_foundation.h"
+
+
+class JMSD_TEST_POCO_FOUNDATION_SHARED_INTERFACE FoundationTestSuite
 {
 public:
 	static CppUnit::Test* suite();
