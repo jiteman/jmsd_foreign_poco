@@ -41,9 +41,6 @@ std::string ProcessTest::execName()
 {
 	std::string name = Path(Path::self()).makeParent().toString();
 	name.append("TestApp");
-#if defined(_DEBUG)
-	name.append(1, 'd');
-#endif
 	return name;
 }
 
