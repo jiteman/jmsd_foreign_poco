@@ -17,10 +17,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class AnyTest: public CppUnit::TestCase
+//class AnyTest: public CppUnit::TestCase
+class AnyTest: public CppUnit::TestFixture
 {
 public:
-	AnyTest(const std::string& name);
+//	AnyTest(const std::string& name);
+	AnyTest();
 	~AnyTest();
 
 	void testConvertingCtor();
@@ -36,7 +38,7 @@ public:
 	void testInt();
 	void testComplexType();
 	void testVector();
-	
+
 	void setUp();
 	void tearDown();
 	static CppUnit::Test* suite();

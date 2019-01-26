@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class CoreTest: public CppUnit::TestCase
+//class CoreTest: public CppUnit::TestCase
+class CoreTest: public CppUnit::TestFixture
 {
 public:
-	CoreTest(const std::string& name);
+//	CoreTest(const std::string& name);
+	CoreTest();
 	~CoreTest();
 
 	void testPlatform();

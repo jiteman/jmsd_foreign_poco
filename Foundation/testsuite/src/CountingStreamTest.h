@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class CountingStreamTest: public CppUnit::TestCase
+//class CountingStreamTest: public CppUnit::TestCase
+class CountingStreamTest: public CppUnit::TestFixture
 {
 public:
-	CountingStreamTest(const std::string& name);
+//	CountingStreamTest(const std::string& name);
+	CountingStreamTest();
 	~CountingStreamTest();
 
 	void testInput();

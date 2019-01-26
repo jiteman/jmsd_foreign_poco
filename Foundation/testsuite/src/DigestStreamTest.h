@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class DigestStreamTest: public CppUnit::TestCase
+//class DigestStreamTest: public CppUnit::TestCase
+class DigestStreamTest: public CppUnit::TestFixture
 {
 public:
-	DigestStreamTest(const std::string& name);
+//	DigestStreamTest(const std::string& name);
+	DigestStreamTest();
 	~DigestStreamTest();
 
 	void testInputStream();

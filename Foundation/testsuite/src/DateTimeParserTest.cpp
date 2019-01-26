@@ -25,7 +25,8 @@ using Poco::Timestamp;
 using Poco::SyntaxException;
 
 
-DateTimeParserTest::DateTimeParserTest(const std::string& rName): CppUnit::TestCase(rName)
+//DateTimeParserTest::DateTimeParserTest(const std::string& rName): CppUnit::TestCase(rName)
+DateTimeParserTest::DateTimeParserTest(): CppUnit::TestFixture()
 {
 }
 
@@ -438,7 +439,7 @@ void DateTimeParserTest::testRFC850()
 	assertTrue (dt.second() == 0);
 	assertTrue (tzd == -3600);
 	testBad(DateTimeFormat::RFC850_FORMAT, "Saturday 8-Jan-05 12:30:00 -0100", tzd);
-	
+
 	dt = DateTimeParser::parse(DateTimeFormat::RFC850_FORMAT, "Wed, 12-Sep-73 02:01:12 CST", tzd);
 	assertTrue (dt.year() == 1973);
 	assertTrue (dt.month() == 9);
@@ -564,7 +565,7 @@ void DateTimeParserTest::testCustom()
 	try
 	{
 		DateTimeParser::parse("%h:%M %a", "", tzd);
-		fail ("must fail");
+		failmsg ("must fail");
 	}
 	catch (SyntaxException&)
 	{
@@ -573,7 +574,7 @@ void DateTimeParserTest::testCustom()
 	try
 	{
 		DateTimeParser::parse("", "12:30 PM", tzd);
-		fail ("must fail");
+		failmsg ("must fail");
 	}
 	catch (SyntaxException&)
 	{
@@ -582,7 +583,7 @@ void DateTimeParserTest::testCustom()
 	try
 	{
 		DateTimeParser::parse("", "", tzd);
-		fail ("must fail");
+		failmsg ("must fail");
 	}
 	catch (SyntaxException&)
 	{
@@ -610,7 +611,7 @@ void DateTimeParserTest::testGuess()
 	assertTrue (dt.minute() == 30);
 	assertTrue (dt.second() == 0);
 	assertTrue (tzd == 0);
-	
+
 	dt = DateTimeParser::parse("2005-01-08T12:30:00+01:00", tzd);
 	assertTrue (dt.year() == 2005);
 	assertTrue (dt.month() == 1);
@@ -693,7 +694,7 @@ void DateTimeParserTest::testGuess()
 	assertTrue (dt.minute() == 30);
 	assertTrue (dt.second() == 0);
 	assertTrue (tzd == 3600);
-	
+
 	dt = DateTimeParser::parse("Sat Jan  8 12:30:00 2005", tzd);
 	assertTrue (dt.year() == 2005);
 	assertTrue (dt.month() == 1);
@@ -759,7 +760,7 @@ void DateTimeParserTest::testParseMonth()
 		str = "ja";
 		it = str.begin();
 		month = DateTimeParser::parseMonth(it, str.end());
-		fail("Not a valid month name - must throw");
+		failmsg("Not a valid month name - must throw");
 	}
 	catch (SyntaxException&)
 	{
@@ -803,7 +804,7 @@ void DateTimeParserTest::testParseDayOfWeek()
 		str = "su";
 		it = str.begin();
 		dow = DateTimeParser::parseDayOfWeek(it, str.end());
-		fail("Not a valid weekday name - must throw");
+		failmsg("Not a valid weekday name - must throw");
 	}
 	catch (SyntaxException&)
 	{
@@ -817,7 +818,7 @@ void DateTimeParserTest::testBad(const std::string& fmt, const std::string& date
 	{
 		DateTime dt;
 		DateTimeParser::parse(fmt, dateStr, dt, tzd);
-		fail ("must fail");
+		failmsg ("must fail");
 	}
 	catch(const Poco::Exception) { }
 }

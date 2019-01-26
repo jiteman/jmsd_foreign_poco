@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ConditionTest: public CppUnit::TestCase
+//class ConditionTest: public CppUnit::TestCase
+class ConditionTest: public CppUnit::TestFixture
 {
 public:
-	ConditionTest(const std::string& name);
+//	ConditionTest(const std::string& name);
+	ConditionTest();
 	~ConditionTest();
 
 	void testSignal();

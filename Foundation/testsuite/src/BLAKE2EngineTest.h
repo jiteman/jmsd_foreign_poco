@@ -15,10 +15,12 @@
 #include "Poco/Foundation.h"
 #include "Poco/CppUnit/TestCase.h"
 
-class BLAKE2EngineTest: public CppUnit::TestCase
+//class BLAKE2EngineTest: public CppUnit::TestCase
+class BLAKE2EngineTest: public CppUnit::TestFixture
 {
 public:
-	BLAKE2EngineTest(const std::string& name);
+//	BLAKE2EngineTest(const std::string& name);
+	BLAKE2EngineTest();
 	~BLAKE2EngineTest();
 
 	void testBLAKE2_224();

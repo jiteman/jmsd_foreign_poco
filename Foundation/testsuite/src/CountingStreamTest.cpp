@@ -19,7 +19,8 @@ using Poco::CountingInputStream;
 using Poco::CountingOutputStream;
 
 
-CountingStreamTest::CountingStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+//CountingStreamTest::CountingStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+CountingStreamTest::CountingStreamTest(): CppUnit::TestFixture()
 {
 }
 

@@ -15,10 +15,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ActiveDispatcherTest: public CppUnit::TestCase
+// class ActiveDispatcherTest: public CppUnit::TestCase
+class ActiveDispatcherTest: public CppUnit::TestFixture
 {
 public:
-	ActiveDispatcherTest(const std::string& name);
+//	ActiveDispatcherTest(const std::string& name);
+	ActiveDispatcherTest();
 	~ActiveDispatcherTest();
 
 	void testWait();

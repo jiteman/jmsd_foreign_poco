@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ClockTest: public CppUnit::TestCase
+//class ClockTest: public CppUnit::TestCase
+class ClockTest: public CppUnit::TestFixture
 {
 public:
-	ClockTest(const std::string& name);
+//	ClockTest(const std::string& name);
+	ClockTest();
 	~ClockTest();
 
 	void testClock();

@@ -23,8 +23,10 @@ using Poco::DateTimeFormat;
 using Poco::DateTimeFormatter;
 
 
-DateTimeFormatterTest::DateTimeFormatterTest(const std::string& rName)
-	: CppUnit::TestCase(rName)
+//DateTimeFormatterTest::DateTimeFormatterTest(const std::string& rName)
+//	: CppUnit::TestCase(rName)
+DateTimeFormatterTest::DateTimeFormatterTest()
+	: CppUnit::TestFixture()
 {
 	// Linker regresion SF #3288584
 	std::string message;
@@ -191,7 +193,7 @@ void DateTimeFormatterTest::testTimespan()
 	Timespan ts4(0, 24, 60, 60, 1001000);
 	str = DateTimeFormatter::format(ts4);
 	assertTrue (str == "1d 01:01:01.001");
-	
+
 	Timespan ts5(2, 11, 30, 20, 0);
 	str = DateTimeFormatter::format(ts5, "%h %m %s");
 	assertTrue (str == "59 3570 214220");

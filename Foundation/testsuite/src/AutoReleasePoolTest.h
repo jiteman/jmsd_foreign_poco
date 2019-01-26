@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class AutoReleasePoolTest: public CppUnit::TestCase
+//class AutoReleasePoolTest: public CppUnit::TestCase
+class AutoReleasePoolTest: public CppUnit::TestFixture
 {
 public:
-	AutoReleasePoolTest(const std::string& name);
+//	AutoReleasePoolTest(const std::string& name);
+	AutoReleasePoolTest();
 	~AutoReleasePoolTest();
 
 	void testAutoReleasePool();

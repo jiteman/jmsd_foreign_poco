@@ -109,7 +109,7 @@ void DirectoryIteratorsTest::testDirectoryIterator()
 		result.push_back(file);
 	}
 
-	assertEquals(7, (long) result.size());
+	assertEqual( ::std::vector< std::string >::size_type( 7 ), result.size() );
 }
 
 
@@ -129,14 +129,15 @@ void DirectoryIteratorsTest::testSortedDirectoryIterator()
 		result.push_back(file);
 	}
 
-	assertEquals(7, (long) result.size());
-	assertEquals("first", result[0]);
-	assertEquals("1", result[1]);
-	assertEquals("2", result[2]);
-	assertEquals("A", result[3]);
-	assertEquals("B", result[4]);
-	assertEquals("c", result[5]);
-	assertEquals("d", result[6]);
+//	assertEqual( ::std::vector< ::std::string >::size_type( 7 ), result.size() );
+	assertEqualTyped( ::std::vector< ::std::string >::size_type, 7, result.size() );
+	assertEqualTyped( ::std::string, "first", result[ 0 ] );
+	assertEqualTyped( ::std::string, "1", result[ 1 ] );
+	assertEqualTyped( ::std::string, "2", result[ 2 ] );
+	assertEqualTyped( ::std::string, "A", result[ 3 ] );
+	assertEqualTyped( ::std::string, "B", result[ 4 ] );
+	assertEqualTyped( ::std::string, "c", result[ 5 ] );
+	assertEqualTyped( ::std::string, "d", result[ 6 ] );
 }
 
 
@@ -155,7 +156,7 @@ void DirectoryIteratorsTest::testSimpleRecursiveDirectoryIterator()
 		result.push_back(file);
 	}
 
-	assertEquals(20, (long) result.size());
+	assertEqualTyped( ::std::vector< ::std::string >::size_type, 20, result.size() );
 }
 
 
@@ -198,7 +199,7 @@ void DirectoryIteratorsTest::testSimpleRecursiveDirectoryIteratorOnError()
 	}
 	catch (NotFoundException&) { }
 #else
-	assertEquals(20, (long) result.size());
+	assertEqualTyped( ::std::vector< ::std::string >::size_type, 20, result.size() );
 #endif
 }
 
@@ -218,7 +219,7 @@ void DirectoryIteratorsTest::testSiblingsFirstRecursiveDirectoryIterator()
 		result.push_back(file);
 	}
 
-	assertEquals(20, (long) result.size());
+	assertEqualTyped( ::std::vector< ::std::string >::size_type, 20, result.size() );
 }
 
 
@@ -260,7 +261,7 @@ void DirectoryIteratorsTest::testSiblingsFirstRecursiveDirectoryIteratorOnError(
 	}
 	catch (NotFoundException&) { }
 #else
-	assertEquals(20, (long) result.size());
+	assertEqualTyped( ::std::vector< ::std::string >::size_type, 20, result.size() );
 #endif
 }
 

@@ -29,16 +29,16 @@ namespace
 			_count(0)
 		{
 		}
-		
+
 		~ActiveObject()
 		{
 		}
-		
+
 		Activity<ActiveObject>& activity()
 		{
 			return _activity;
 		}
-		
+
 		Poco::UInt64 count() const
 		{
 			return _count;
@@ -58,7 +58,8 @@ namespace
 }
 
 
-ActivityTest::ActivityTest(const std::string& rName): CppUnit::TestCase(rName)
+//ActivityTest::ActivityTest(const std::string& rName): CppUnit::TestCase(rName)
+ActivityTest::ActivityTest(): CppUnit::TestFixture()
 {
 }
 

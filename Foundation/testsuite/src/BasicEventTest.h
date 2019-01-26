@@ -20,7 +20,8 @@
 #include "Poco/EventArgs.h"
 
 
-class BasicEventTest: public CppUnit::TestCase
+//class BasicEventTest: public CppUnit::TestCase
+class BasicEventTest: public CppUnit::TestFixture
 {
 	Poco::BasicEvent<void> Void;
 	Poco::BasicEvent<int> Simple;
@@ -33,7 +34,8 @@ class BasicEventTest: public CppUnit::TestCase
 	Poco::BasicEvent<const Poco::EventArgs * const> Const2Complex;
 
 public:
-	BasicEventTest(const std::string& name);
+//	BasicEventTest(const std::string& name);
+	BasicEventTest();
 	~BasicEventTest();
 
 	void testNoDelegate();

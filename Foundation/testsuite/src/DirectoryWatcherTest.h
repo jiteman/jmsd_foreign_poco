@@ -25,22 +25,24 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class DirectoryWatcherTest: public CppUnit::TestCase
+//class DirectoryWatcherTest: public CppUnit::TestCase
+class DirectoryWatcherTest: public CppUnit::TestFixture
 {
 public:
-	DirectoryWatcherTest(const std::string& name);
+//	DirectoryWatcherTest(const std::string& name);
+	DirectoryWatcherTest();
 	~DirectoryWatcherTest();
 
 	void testAdded();
 	void testRemoved();
 	void testModified();
 	void testMoved();
-	
+
 	void setUp();
 	void tearDown();
 
 	static CppUnit::Test* suite();
-	
+
 protected:
 	void onItemAdded(const Poco::DirectoryWatcher::DirectoryEvent& ev);
 	void onItemRemoved(const Poco::DirectoryWatcher::DirectoryEvent& ev);
@@ -48,7 +50,7 @@ protected:
 	void onItemMovedFrom(const Poco::DirectoryWatcher::DirectoryEvent& ev);
 	void onItemMovedTo(const Poco::DirectoryWatcher::DirectoryEvent& ev);
 	void onError(const Poco::Exception& exc);
-	
+
 	Poco::Path path() const;
 
 private:

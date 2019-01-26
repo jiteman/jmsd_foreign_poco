@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ByteOrderTest: public CppUnit::TestCase
+//class ByteOrderTest: public CppUnit::TestCase
+class ByteOrderTest: public CppUnit::TestFixture
 {
 public:
-	ByteOrderTest(const std::string& name);
+//	ByteOrderTest(const std::string& name);
+	ByteOrderTest();
 	~ByteOrderTest();
 
 	void testByteOrderFlip();

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ChannelTest: public CppUnit::TestCase
+//class ChannelTest: public CppUnit::TestCase
+class ChannelTest: public CppUnit::TestFixture
 {
 public:
-	ChannelTest(const std::string& name);
+//	ChannelTest(const std::string& name);
+	ChannelTest();
 	~ChannelTest();
 
 	void testSplitter();

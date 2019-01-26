@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ActiveMethodTest: public CppUnit::TestCase
+//class ActiveMethodTest: public CppUnit::TestCase
+class ActiveMethodTest: public CppUnit::TestFixture
 {
 public:
-	ActiveMethodTest(const std::string& name);
+//	ActiveMethodTest(const std::string& name);
+	ActiveMethodTest();
 	~ActiveMethodTest();
 
 	void testWait();

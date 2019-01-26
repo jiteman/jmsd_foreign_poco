@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class DateTimeParserTest: public CppUnit::TestCase
+//class DateTimeParserTest: public CppUnit::TestCase
+class DateTimeParserTest: public CppUnit::TestFixture
 {
 public:
-	DateTimeParserTest(const std::string& name);
+//	DateTimeParserTest(const std::string& name);
+	DateTimeParserTest();
 	~DateTimeParserTest();
 
 	void testISO8601();

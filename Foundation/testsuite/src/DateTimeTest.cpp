@@ -23,7 +23,8 @@ using Poco::Timespan;
 using Poco::AssertionViolationException;
 
 
-DateTimeTest::DateTimeTest(const std::string& rName): CppUnit::TestCase(rName)
+//DateTimeTest::DateTimeTest(const std::string& rName): CppUnit::TestCase(rName)
+DateTimeTest::DateTimeTest(): CppUnit::TestFixture()
 {
 }
 
@@ -76,7 +77,7 @@ void DateTimeTest::testJulian()
 	assertTrue (dt.dayOfWeek() == 4);
 	assertTrue (dt.julianDay() == 2440587.5);
 	assertTrue (dt.timestamp() == 0);
-	
+
 	dt = 2299160.5; // 1582-10-15 00:00:00 (first day of Gregorian reform, UTC base)
 	assertTrue (dt.year() == 1582);
 	assertTrue (dt.month() == 10);
@@ -126,7 +127,7 @@ void DateTimeTest::testGregorian()
 	assertTrue (dt.dayOfWeek() == 4);
 	assertTrue (dt.julianDay() == 2440587.5);
 	assertTrue (dt.timestamp() == 0);
-	
+
 	dt.assign(2001, 9, 9, 1, 46, 40);
 	assertTrue (dt.year() == 2001);
 	assertTrue (dt.month() == 9);
@@ -181,7 +182,7 @@ void DateTimeTest::testStatics()
 	assertTrue (!DateTime::isLeapYear(2001));
 	assertTrue (!DateTime::isLeapYear(1800));
 	assertTrue (!DateTime::isLeapYear(1900));
-	
+
 	assertTrue (DateTime::daysOfMonth(2000, 1) == 31);
 	assertTrue (DateTime::daysOfMonth(2000, 2) == 29);
 	assertTrue (DateTime::daysOfMonth(1999, 2) == 28);
@@ -211,7 +212,7 @@ void DateTimeTest::testCalcs()
 	assertTrue (dt1.week(DateTime::MONDAY) == 1);
 	dt1.assign(2007, 12, 31);
 	assertTrue (dt1.week(DateTime::MONDAY) == 53);
-	
+
 	// Jan 1 is Mon
 	dt1.assign(2001, 1, 1);
 	assertTrue (dt1.week() == 1);
@@ -247,7 +248,7 @@ void DateTimeTest::testCalcs()
 	assertTrue (dt1.week() == 3);
 	dt1.assign(2003, 1, 20);
 	assertTrue (dt1.week() == 4);
-	
+
 	// Jan 1 is Thu
 	dt1.assign(2004, 1, 1);
 	assertTrue (dt1.week() == 1);
@@ -283,7 +284,7 @@ void DateTimeTest::testCalcs()
 	assertTrue (dt1.week() == 2);
 	dt1.assign(2000, 1, 17);
 	assertTrue (dt1.week() == 3);
-	
+
 	// Jan 1 is Sun
 	dt1.assign(1995, 1, 1);
 	assertTrue (dt1.week() == 0);
@@ -304,7 +305,7 @@ void DateTimeTest::testAMPM()
 	assertTrue (dt1.isAM());
 	assertTrue (!dt1.isPM());
 	assertTrue (dt1.hourAMPM() == 12);
-	
+
 	dt1.assign(2005, 1, 1, 12, 15, 30);
 	assertTrue (!dt1.isAM());
 	assertTrue (dt1.isPM());
@@ -322,14 +323,14 @@ void DateTimeTest::testRelational()
 	DateTime dt1(2005, 1, 1, 0, 15, 30);
 	DateTime dt2(2005, 1, 2, 0, 15, 30);
 	DateTime dt3(dt1);
-	
+
 	assertTrue (dt1 < dt2);
 	assertTrue (dt1 <= dt2);
 	assertTrue (dt2 > dt1);
 	assertTrue (dt2 >= dt1);
 	assertTrue (dt1 != dt2);
 	assertTrue (!(dt1 == dt2));
-	
+
 	assertTrue (dt1 == dt3);
 	assertTrue (!(dt1 != dt3));
 	assertTrue (dt1 >= dt3);
@@ -385,13 +386,13 @@ void DateTimeTest::testArithmetics()
 {
 	DateTime dt1(2005, 1, 1, 0, 15, 30);
 	DateTime dt2(2005, 1, 2, 0, 15, 30);
-	
+
 	Timespan s = dt2 - dt1;
 	assertTrue (s.days() == 1);
-	
+
 	DateTime dt3 = dt1 + s;
 	assertTrue (dt3 == dt2);
-	
+
 	dt3 -= s;
 	assertTrue (dt3 == dt1);
 	dt1 += s;
@@ -544,7 +545,7 @@ void DateTimeTest::testIncrementDecrement()
 		loop_1_assert (line, data[di].month1 == Y.month());
 		loop_1_assert (line, data[di].day1   == Y.day());
 	}
-			
+
 	for (di = 0; di < num_data; ++di)
 	{
 		const int line = data[di].lineNum;
@@ -589,7 +590,7 @@ void DateTimeTest::testSwap()
 	DateTime dt2(2005, 1, 2, 0, 15, 30);
 	DateTime dt3(2005, 1, 1, 0, 15, 30);
 	DateTime dt4(2005, 1, 2, 0, 15, 30);
-	
+
 	dt1.swap(dt2);
 	assertTrue (dt2 == dt3);
 	assertTrue (dt1 == dt4);
@@ -657,7 +658,7 @@ void DateTimeTest::testSetYearDay()
 		// TODO - need to be able to assign a day number in the year
 		// but POCO is not able to do this.
 
-		x.assign(year, day);				
+		x.assign(year, day);
 
 		// TODO - need to be able to assert with the loop counter
 		// but cppUnit is not able to do this.
@@ -821,7 +822,7 @@ void DateTimeTest::testDayOfWeek()
 		{ __LINE__,  2000,   1,       3,   DateTime::MONDAY    },
 		{ __LINE__,  2000,   1,       4,   DateTime::TUESDAY   },
 	};
-			
+
 	const int num_data = sizeof data / sizeof *data;
 	for (int di = 0; di < num_data ; ++di)
 	{
@@ -849,7 +850,7 @@ void DateTimeTest::testLeapSeconds()
 {
 	DateTime dt1(2015, 6, 30, 23, 59, 60);
 	DateTime dt2(2015, 7,  1,  0,  0,  0);
-	
+
 	assertTrue (dt1 == dt2);
 }
 

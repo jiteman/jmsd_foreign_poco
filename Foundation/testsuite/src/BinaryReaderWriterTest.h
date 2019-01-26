@@ -20,10 +20,12 @@
 #include "Poco/BinaryWriter.h"
 
 
-class BinaryReaderWriterTest: public CppUnit::TestCase
+//class BinaryReaderWriterTest: public CppUnit::TestCase
+class BinaryReaderWriterTest: public CppUnit::TestFixture
 {
 public:
-	BinaryReaderWriterTest(const std::string& name);
+//	BinaryReaderWriterTest(const std::string& name);
+	BinaryReaderWriterTest();
 	~BinaryReaderWriterTest();
 
 	void testNative();

@@ -22,7 +22,8 @@ using Poco::Base32Decoder;
 using Poco::DataFormatException;
 
 
-Base32Test::Base32Test(const std::string& rName): CppUnit::TestCase(rName)
+//Base32Test::Base32Test(const std::string& rName): CppUnit::TestCase(rName)
+Base32Test::Base32Test(): CppUnit::TestFixture()
 {
 }
 

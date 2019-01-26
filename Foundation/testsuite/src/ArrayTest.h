@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ArrayTest: public CppUnit::TestCase
+//class ArrayTest: public CppUnit::TestCase
+class ArrayTest: public CppUnit::TestFixture
 {
 public:
-	ArrayTest(const std::string& name);
+//	ArrayTest(const std::string& name);
+	ArrayTest();
 	~ArrayTest();
 
 	void testConstruction();

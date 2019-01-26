@@ -28,7 +28,8 @@ using Poco::Int64;
 using Poco::UInt64;
 
 
-BinaryReaderWriterTest::BinaryReaderWriterTest(const std::string& rName): CppUnit::TestCase(rName)
+//BinaryReaderWriterTest::BinaryReaderWriterTest(const std::string& rName): CppUnit::TestCase(rName)
+BinaryReaderWriterTest::BinaryReaderWriterTest(): CppUnit::TestFixture()
 {
 }
 
@@ -94,13 +95,13 @@ void BinaryReaderWriterTest::write(BinaryWriter& writer)
 
 	writer << (float) 1.5;
 	writer << (double) -1.5;
-	
+
 	writer << "foo";
 	writer << "";
-	
+
 	writer << std::string("bar");
 	writer << std::string();
-	
+
 	writer.write7BitEncoded((UInt32) 100);
 	writer.write7BitEncoded((UInt32) 1000);
 	writer.write7BitEncoded((UInt32) 10000);
@@ -248,7 +249,7 @@ void BinaryReaderWriterTest::testWrappers()
 	try
 	{
 		reader >> i;
-		fail ("must throw on EOF");
+		failmsg ("must throw on EOF");
 	} catch(std::exception&) { }
 }
 

@@ -31,16 +31,16 @@ namespace
 		Base()
 		{
 		}
-		
+
 		virtual ~Base()
 		{
 		}
 	};
-	
+
 	class A: public Base
 	{
 	};
-	
+
 	class B: public Base
 	{
 	};
@@ -63,7 +63,7 @@ void DynamicFactoryTest::testDynamicFactoryAutoPtr()
 
 	dynFactory.registerClass<A>("A");
 	dynFactory.registerClass<B>("B");
-	
+
 	assertTrue (dynFactory.isClass("A"));
 	assertTrue (dynFactory.isClass("B"));
 
@@ -72,13 +72,13 @@ void DynamicFactoryTest::testDynamicFactoryAutoPtr()
 	AutoPtr<A> a(dynFactory.createInstance("A").cast<A>());
 	AutoPtr<B> b(dynFactory.createInstance("B").cast<B>());
 
-	assertNotNull(a.get());
-	assertNotNull(b.get());
+	assertNotNullPtr(a.get());
+	assertNotNullPtr(b.get());
 
 	try
 	{
 		dynFactory.registerClass<A>("A");
-		fail("already registered - must throw");
+		failmsg("already registered - must throw");
 	}
 	catch (Poco::ExistsException&)
 	{
@@ -91,7 +91,7 @@ void DynamicFactoryTest::testDynamicFactoryAutoPtr()
 	try
 	{
 		AutoPtr<B> b(dynFactory.createInstance("B").cast<B>());
-		fail("unregistered - must throw");
+		failmsg("unregistered - must throw");
 	}
 	catch (Poco::NotFoundException&)
 	{
@@ -114,13 +114,13 @@ void DynamicFactoryTest::testDynamicFactoryPtr()
 	std::unique_ptr<A> a(dynamic_cast<A*>(dynFactory.createInstance("A")));
 	std::unique_ptr<B> b(dynamic_cast<B*>(dynFactory.createInstance("B")));
 
-	assertNotNull(a.get());
-	assertNotNull(b.get());
+	assertNotNullPtr(a.get());
+	assertNotNullPtr(b.get());
 
 	try
 	{
 		dynFactory.registerClass<A>("A");
-		fail("already registered - must throw");
+		failmsg("already registered - must throw");
 	}
 	catch (Poco::ExistsException&)
 	{
@@ -129,11 +129,11 @@ void DynamicFactoryTest::testDynamicFactoryPtr()
 	dynFactory.unregisterClass("B");
 	assertTrue (dynFactory.isClass("A"));
 	assertTrue (!dynFactory.isClass("B"));
-	
+
 	try
 	{
 		std::unique_ptr<B> b(dynamic_cast<B*>(dynFactory.createInstance("B")));
-		fail("unregistered - must throw");
+		failmsg("unregistered - must throw");
 	}
 	catch (Poco::NotFoundException&)
 	{

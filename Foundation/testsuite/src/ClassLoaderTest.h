@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ClassLoaderTest: public CppUnit::TestCase
+//class ClassLoaderTest: public CppUnit::TestCase
+class ClassLoaderTest: public CppUnit::TestFixture
 {
 public:
-	ClassLoaderTest(const std::string& name);
+//	ClassLoaderTest(const std::string& name);
+	ClassLoaderTest();
 	~ClassLoaderTest();
 
 	void testClassLoader1();

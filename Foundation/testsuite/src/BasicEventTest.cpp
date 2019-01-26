@@ -26,7 +26,8 @@ using namespace Poco;
 #define LARGEINC 100
 
 
-BasicEventTest::BasicEventTest(const std::string& rName): CppUnit::TestCase(rName)
+//BasicEventTest::BasicEventTest(const std::string& rName): CppUnit::TestCase(rName)
+BasicEventTest::BasicEventTest(): CppUnit::TestFixture()
 {
 }
 
@@ -68,12 +69,12 @@ void BasicEventTest::testNoDelegate()
 	Simple -= delegate(this, &BasicEventTest::onSimpleNoSender);
 	Simple.notify(this, tmp);
 	assertTrue (_count == 0);
-	
+
 	ConstSimple += delegate(this, &BasicEventTest::onConstSimple);
 	ConstSimple -= delegate(this, &BasicEventTest::onConstSimple);
 	ConstSimple.notify(this, tmp);
 	assertTrue (_count == 0);
-	
+
 	//Note: passing &args will not work due to &
 	EventArgs* pArgs = &args;
 	Complex += delegate(this, &BasicEventTest::onComplex);
@@ -101,7 +102,7 @@ void BasicEventTest::testNoDelegate()
 	Simple += delegate(&BasicEventTest::onStaticSimple);
 	Simple += delegate(&BasicEventTest::onStaticSimple2);
 	Simple += delegate(&BasicEventTest::onStaticSimple3);
-	
+
 	Simple.notify(this, tmp);
 	assertTrue (_count == 3);
 	Simple -= delegate(BasicEventTest::onStaticSimple);
@@ -130,7 +131,7 @@ void BasicEventTest::testSingleDelegate()
 	Simple += delegate(this, &BasicEventTest::onSimple);
 	Simple.notify(this, tmp);
 	assertTrue (_count == 2);
-	
+
 	ConstSimple += delegate(this, &BasicEventTest::onConstSimple);
 	ConstSimple.notify(this, tmp);
 	assertTrue (_count == 3);
@@ -165,14 +166,14 @@ void BasicEventTest::testSingleDelegate()
 	// check if 2nd notify also works
 	Const2Complex.notify(this, pArgs);
 	assertTrue (_count == 8);
-	
+
 }
 
 
 void BasicEventTest::testDuplicateRegister()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += delegate(this, &BasicEventTest::onSimple);
@@ -189,7 +190,7 @@ void BasicEventTest::testNullMutex()
 {
 	Poco::BasicEvent<int, NullMutex> ev;
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	ev += delegate(this, &BasicEventTest::onSimple);
@@ -206,7 +207,7 @@ void BasicEventTest::testDuplicateUnregister()
 {
 	// duplicate unregister shouldn't give an error,
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple -= delegate(this, &BasicEventTest::onSimple); // should work
@@ -230,7 +231,7 @@ void BasicEventTest::testDuplicateUnregister()
 void BasicEventTest::testDisabling()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += delegate(this, &BasicEventTest::onSimple);
@@ -253,7 +254,7 @@ void BasicEventTest::testDisabling()
 void BasicEventTest::testExpire()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += delegate(this, &BasicEventTest::onSimple, 500);
@@ -278,7 +279,7 @@ void BasicEventTest::testExpire()
 void BasicEventTest::testExpireReRegister()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += delegate(this, &BasicEventTest::onSimple, 500);

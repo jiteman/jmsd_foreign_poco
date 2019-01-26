@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class Base32Test: public CppUnit::TestCase
+//class Base32Test: public CppUnit::TestCase
+class Base32Test: public CppUnit::TestFixture
 {
 public:
-	Base32Test(const std::string& name);
+//	Base32Test(const std::string& name);
+	Base32Test();
 	~Base32Test();
 
 	void testEncoder();

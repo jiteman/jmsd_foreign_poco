@@ -23,7 +23,8 @@ using Poco::DigestEngine;
 using Poco::MD5Engine;
 
 
-DigestStreamTest::DigestStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+//DigestStreamTest::DigestStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+DigestStreamTest::DigestStreamTest(): CppUnit::TestFixture()
 {
 }
 
@@ -99,6 +100,6 @@ CppUnit::Test* DigestStreamTest::suite()
 	CppUnit_addTest(pSuite, DigestStreamTest, testOutputStream1);
 	CppUnit_addTest(pSuite, DigestStreamTest, testOutputStream2);
 	CppUnit_addTest(pSuite, DigestStreamTest, testToFromHex);
-	
+
 	return pSuite;
 }

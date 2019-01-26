@@ -45,7 +45,8 @@ public:
 };
 
 
-ChannelTest::ChannelTest(const std::string& rName): CppUnit::TestCase(rName)
+//ChannelTest::ChannelTest(const std::string& rName): CppUnit::TestCase(rName)
+ChannelTest::ChannelTest(): CppUnit::TestFixture()
 {
 }
 

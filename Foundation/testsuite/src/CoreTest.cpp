@@ -60,7 +60,7 @@ namespace
 			_counter(counter)
 		{
 		}
-		
+
 		void run()
 		{
 			for (int i = 0; i < 100000; ++i)
@@ -71,7 +71,7 @@ namespace
 				--_counter;
 			}
 		}
-		
+
 	private:
 		AtomicCounter& _counter;
 	};
@@ -148,7 +148,8 @@ struct Large
 #define ENABLE_BUGCHECK_TEST 0
 
 
-CoreTest::CoreTest(const std::string& rName): CppUnit::TestCase(rName)
+//CoreTest::CoreTest(const std::string& rName): CppUnit::TestCase(rName)
+CoreTest::CoreTest(): CppUnit::TestFixture()
 {
 }
 
@@ -178,7 +179,7 @@ void CoreTest::testFixedLength()
 	assertTrue (sizeof(Poco::UInt64) == 8);
 #endif
 	assertTrue (sizeof(Poco::IntPtr) == sizeof(void*));
-	assertTrue (sizeof(Poco::UIntPtr) == sizeof(void*));	
+	assertTrue (sizeof(Poco::UIntPtr) == sizeof(void*));
 }
 
 
@@ -187,7 +188,7 @@ void CoreTest::testBugcheck()
 #if ENABLE_BUGCHECK_TEST
 	try
 	{
-		Bugcheck::assertion("test", __FILE__, __LINE__);	
+		Bugcheck::assertion("test", __FILE__, __LINE__);
 		failmsg("must throw exception");
 	}
 	catch (Exception&)
@@ -196,7 +197,7 @@ void CoreTest::testBugcheck()
 
 	try
 	{
-		Bugcheck::nullPointer("test", __FILE__, __LINE__);	
+		Bugcheck::nullPointer("test", __FILE__, __LINE__);
 		failmsg("must throw exception");
 	}
 	catch (Exception&)
@@ -205,7 +206,7 @@ void CoreTest::testBugcheck()
 
 	try
 	{
-		Bugcheck::bugcheck("test", __FILE__, __LINE__);	
+		Bugcheck::bugcheck("test", __FILE__, __LINE__);
 		failmsg("must throw exception");
 	}
 	catch (Exception&)
@@ -322,7 +323,7 @@ void CoreTest::testBuffer()
 	try
 	{
 		buf.append("hello", 5);
-		fail ("must fail");
+		failmsg ("must fail");
 	}
 	catch (InvalidAccessException&) { }
 
@@ -366,35 +367,35 @@ void CoreTest::testAtomicCounter()
 	assertTrue (ac-- == 1);
 	assertTrue (++ac == 1);
 	assertTrue (--ac == 0);
-	
+
 	ac = 2;
 	assertTrue (ac.value() == 2);
-	
+
 	ac = 0;
 	assertTrue (ac.value() == 0);
-	
+
 	AtomicCounter ac2(2);
 	assertTrue (ac2.value() == 2);
-	
+
 	ACTRunnable act(ac);
 	Thread t1;
 	Thread t2;
 	Thread t3;
 	Thread t4;
 	Thread t5;
-	
+
 	t1.start(act);
 	t2.start(act);
 	t3.start(act);
 	t4.start(act);
 	t5.start(act);
-	
+
 	t1.join();
 	t2.join();
 	t3.join();
 	t4.join();
 	t5.join();
-	
+
 	assertTrue (ac.value() == 0);
 }
 
@@ -459,41 +460,41 @@ void CoreTest::testNullable()
 
 	Nullable<int> n1;
 	assertTrue (n1.isNull());
-	
+
 	assertTrue (n1.value(42) == 42);
 	assertTrue (n1.isNull());
 	assertTrue (!(0 == n1));
 	assertTrue (0 != n1);
 	assertTrue (!(n1 == 0));
 	assertTrue (n1 != 0);
-	
+
 	try
 	{
 		int tmp = n1.value();
-		fail("null value, must throw");
+		failmsg("null value, must throw");
 	}
 	catch (Poco::NullValueException&)
 	{
 	}
-	
+
 	n1 = 1;
 	assertTrue (!n1.isNull());
 	assertTrue (n1.value() == 1);
-	
+
 	Nullable<int> n2(42);
 	assertTrue (!n2.isNull());
 	assertTrue (n2.value() == 42);
 	assertTrue (n2.value(99) == 42);
-	
+
 	assertTrue (!(0 == n2));
 	assertTrue (0 != n2);
 	assertTrue (!(n2 == 0));
 	assertTrue (n2 != 0);
-	
+
 	n1 = n2;
 	assertTrue (!n1.isNull());
 	assertTrue (n1.value() == 42);
-	
+
 	std::ostringstream str;
 	str << n1;
 	assertTrue (str.str() == "42");
@@ -531,7 +532,7 @@ void CoreTest::testAscii()
 	assertTrue (!Ascii::isAscii(-1));
 	assertTrue (!Ascii::isAscii(128));
 	assertTrue (!Ascii::isAscii(222));
-	
+
 	assertTrue (Ascii::isSpace(' '));
 	assertTrue (Ascii::isSpace('\t'));
 	assertTrue (Ascii::isSpace('\r'));
@@ -539,7 +540,7 @@ void CoreTest::testAscii()
 	assertTrue (!Ascii::isSpace('A'));
 	assertTrue (!Ascii::isSpace(-1));
 	assertTrue (!Ascii::isSpace(222));
-	
+
 	assertTrue (Ascii::isDigit('0'));
 	assertTrue (Ascii::isDigit('1'));
 	assertTrue (Ascii::isDigit('2'));
@@ -551,7 +552,7 @@ void CoreTest::testAscii()
 	assertTrue (Ascii::isDigit('8'));
 	assertTrue (Ascii::isDigit('9'));
 	assertTrue (!Ascii::isDigit('a'));
-	
+
 	assertTrue (Ascii::isHexDigit('0'));
 	assertTrue (Ascii::isHexDigit('1'));
 	assertTrue (Ascii::isHexDigit('2'));
@@ -579,21 +580,21 @@ void CoreTest::testAscii()
 	assertTrue (Ascii::isPunct('.'));
 	assertTrue (Ascii::isPunct(','));
 	assertTrue (!Ascii::isPunct('A'));
-	
+
 	assertTrue (Ascii::isAlpha('a'));
 	assertTrue (Ascii::isAlpha('Z'));
 	assertTrue (!Ascii::isAlpha('0'));
-	
+
 	assertTrue (Ascii::isLower('a'));
 	assertTrue (!Ascii::isLower('A'));
-	
+
 	assertTrue (Ascii::isUpper('A'));
 	assertTrue (!Ascii::isUpper('a'));
-	
+
 	assertTrue (Ascii::toLower('A') == 'a');
 	assertTrue (Ascii::toLower('z') == 'z');
 	assertTrue (Ascii::toLower('0') == '0');
-	
+
 	assertTrue (Ascii::toUpper('a') == 'A');
 	assertTrue (Ascii::toUpper('0') == '0');
 	assertTrue (Ascii::toUpper('Z') == 'Z');

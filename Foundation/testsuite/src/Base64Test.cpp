@@ -22,7 +22,8 @@ using Poco::Base64Decoder;
 using Poco::DataFormatException;
 
 
-Base64Test::Base64Test(const std::string& rName): CppUnit::TestCase(rName)
+//Base64Test::Base64Test(const std::string& rName): CppUnit::TestCase(rName)
+Base64Test::Base64Test(): CppUnit::TestFixture()
 {
 }
 

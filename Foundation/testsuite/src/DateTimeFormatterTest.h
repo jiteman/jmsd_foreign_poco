@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class DateTimeFormatterTest: public CppUnit::TestCase
+//class DateTimeFormatterTest: public CppUnit::TestCase
+class DateTimeFormatterTest: public CppUnit::TestFixture
 {
 public:
-	DateTimeFormatterTest(const std::string& name);
+//	DateTimeFormatterTest(const std::string& name);
+	DateTimeFormatterTest();
 	~DateTimeFormatterTest();
 
 	void testISO8601();
@@ -35,7 +37,7 @@ public:
 	void testSORTABLE();
 	void testCustom();
 	void testTimespan();
-	
+
 	void setUp();
 	void tearDown();
 

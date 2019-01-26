@@ -25,7 +25,8 @@ using Poco::UInt64;
 #endif
 
 
-ByteOrderTest::ByteOrderTest(const std::string& rName): CppUnit::TestCase(rName)
+//ByteOrderTest::ByteOrderTest(const std::string& rName): CppUnit::TestCase(rName)
+ByteOrderTest::ByteOrderTest(): CppUnit::TestFixture()
 {
 }
 
@@ -162,7 +163,7 @@ void ByteOrderTest::testByteOrderBigEndian()
 		assertTrue (norm == flip);
 	}
 	#endif
-	
+
 	{
 		Int16 norm = 4;
 		Int16 flip = ByteOrder::fromBigEndian(norm);
@@ -243,7 +244,7 @@ void ByteOrderTest::testByteOrderBigEndian()
 		assertTrue (norm == flip);
 	}
 	#endif
-	
+
 	{
 		Int16 norm = 4;
 		Int16 flip = ByteOrder::fromBigEndian(norm);
@@ -330,7 +331,7 @@ void ByteOrderTest::testByteOrderLittleEndian()
 		assertTrue (norm == flip);
 	}
 	#endif
-	
+
 	{
 		Int16 norm = 4;
 		Int16 flip = ByteOrder::toLittleEndian(norm);
@@ -411,7 +412,7 @@ void ByteOrderTest::testByteOrderLittleEndian()
 		assertTrue (norm == flip);
 	}
 	#endif
-	
+
 	{
 		Int16 norm = 4;
 		Int16 flip = ByteOrder::fromLittleEndian(norm);
@@ -498,7 +499,7 @@ void ByteOrderTest::testByteOrderNetwork()
 		assertTrue (norm == flip);
 	}
 	#endif
-	
+
 	{
 		Int16 norm = 4;
 		Int16 flip = ByteOrder::fromNetwork(norm);
@@ -579,7 +580,7 @@ void ByteOrderTest::testByteOrderNetwork()
 		assertTrue (norm == flip);
 	}
 	#endif
-	
+
 	{
 		Int16 norm = 4;
 		Int16 flip = ByteOrder::fromNetwork(norm);

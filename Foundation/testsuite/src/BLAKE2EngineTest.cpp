@@ -19,7 +19,8 @@
 using Poco::BLAKE2Engine;
 using Poco::DigestEngine;
 
-BLAKE2EngineTest::BLAKE2EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+//BLAKE2EngineTest::BLAKE2EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+BLAKE2EngineTest::BLAKE2EngineTest(): CppUnit::TestFixture()
 {
 }
 

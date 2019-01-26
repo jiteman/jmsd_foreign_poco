@@ -27,7 +27,8 @@ using Poco::InvalidAccessException;
 using Poco::Path;
 
 
-ClassLoaderTest::ClassLoaderTest(const std::string& rName): CppUnit::TestCase(rName)
+//ClassLoaderTest::ClassLoaderTest(const std::string& rName): CppUnit::TestCase(rName)
+ClassLoaderTest::ClassLoaderTest(): CppUnit::TestFixture()
 {
 }
 
@@ -48,13 +49,13 @@ void ClassLoaderTest::testClassLoader1()
 	assertTrue (cl.begin() == cl.end());
 	assertNullPtr (cl.findClass("PluginA"));
 	assertNullPtr (cl.findManifest(path));
-	
+
 	assertTrue (!cl.isLibraryLoaded(path));
-	
+
 	try
 	{
 		const ClassLoader<TestPlugin>::Meta& meta = cl.classFor("PluginA");
-		fail("not found - must throw exception");
+		failmsg("not found - must throw exception");
 	}
 	catch (NotFoundException&)
 	{
@@ -67,7 +68,7 @@ void ClassLoaderTest::testClassLoader1()
 	try
 	{
 		const ClassLoader<TestPlugin>::Manif& manif = cl.manifestFor(path);
-		fail("not found - must throw exception");
+		failmsg("not found - must throw exception");
 	}
 	catch (NotFoundException&)
 	{
@@ -93,17 +94,17 @@ void ClassLoaderTest::testClassLoader2()
 	assertNotNullPtr (cl.findClass("PluginB"));
 	assertNotNullPtr (cl.findClass("PluginC"));
 	assertNotNullPtr (cl.findManifest(path));
-	
+
 	assertTrue (cl.isLibraryLoaded(path));
 	assertTrue (cl.manifestFor(path).size() == 3);
-	
+
 	ClassLoader<TestPlugin>::Iterator it = cl.begin();
 	assertTrue (it != cl.end());
 	assertTrue (it->first == path);
 	assertTrue (it->second->size() == 3);
 	++it;
 	assertTrue (it == cl.end());
-	
+
 	TestPlugin* pPluginA = cl.classFor("PluginA").create();
 	assertTrue (pPluginA->name() == "PluginA");
 	assertTrue (!cl.classFor("PluginA").isAutoDelete(pPluginA));
@@ -112,31 +113,31 @@ void ClassLoaderTest::testClassLoader2()
 	TestPlugin* pPluginB = cl.classFor("PluginB").create();
 	assertTrue (pPluginB->name() == "PluginB");
 	delete pPluginB;
-	
+
 	pPluginB = cl.create("PluginB");
 	assertTrue (pPluginB->name() == "PluginB");
 	delete pPluginB;
-	
+
 	assertTrue (cl.canCreate("PluginA"));
 	assertTrue (cl.canCreate("PluginB"));
 	assertTrue (!cl.canCreate("PluginC"));
 
 	TestPlugin& pluginC = cl.instance("PluginC");
 	assertTrue (pluginC.name() == "PluginC");
-	
+
 	try
 	{
 		TestPlugin& plgB = cl.instance("PluginB");
-		fail("not a singleton - must throw");
+		failmsg("not a singleton - must throw");
 	}
 	catch (InvalidAccessException&)
 	{
 	}
-	
+
 	try
 	{
 		TestPlugin* pPluginC = cl.create("PluginC");
-		fail("cannot create a singleton - must throw");
+		failmsg("cannot create a singleton - must throw");
 	}
 	catch (InvalidAccessException&)
 	{
@@ -146,12 +147,12 @@ void ClassLoaderTest::testClassLoader2()
 	{
 		const AbstractMetaObject<TestPlugin>& meta = cl.classFor("PluginC");
 		meta.autoDelete(&(meta.instance()));
-		fail("cannot take ownership of a singleton - must throw");
+		failmsg("cannot take ownership of a singleton - must throw");
 	}
 	catch (InvalidAccessException&)
 	{
 	}
-	
+
 	const AbstractMetaObject<TestPlugin>& meta1 = cl.classFor("PluginC");
 	assertTrue (meta1.isAutoDelete(&(meta1.instance())));
 
@@ -180,16 +181,16 @@ void ClassLoaderTest::testClassLoader3()
 	cl.loadLibrary(path);
 	cl.loadLibrary(path);
 	cl.unloadLibrary(path);
-	
+
 	assertTrue (cl.manifestFor(path).size() == 3);
-	
+
 	ClassLoader<TestPlugin>::Iterator it = cl.begin();
 	assertTrue (it != cl.end());
 	assertTrue (it->first == path);
 	assertTrue (it->second->size() == 3);
 	++it;
 	assertTrue (it == cl.end());
-	
+
 	cl.unloadLibrary(path);
 	assertNullPtr (cl.findManifest(path));
 }
