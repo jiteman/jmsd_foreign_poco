@@ -19,7 +19,8 @@
 using Poco::SHA3Engine;
 using Poco::DigestEngine;
 
-SHA3EngineTest::SHA3EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+//SHA3EngineTest::SHA3EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+SHA3EngineTest::SHA3EngineTest(): CppUnit::TestFixture()
 {
 }
 

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class HexBinaryTest: public CppUnit::TestCase
+//class HexBinaryTest: public CppUnit::TestCase
+class HexBinaryTest: public CppUnit::TestFixture
 {
 public:
-	HexBinaryTest(const std::string& name);
+//	HexBinaryTest(const std::string& name);
+	HexBinaryTest();
 	~HexBinaryTest();
 
 	void testEncoder();

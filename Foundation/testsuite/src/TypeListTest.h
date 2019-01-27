@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TypeListTest: public CppUnit::TestCase
+//class TypeListTest: public CppUnit::TestCase
+class TypeListTest: public CppUnit::TestFixture
 {
 public:
-	TypeListTest(const std::string& name);
+//	TypeListTest(const std::string& name);
+	TypeListTest();
 	~TypeListTest();
 
 	void testTypeList();

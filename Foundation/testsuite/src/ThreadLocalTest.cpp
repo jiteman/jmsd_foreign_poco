@@ -35,12 +35,12 @@ public:
 			++(*_count);
 		_result = *_count;
 	}
-	
+
 	int result()
 	{
 		return _result;
 	}
-	
+
 private:
 	int _n;
 	int _result;
@@ -58,7 +58,8 @@ struct TLTestStruct
 ThreadLocal<int> TLTestRunnable::_count;
 
 
-ThreadLocalTest::ThreadLocalTest(const std::string& rName): CppUnit::TestCase(rName)
+//ThreadLocalTest::ThreadLocalTest(const std::string& rName): CppUnit::TestCase(rName)
+ThreadLocalTest::ThreadLocalTest(): CppUnit::TestFixture()
 {
 }
 
@@ -82,7 +83,7 @@ void ThreadLocalTest::testLocality()
 	t1.join();
 	t2.join();
 	t3.join();
-	
+
 	assertTrue (r1.result() == 5000);
 	assertTrue (r2.result() == 7500);
 	assertTrue (r3.result() == 6000);

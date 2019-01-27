@@ -18,7 +18,8 @@ using Poco::SHA1Engine;
 using Poco::DigestEngine;
 
 
-SHA1EngineTest::SHA1EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+//SHA1EngineTest::SHA1EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+SHA1EngineTest::SHA1EngineTest(): CppUnit::TestFixture()
 {
 }
 

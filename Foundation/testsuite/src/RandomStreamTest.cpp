@@ -19,7 +19,8 @@
 using Poco::RandomInputStream;
 
 
-RandomStreamTest::RandomStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+//RandomStreamTest::RandomStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+RandomStreamTest::RandomStreamTest(): CppUnit::TestFixture()
 {
 }
 
@@ -32,7 +33,7 @@ RandomStreamTest::~RandomStreamTest()
 void RandomStreamTest::testStream()
 {
 	RandomInputStream rnd;
-	
+
 	const int n = 16;
 	std::vector<int> d(n, 0);
 	for (int i = 0; i < 1000; ++i)
@@ -49,7 +50,7 @@ void RandomStreamTest::testStream()
 	for (int k = 0; k < n; ++k) var += (d[k] - avg)*(d[k] - avg);
 	var /= n;
 	int sd = int(std::sqrt((double) var));
-	
+
 	assertTrue (110 < avg && avg < 140);
 	assertTrue (sd < 20);
 }

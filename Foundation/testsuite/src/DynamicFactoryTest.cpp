@@ -47,7 +47,8 @@ namespace
 }
 
 
-DynamicFactoryTest::DynamicFactoryTest(const std::string& rName): CppUnit::TestCase(rName)
+//DynamicFactoryTest::DynamicFactoryTest(const std::string& rName): CppUnit::TestCase(rName)
+DynamicFactoryTest::DynamicFactoryTest(): CppUnit::TestFixture()
 {
 }
 

@@ -25,10 +25,12 @@
 #pragma warning(disable : 4267)
 #endif // POCO_COMPILER_MSVC
 
-class OrderedContainersTest: public CppUnit::TestCase
+//class OrderedContainersTest: public CppUnit::TestCase
+class OrderedContainersTest: public CppUnit::TestFixture
 {
 public:
-	OrderedContainersTest(const std::string& name);
+//	OrderedContainersTest(const std::string& name);
+	OrderedContainersTest();
 	~OrderedContainersTest();
 
 	void testMapInsert();
@@ -132,11 +134,11 @@ private:
 			std::tie(it, inserted) = map.insert({utils::get_key<key_tt>(insert_val),
 					utils::get_value<value_tt>(insert_val)});
 
-			assertEquals(it->first, utils::get_key<key_tt>(insert_val));
-			assertEquals(it->second, utils::get_value<value_tt>(insert_val));
+			assertEqual(it->first, utils::get_key<key_tt>(insert_val));
+			assertEqual(it->second, utils::get_value<value_tt>(insert_val));
 			assertTrue(inserted);
 		}
-		assertEquals(map.size(), nb_values);
+		assertEqual(map.size(), nb_values);
 
 		for(std::size_t i = 0; i < nb_values; i++)
 		{
@@ -144,19 +146,19 @@ private:
 			std::tie(it, inserted) = map.insert({utils::get_key<key_tt>(insert_val),
 					utils::get_value<value_tt>(insert_val + 1)});
 
-			assertEquals(it->first, utils::get_key<key_tt>(insert_val));
-			assertEquals(it->second, utils::get_value<value_tt>(insert_val));
+			assertEqual(it->first, utils::get_key<key_tt>(insert_val));
+			assertEqual(it->second, utils::get_value<value_tt>(insert_val));
 			assertTrue(!inserted);
 		}
-		assertEquals(map.size(), nb_values);
+		assertEqual(map.size(), nb_values);
 
 		for(std::size_t i = 0; i < nb_values; i++)
 		{
 			const std::size_t insert_val = (i%2 == 0)?i:nb_values + i;
 			it = map.find(utils::get_key<key_tt>(insert_val));
 
-			assertEquals(it->first, utils::get_key<key_tt>(insert_val));
-			assertEquals(it->second, utils::get_value<value_tt>(insert_val));
+			assertEqual(it->first, utils::get_key<key_tt>(insert_val));
+			assertEqual(it->second, utils::get_value<value_tt>(insert_val));
 		}
 
 		std::size_t i = 0;
@@ -164,8 +166,8 @@ private:
 		{
 			const std::size_t insert_val = (i%2 == 0)?i:nb_values + i;
 
-			assertEquals(key_value.first, utils::get_key<key_tt>(insert_val));
-			assertEquals(key_value.second, utils::get_value<value_tt>(insert_val));
+			assertEqual(key_value.first, utils::get_key<key_tt>(insert_val));
+			assertEqual(key_value.second, utils::get_value<value_tt>(insert_val));
 
 			i++;
 		}
@@ -187,8 +189,8 @@ private:
 			it = map.erase(it);
 			--nb_values;
 
-			assertEquals(map.count(it2->first), 0);
-			assertEquals(map.size(), nb_values);
+			assertEqualTyped( T::size_type, map.count(it2->first), 0);
+			assertEqual(map.size(), nb_values);
 			++it2;
 		}
 
@@ -211,21 +213,21 @@ private:
 		{
 			std::tie(it, inserted) = map.insert({utils::get_key<key_tt>(i), utils::get_value<value_tt>(i)});
 
-			assertEquals(it->first, utils::get_key<key_tt>(i));
-			assertEquals(it->second, utils::get_value<value_tt>(i));
+			assertEqual(it->first, utils::get_key<key_tt>(i));
+			assertEqual(it->second, utils::get_value<value_tt>(i));
 			assertTrue(inserted);
 		}
-		assertEquals(map.size(), nb_values/2);
+		assertEqual(map.size(), nb_values/2);
 
 
 		// Delete nb_values/4
 		for(std::size_t i = 0; i < nb_values/2; i++)
 		{
 			if(i%2 == 0) {
-				assertEquals(map.erase(utils::get_key<key_tt>(i)), 1);
+				assertEqualTyped( T::size_type, map.erase(utils::get_key< key_tt >( i ) ), 1 );
 			}
 		}
-		assertEquals(map.size(), nb_values/4);
+		assertEqual(map.size(), nb_values/4);
 
 
 		// Insert nb_values/2
@@ -233,11 +235,11 @@ private:
 		{
 			std::tie(it, inserted) = map.insert({utils::get_key<key_tt>(i), utils::get_value<value_tt>(i)});
 
-			assertEquals(it->first, utils::get_key<key_tt>(i));
-			assertEquals(it->second, utils::get_value<value_tt>(i));
+			assertEqual(it->first, utils::get_key<key_tt>(i));
+			assertEqual(it->second, utils::get_value<value_tt>(i));
 			assertTrue(inserted);
 		}
-		assertEquals(map.size(), nb_values-nb_values/4);
+		assertEqual(map.size(), nb_values-nb_values/4);
 
 
 		// Find
@@ -250,8 +252,8 @@ private:
 			}
 			else {
 				it = map.find(utils::get_key<key_tt>(i));
-				assertEquals(it->first, utils::get_key<key_tt>(i));
-				assertEquals(it->second, utils::get_value<value_tt>(i));
+				assertEqual(it->first, utils::get_key<key_tt>(i));
+				assertEqual(it->second, utils::get_value<value_tt>(i));
 			}
 		}
 
@@ -261,15 +263,15 @@ private:
 		{
 			if(i < nb_values/2)
 			{
-				assertEquals(key_value.first, utils::get_key<key_tt>(i));
-				assertEquals(key_value.second, utils::get_value<value_tt>(i));
+				assertEqual(key_value.first, utils::get_key<key_tt>(i));
+				assertEqual(key_value.second, utils::get_value<value_tt>(i));
 
 				i = std::min(i+2, nb_values/2);
 			}
 			else
 			{
-				assertEquals(key_value.first, utils::get_key<key_tt>(i));
-				assertEquals(key_value.second, utils::get_value<value_tt>(i));
+				assertEqual(key_value.first, utils::get_key<key_tt>(i));
+				assertEqual(key_value.second, utils::get_value<value_tt>(i));
 
 				i++;
 			}
@@ -293,27 +295,27 @@ private:
 			const std::size_t insert_val = (i%2 == 0)?i:nb_values + i;
 			std::tie(it, inserted) = set.insert(utils::get_key<key_t>(insert_val));
 
-			assertEquals(*it, utils::get_key<key_t>(insert_val));
+			assertEqual(*it, utils::get_key<key_t>(insert_val));
 			assertTrue(inserted);
 		}
-		assertEquals(set.size(), nb_values);
+		assertEqual(set.size(), nb_values);
 
-		for(std::size_t i = 0; i < nb_values; i++) 
+		for(std::size_t i = 0; i < nb_values; i++)
 		{
 			const std::size_t insert_val = (i%2 == 0)?i:nb_values + i;
 			std::tie(it, inserted) = set.insert(utils::get_key<key_t>(insert_val));
 
-			assertEquals(*it, utils::get_key<key_t>(insert_val));
+			assertEqual(*it, utils::get_key<key_t>(insert_val));
 			assertTrue(!inserted);
 		}
-		assertEquals(set.size(), nb_values);
+		assertEqual(set.size(), nb_values);
 
 		for(std::size_t i = 0; i < nb_values; i++)
 		{
 			const std::size_t insert_val = (i%2 == 0)?i:nb_values + i;
 			it = set.find(utils::get_key<key_t>(insert_val));
 
-			assertEquals(*it, utils::get_key<key_t>(insert_val));
+			assertEqual(*it, utils::get_key<key_t>(insert_val));
 		}
 
 		std::size_t i = 0;
@@ -321,7 +323,7 @@ private:
 		{
 			const std::size_t insert_val = (i%2 == 0)?i:nb_values + i;
 
-			assertEquals(value, utils::get_key<key_t>(insert_val));
+			assertEqual(value, utils::get_key<key_t>(insert_val));
 
 			i++;
 		}

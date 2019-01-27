@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NullStreamTest: public CppUnit::TestCase
+//class NullStreamTest: public CppUnit::TestCase
+class NullStreamTest: public CppUnit::TestFixture
 {
 public:
-	NullStreamTest(const std::string& name);
+//	NullStreamTest(const std::string& name);
+	NullStreamTest();
 	~NullStreamTest();
 
 	void testInput();

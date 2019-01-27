@@ -19,10 +19,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class SharedMemoryTest: public CppUnit::TestCase
+//class SharedMemoryTest: public CppUnit::TestCase
+class SharedMemoryTest: public CppUnit::TestFixture
 {
 public:
-	SharedMemoryTest(const std::string& name);
+//	SharedMemoryTest(const std::string& name);
+	SharedMemoryTest();
 	~SharedMemoryTest();
 
 	void testCreate();

@@ -19,10 +19,12 @@
 #include "Poco/RefCountedObject.h"
 
 
-class RefPtrTest: public CppUnit::TestCase
+//class RefPtrTest: public CppUnit::TestCase
+class RefPtrTest: public CppUnit::TestFixture
 {
 public:
-	RefPtrTest(const std::string& name);
+//	RefPtrTest(const std::string& name);
+	RefPtrTest();
 	~RefPtrTest();
 
 	void testRefPtr();

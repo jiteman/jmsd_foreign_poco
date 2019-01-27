@@ -17,10 +17,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ExpireLRUCacheTest: public CppUnit::TestCase
+//class ExpireLRUCacheTest: public CppUnit::TestCase
+class ExpireLRUCacheTest: public CppUnit::TestFixture
 {
 public:
-	ExpireLRUCacheTest(const std::string& name);
+//	ExpireLRUCacheTest(const std::string& name);
+	ExpireLRUCacheTest();
 	~ExpireLRUCacheTest();
 
 	void testClear();
@@ -32,7 +34,7 @@ public:
 	void testCacheSize2();
 	void testCacheSizeN();
 	void testDuplicateAdd();
-	
+
 	void setUp();
 	void tearDown();
 	static CppUnit::Test* suite();

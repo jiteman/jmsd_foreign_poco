@@ -33,7 +33,7 @@ namespace
 	public:
 		void run()
 		{
-		
+
 			testEvent.wait();
 			_timestamp.update();
 		}
@@ -49,7 +49,8 @@ namespace
 }
 
 
-NamedEventTest::NamedEventTest(const std::string& rName): CppUnit::TestCase(rName)
+//NamedEventTest::NamedEventTest(const std::string& rName): CppUnit::TestCase(rName)
+NamedEventTest::NamedEventTest(): CppUnit::TestFixture()
 {
 }
 

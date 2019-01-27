@@ -21,7 +21,8 @@ using Poco::Thread;
 using Poco::Stopwatch;
 
 
-TimerTest::TimerTest(const std::string& rName): CppUnit::TestCase(rName)
+//TimerTest::TimerTest(const std::string& rName): CppUnit::TestCase(rName)
+TimerTest::TimerTest(): CppUnit::TestFixture()
 {
 }
 
@@ -52,7 +53,7 @@ void TimerTest::testTimer()
 	_event.wait();
 	sw.stop();
 	assertTrue (sw.elapsed() >= 180000 && sw.elapsed() < 250000);
-	t.stop();	
+	t.stop();
 }
 
 

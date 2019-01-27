@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class PathTest: public CppUnit::TestCase
+//class PathTest: public CppUnit::TestCase
+class PathTest: public CppUnit::TestFixture
 {
 public:
-	PathTest(const std::string& name);
+//	PathTest(const std::string& name);
+	PathTest();
 	~PathTest();
 
 	void testParseUnix1();

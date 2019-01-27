@@ -1,4 +1,3 @@
-//
 // SHA2EngineTest.h
 //
 // Definition of the SHA2EngineTest class.
@@ -15,10 +14,12 @@
 #include "Poco/Foundation.h"
 #include "Poco/CppUnit/TestCase.h"
 
-class SHA2EngineTest: public CppUnit::TestCase
+//class SHA2EngineTest: public CppUnit::TestCase
+class SHA2EngineTest: public CppUnit::TestFixture
 {
 public:
-	SHA2EngineTest(const std::string& name);
+//	SHA2EngineTest(const std::string& name);
+	SHA2EngineTest();
 	~SHA2EngineTest();
 
 	void testSHA224();

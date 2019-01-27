@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NDCTest: public CppUnit::TestCase
+//class NDCTest: public CppUnit::TestCase
+class NDCTest: public CppUnit::TestFixture
 {
 public:
-	NDCTest(const std::string& name);
+//	NDCTest(const std::string& name);
+	NDCTest();
 	~NDCTest();
 
 	void testNDC();

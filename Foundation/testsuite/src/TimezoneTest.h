@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TimezoneTest: public CppUnit::TestCase
+//class TimezoneTest: public CppUnit::TestCase
+class TimezoneTest: public CppUnit::TestFixture
 {
 public:
-	TimezoneTest(const std::string& name);
+//	TimezoneTest(const std::string& name);
+	TimezoneTest();
 	~TimezoneTest();
 
 	void testTimezone();

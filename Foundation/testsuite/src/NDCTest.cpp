@@ -18,7 +18,8 @@
 using Poco::NDC;
 
 
-NDCTest::NDCTest(const std::string& rName): CppUnit::TestCase(rName)
+//NDCTest::NDCTest(const std::string& rName): CppUnit::TestCase(rName)
+NDCTest::NDCTest(): CppUnit::TestFixture()
 {
 }
 

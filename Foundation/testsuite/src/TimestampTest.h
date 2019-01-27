@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TimestampTest: public CppUnit::TestCase
+//class TimestampTest: public CppUnit::TestCase
+class TimestampTest: public CppUnit::TestFixture
 {
 public:
-	TimestampTest(const std::string& name);
+//	TimestampTest(const std::string& name);
+	TimestampTest();
 	~TimestampTest();
 
 	void testTimestamp();

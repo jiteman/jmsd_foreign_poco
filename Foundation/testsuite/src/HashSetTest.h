@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class HashSetTest: public CppUnit::TestCase
+//class HashSetTest: public CppUnit::TestCase
+class HashSetTest: public CppUnit::TestFixture
 {
 public:
-	HashSetTest(const std::string& name);
+//	HashSetTest(const std::string& name);
+	HashSetTest();
 	~HashSetTest();
 
 	void testInsert();

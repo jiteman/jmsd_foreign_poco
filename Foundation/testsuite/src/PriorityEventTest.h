@@ -20,7 +20,8 @@
 #include "Poco/EventArgs.h"
 
 
-class PriorityEventTest: public CppUnit::TestCase
+//class PriorityEventTest: public CppUnit::TestCase
+class PriorityEventTest: public CppUnit::TestFixture
 {
 	Poco::PriorityEvent<void> Void;
 	Poco::PriorityEvent<int> Simple;
@@ -30,7 +31,8 @@ class PriorityEventTest: public CppUnit::TestCase
 	Poco::PriorityEvent<const Poco::EventArgs*> ConstComplex;
 	Poco::PriorityEvent<const Poco::EventArgs * const> Const2Complex;
 public:
-	PriorityEventTest(const std::string& name);
+//	PriorityEventTest(const std::string& name);
+	PriorityEventTest();
 	~PriorityEventTest();
 
 	void testNoDelegate();

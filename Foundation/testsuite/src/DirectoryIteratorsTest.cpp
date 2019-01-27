@@ -83,8 +83,11 @@ private:
 };
 
 
-DirectoryIteratorsTest::DirectoryIteratorsTest(const std::string& name):
-	CppUnit::TestCase(name)
+//DirectoryIteratorsTest::DirectoryIteratorsTest(const std::string& name):
+//	CppUnit::TestCase(name)
+DirectoryIteratorsTest::DirectoryIteratorsTest():
+	CppUnit::TestFixture()
+
 {
 }
 

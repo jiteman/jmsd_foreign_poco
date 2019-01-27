@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TimespanTest: public CppUnit::TestCase
+//class TimespanTest: public CppUnit::TestCase
+class TimespanTest: public CppUnit::TestFixture
 {
 public:
-	TimespanTest(const std::string& name);
+//	TimespanTest(const std::string& name);
+	TimespanTest();
 	~TimespanTest();
 
 	void testConversions();

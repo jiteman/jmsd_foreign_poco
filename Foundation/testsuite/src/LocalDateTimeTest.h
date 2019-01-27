@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class LocalDateTimeTest: public CppUnit::TestCase
+//class LocalDateTimeTest: public CppUnit::TestCase
+class LocalDateTimeTest: public CppUnit::TestFixture
 {
 public:
-	LocalDateTimeTest(const std::string& name);
+//	LocalDateTimeTest(const std::string& name);
+	LocalDateTimeTest();
 	~LocalDateTimeTest();
 
 	void testGregorian1();

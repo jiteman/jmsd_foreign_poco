@@ -26,7 +26,8 @@ using namespace Poco;
 #define DURWAIT  300
 
 
-ExpireLRUCacheTest::ExpireLRUCacheTest(const std::string& rName): CppUnit::TestCase(rName)
+//ExpireLRUCacheTest::ExpireLRUCacheTest(const std::string& rName): CppUnit::TestCase(rName)
+ExpireLRUCacheTest::ExpireLRUCacheTest(): CppUnit::TestFixture()
 {
 }
 

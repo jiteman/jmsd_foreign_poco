@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class StopwatchTest: public CppUnit::TestCase
+//class StopwatchTest: public CppUnit::TestCase
+class StopwatchTest: public CppUnit::TestFixture
 {
 public:
-	StopwatchTest(const std::string& name);
+//	StopwatchTest(const std::string& name);
+	StopwatchTest();
 	~StopwatchTest();
 
 	void testStopwatch();

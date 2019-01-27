@@ -17,7 +17,8 @@
 using Poco::FPE;
 
 
-FPETest::FPETest(const std::string& rName): CppUnit::TestCase(rName)
+//FPETest::FPETest(const std::string& rName): CppUnit::TestCase(rName)
+FPETest::FPETest(): CppUnit::TestFixture()
 {
 }
 
@@ -93,7 +94,7 @@ void FPETest::testFlags()
 	volatile double b = 0;
 	volatile double c = div(a, b);
 
-#if !defined(POCO_NO_FPENVIRONMENT)	
+#if !defined(POCO_NO_FPENVIRONMENT)
 	assertTrue (FPE::isFlag(FPE::FP_DIVIDE_BY_ZERO));
 #endif
 	assertTrue (FPE::isInfinite(c));
@@ -102,7 +103,7 @@ void FPETest::testFlags()
 	a = 1.23456789e210;
 	b = 9.87654321e210;
 	c = mult(a, b);
-#if !defined(POCO_NO_FPENVIRONMENT)	
+#if !defined(POCO_NO_FPENVIRONMENT)
 	assertTrue (FPE::isFlag(FPE::FP_OVERFLOW));
 #endif
 	assertEqualDelta(c, c, 0);
@@ -110,8 +111,8 @@ void FPETest::testFlags()
 	FPE::clearFlags();
 	a = 1.23456789e-99;
 	b = 9.87654321e210;
-	c = div(a, b);	
-#if !defined(POCO_NO_FPENVIRONMENT)	
+	c = div(a, b);
+#if !defined(POCO_NO_FPENVIRONMENT)
 	assertTrue (FPE::isFlag(FPE::FP_UNDERFLOW));
 #endif
 	assertEqualDelta(c, c, 0);
@@ -131,13 +132,13 @@ void FPETest::testRound()
 {
 #if !defined(__osf__) && !defined(__VMS) && !defined(POCO_NO_FPENVIRONMENT)
 
-	FPE::setRoundingMode(FPE::FP_ROUND_TONEAREST);			
+	FPE::setRoundingMode(FPE::FP_ROUND_TONEAREST);
 	assertTrue (FPE::getRoundingMode() == FPE::FP_ROUND_TONEAREST);
 	{
 		FPE env(FPE::FP_ROUND_TOWARDZERO);
 		assertTrue (FPE::getRoundingMode() == FPE::FP_ROUND_TOWARDZERO);
 	}
-	assertTrue (FPE::getRoundingMode() == FPE::FP_ROUND_TONEAREST);	
+	assertTrue (FPE::getRoundingMode() == FPE::FP_ROUND_TONEAREST);
 #endif
 }
 

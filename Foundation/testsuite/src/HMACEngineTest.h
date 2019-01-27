@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class HMACEngineTest: public CppUnit::TestCase
+//class HMACEngineTest: public CppUnit::TestCase
+class HMACEngineTest: public CppUnit::TestFixture
 {
 public:
-	HMACEngineTest(const std::string& name);
+//	HMACEngineTest(const std::string& name);
+	HMACEngineTest();
 	~HMACEngineTest();
 
 	void testHMAC();

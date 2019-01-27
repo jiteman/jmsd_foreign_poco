@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TextIteratorTest: public CppUnit::TestCase
+//class TextIteratorTest: public CppUnit::TestCase
+class TextIteratorTest: public CppUnit::TestFixture
 {
 public:
-	TextIteratorTest(const std::string& name);
+//	TextIteratorTest(const std::string& name);
+	TextIteratorTest();
 	~TextIteratorTest();
 
 	void testEmptyLatin1();

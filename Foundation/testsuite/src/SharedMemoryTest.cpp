@@ -23,7 +23,8 @@
 using Poco::SharedMemory;
 
 
-SharedMemoryTest::SharedMemoryTest(const std::string& rName): CppUnit::TestCase(rName)
+//SharedMemoryTest::SharedMemoryTest(const std::string& rName): CppUnit::TestCase(rName)
+SharedMemoryTest::SharedMemoryTest(): CppUnit::TestFixture()
 {
 }
 

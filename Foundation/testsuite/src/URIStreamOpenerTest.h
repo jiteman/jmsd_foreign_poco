@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class URIStreamOpenerTest: public CppUnit::TestCase
+//class URIStreamOpenerTest: public CppUnit::TestCase
+class URIStreamOpenerTest: public CppUnit::TestFixture
 {
 public:
-	URIStreamOpenerTest(const std::string& name);
+//	URIStreamOpenerTest(const std::string& name);
+	URIStreamOpenerTest();
 	~URIStreamOpenerTest();
 
 	void testStreamOpenerFile();

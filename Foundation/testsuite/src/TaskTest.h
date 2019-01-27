@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TaskTest: public CppUnit::TestCase
+//class TaskTest: public CppUnit::TestCase
+class TaskTest: public CppUnit::TestFixture
 {
 public:
-	TaskTest(const std::string& name);
+//	TaskTest(const std::string& name);
+	TaskTest();
 	~TaskTest();
 
 	void testFinish();

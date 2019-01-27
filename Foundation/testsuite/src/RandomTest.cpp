@@ -19,7 +19,8 @@
 using Poco::UInt32;
 
 
-RandomTest::RandomTest(const std::string& rName): CppUnit::TestCase(rName)
+//RandomTest::RandomTest(const std::string& rName): CppUnit::TestCase(rName)
+RandomTest::RandomTest(): CppUnit::TestFixture()
 {
 }
 
@@ -48,8 +49,8 @@ void RandomTest::testSequence2()
 	Poco::Random rnd2;
 	rnd1.seed(12345);
 	rnd2.seed(54321);
-	
-	bool equals = true;	
+
+	bool equals = true;
 	for (int i = 0; i < 20; ++i)
 	{
 		if (rnd1.next() != rnd2.next())
@@ -74,7 +75,7 @@ void RandomTest::testDistribution1()
 	}
 	int sum = 0;
 	for (int k = 0; k < n; ++k) sum += d[k];
-	
+
 	assertTrue (sum == n);
 }
 
@@ -96,7 +97,7 @@ void RandomTest::testDistribution2()
 	for (int k = 0; k < n; ++k) var += (d[k] - avg)*(d[k] - avg);
 	var /= n;
 	int sd = int(std::sqrt((double) var));
-	
+
 	assertTrue (95 < avg && avg < 105);
 	assertTrue (sd < 15);
 }
@@ -119,7 +120,7 @@ void RandomTest::testDistribution3()
 	for (int k = 0; k < n; ++k) var += (d[k] - avg)*(d[k] - avg);
 	var /= n;
 	int sd = int(std::sqrt((double) var));
-	
+
 	assertTrue (95 < avg && avg < 105);
 	assertTrue (sd < 15);
 }

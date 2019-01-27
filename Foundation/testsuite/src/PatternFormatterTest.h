@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class PatternFormatterTest: public CppUnit::TestCase
+//class PatternFormatterTest: public CppUnit::TestCase
+class PatternFormatterTest: public CppUnit::TestFixture
 {
 public:
-	PatternFormatterTest(const std::string& name);
+//	PatternFormatterTest(const std::string& name);
+	PatternFormatterTest();
 	~PatternFormatterTest();
 
 	void testPatternFormatter();

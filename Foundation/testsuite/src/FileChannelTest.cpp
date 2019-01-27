@@ -46,7 +46,8 @@ using Poco::DirectoryIterator;
 using Poco::InvalidArgumentException;
 
 
-FileChannelTest::FileChannelTest(const std::string& rName): CppUnit::TestCase(rName)
+//FileChannelTest::FileChannelTest(const std::string& rName): CppUnit::TestCase(rName)
+FileChannelTest::FileChannelTest(): CppUnit::TestFixture()
 {
 }
 
@@ -364,13 +365,13 @@ void FileChannelTest::purgeAge(const std::string& pa)
 		assertTrue (f1.exists());
 		File f2(name + ".2");
 		assertTrue (f2.exists());
-		
+
 		Thread::sleep(5000);
 		for (int i = 0; i < 50; ++i)
 		{
 			pChannel->log(msg);
 		}
-		
+
 		assertTrue (!f2.exists());
 	}
 	catch (...)
@@ -428,7 +429,7 @@ void FileChannelTest::testPurgeAge()
 		try
 		{
 				noPurgeAge("0 seconds");
-				fail ("must fail");
+				failmsg ("must fail");
 		} catch (InvalidArgumentException&)
 		{
 		}
@@ -506,7 +507,7 @@ void FileChannelTest::testPurgeCount()
 	try
 	{
 		noPurgeCount("0");
-		fail("must fail");
+		failmsg("must fail");
 	} catch (InvalidArgumentException&)
 	{
 	}
@@ -525,7 +526,7 @@ void FileChannelTest::testWrongPurgeOption()
 	try
 	{
 		pChannel->setProperty(FileChannel::PROP_PURGEAGE, "peace");
-		fail("must fail");
+		failmsg("must fail");
 	} catch (InvalidArgumentException)
 	{
 		assertTrue (pChannel->getProperty(FileChannel::PROP_PURGEAGE) == "5 seconds");
@@ -534,7 +535,7 @@ void FileChannelTest::testWrongPurgeOption()
 	try
 	{
 		pChannel->setProperty(FileChannel::PROP_PURGECOUNT, "peace");
-		fail("must fail");
+		failmsg("must fail");
 	} catch (InvalidArgumentException)
 	{
 		assertTrue (pChannel->getProperty(FileChannel::PROP_PURGEAGE) == "5 seconds");

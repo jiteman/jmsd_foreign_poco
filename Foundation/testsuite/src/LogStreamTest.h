@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class LogStreamTest: public CppUnit::TestCase
+//class LogStreamTest: public CppUnit::TestCase
+class LogStreamTest: public CppUnit::TestFixture
 {
 public:
-	LogStreamTest(const std::string& name);
+//	LogStreamTest(const std::string& name);
+	LogStreamTest();
 	~LogStreamTest();
 
 	void testLogStream();

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ManifestTest: public CppUnit::TestCase
+//class ManifestTest: public CppUnit::TestCase
+class ManifestTest: public CppUnit::TestFixture
 {
 public:
-	ManifestTest(const std::string& name);
+//	ManifestTest(const std::string& name);
+	ManifestTest();
 	~ManifestTest();
 
 	void testManifest();

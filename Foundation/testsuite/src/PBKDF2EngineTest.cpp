@@ -22,7 +22,8 @@ using Poco::SHA1Engine;
 using Poco::DigestEngine;
 
 
-PBKDF2EngineTest::PBKDF2EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+//PBKDF2EngineTest::PBKDF2EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+PBKDF2EngineTest::PBKDF2EngineTest(): CppUnit::TestFixture()
 {
 }
 
@@ -35,7 +36,7 @@ PBKDF2EngineTest::~PBKDF2EngineTest()
 void PBKDF2EngineTest::testPBKDF2a()
 {
 	// test vector 1 from RFC 6070
-	
+
 	std::string p("password");
 	std::string s("salt");
 	PBKDF2Engine<HMACEngine<SHA1Engine> > pbkdf2(s, 1, 20);
@@ -48,7 +49,7 @@ void PBKDF2EngineTest::testPBKDF2a()
 void PBKDF2EngineTest::testPBKDF2b()
 {
 	// test vector 2 from RFC 6070
-	
+
 	std::string p("password");
 	std::string s("salt");
 	PBKDF2Engine<HMACEngine<SHA1Engine> > pbkdf2(s, 2, 20);
@@ -61,7 +62,7 @@ void PBKDF2EngineTest::testPBKDF2b()
 void PBKDF2EngineTest::testPBKDF2c()
 {
 	// test vector 3 from RFC 6070
-	
+
 	std::string p("password");
 	std::string s("salt");
 	PBKDF2Engine<HMACEngine<SHA1Engine> > pbkdf2(s, 4096, 20);
@@ -88,7 +89,7 @@ void PBKDF2EngineTest::testPBKDF2d()
 void PBKDF2EngineTest::testPBKDF2e()
 {
 	// test vector 5 from RFC 6070
-	
+
 	std::string p("passwordPASSWORDpassword");
 	std::string s("saltSALTsaltSALTsaltSALTsaltSALTsalt");
 	PBKDF2Engine<HMACEngine<SHA1Engine> > pbkdf2(s, 4096, 25);
@@ -101,7 +102,7 @@ void PBKDF2EngineTest::testPBKDF2e()
 void PBKDF2EngineTest::testPBKDF2f()
 {
 	// test vector 6 from RFC 6070
-	
+
 	std::string p("pass\0word", 9);
 	std::string s("sa\0lt", 5);
 	PBKDF2Engine<HMACEngine<SHA1Engine> > pbkdf2(s, 4096, 16);

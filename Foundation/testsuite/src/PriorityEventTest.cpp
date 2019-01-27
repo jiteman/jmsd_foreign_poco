@@ -24,7 +24,8 @@ using namespace Poco;
 #define LARGEINC 100
 
 
-PriorityEventTest::PriorityEventTest(const std::string& rName): CppUnit::TestCase(rName)
+//PriorityEventTest::PriorityEventTest(const std::string& rName): CppUnit::TestCase(rName)
+PriorityEventTest::PriorityEventTest(): CppUnit::TestFixture()
 {
 }
 
@@ -59,12 +60,12 @@ void PriorityEventTest::testNoDelegate()
 	Simple -= priorityDelegate(this, &PriorityEventTest::onSimpleNoSender, 0);
 	Simple.notify(this, tmp);
 	assertTrue (_count == 0);
-	
+
 	ConstSimple += priorityDelegate(this, &PriorityEventTest::onConstSimple, 0);
 	ConstSimple -= priorityDelegate(this, &PriorityEventTest::onConstSimple, 0);
 	ConstSimple.notify(this, tmp);
 	assertTrue (_count == 0);
-	
+
 	//Note: passing &args will not work due to &
 	EventArgs* pArgs = &args;
 	Complex += priorityDelegate(this, &PriorityEventTest::onComplex, 0);
@@ -93,7 +94,7 @@ void PriorityEventTest::testNoDelegate()
 	Simple += priorityDelegate(&PriorityEventTest::onStaticSimple, 1);
 	Simple += priorityDelegate(&PriorityEventTest::onStaticSimple2, 2);
 	Simple += priorityDelegate(&PriorityEventTest::onStaticSimple3, 3);
-	
+
 	Simple.notify(this, tmp);
 	assertTrue (_count == 4);
 	Simple -= priorityDelegate(PriorityEventTest::onStaticSimple, 0);
@@ -126,12 +127,12 @@ void PriorityEventTest::testSingleDelegate()
 	Simple -= priorityDelegate(this, &PriorityEventTest::onSimple, 3);
 	Simple.notify(this, tmp);
 	assertTrue (_count == 2);
-	
+
 	ConstSimple += priorityDelegate(this, &PriorityEventTest::onConstSimple, 0);
 	ConstSimple -= priorityDelegate(this, &PriorityEventTest::onConstSimple, 3);
 	ConstSimple.notify(this, tmp);
 	assertTrue (_count == 3);
-	
+
 	EventArgs* pArgs = &args;
 	Complex += priorityDelegate(this, &PriorityEventTest::onComplex, 0);
 	Complex -= priorityDelegate(this, &PriorityEventTest::onComplex, 3);
@@ -156,13 +157,13 @@ void PriorityEventTest::testSingleDelegate()
 	// check if 2nd notify also works
 	Const2Complex.notify(this, pArgs);
 	assertTrue (_count == 8);
-	
+
 }
 
 void PriorityEventTest::testDuplicateRegister()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += priorityDelegate(this, &PriorityEventTest::onSimple, 0);
@@ -185,7 +186,7 @@ void PriorityEventTest::testDuplicateUnregister()
 {
 	// duplicate unregister shouldn't give an error,
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple -= priorityDelegate(this, &PriorityEventTest::onSimple, 0); // should work
@@ -209,7 +210,7 @@ void PriorityEventTest::testDuplicateUnregister()
 void PriorityEventTest::testDisabling()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += priorityDelegate(this, &PriorityEventTest::onSimple, 0);
@@ -244,7 +245,7 @@ void PriorityEventTest::testPriorityOrder()
 
 	Simple -= PriorityDelegate<DummyDelegate, int>(&o1, &DummyDelegate::onSimple, 0);
 	Simple -= PriorityDelegate<DummyDelegate, int>(&o2, &DummyDelegate::onSimple2, 1);
-	
+
 	// now try with the wrong order
 	Simple += PriorityDelegate<DummyDelegate, int>(&o2, &DummyDelegate::onSimple2, 0);
 	Simple += PriorityDelegate<DummyDelegate, int>(&o1, &DummyDelegate::onSimple, 1);
@@ -282,12 +283,12 @@ void PriorityEventTest::testPriorityOrderExpire()
 	Simple -= priorityDelegate(&o2, &DummyDelegate::onSimple2, 1);
 	Simple.notify(this, tmp);
 	assertTrue (tmp == 2);
-	
+
 	// now start mixing of expire and non expire
 	tmp = 0;
 	Simple += priorityDelegate(&o2, &DummyDelegate::onSimple2, 1, 500000);
 	Simple += priorityDelegate(&o1, &DummyDelegate::onSimple, 0);
-	
+
 	Simple.notify(this, tmp);
 	assertTrue (tmp == 2);
 
@@ -319,7 +320,7 @@ void PriorityEventTest::testPriorityOrderExpire()
 void PriorityEventTest::testExpire()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += priorityDelegate(this, &PriorityEventTest::onSimple, 1, 500);
@@ -344,7 +345,7 @@ void PriorityEventTest::testExpire()
 void PriorityEventTest::testExpireReRegister()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += priorityDelegate(this, &PriorityEventTest::onSimple, 1, 500);
@@ -398,7 +399,7 @@ void PriorityEventTest::testAsyncNotify()
 	retArg.wait();
 	assertTrue (retArg.data() == tmp);
 	assertTrue (_count == LARGEINC);
-	
+
 }
 
 void PriorityEventTest::onStaticVoid(const void* pSender)

@@ -17,10 +17,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class UniqueExpireCacheTest: public CppUnit::TestCase
+//class UniqueExpireCacheTest: public CppUnit::TestCase
+class UniqueExpireCacheTest: public CppUnit::TestFixture
 {
 public:
-	UniqueExpireCacheTest(const std::string& name);
+//	UniqueExpireCacheTest(const std::string& name);
+	UniqueExpireCacheTest();
 	~UniqueExpireCacheTest();
 
 	void testClear();
@@ -32,7 +34,7 @@ public:
 	void testExpireN();
 	void testExpirationDecorator();
 	void testAccessUpdate();
-	
+
 	void setUp();
 	void tearDown();
 	static CppUnit::Test* suite();

@@ -22,7 +22,8 @@ using Poco::OutputLineEndingConverter;
 using Poco::StreamCopier;
 
 
-LineEndingConverterTest::LineEndingConverterTest(const std::string& rName): CppUnit::TestCase(rName)
+//LineEndingConverterTest::LineEndingConverterTest(const std::string& rName): CppUnit::TestCase(rName)
+LineEndingConverterTest::LineEndingConverterTest(): CppUnit::TestFixture()
 {
 }
 

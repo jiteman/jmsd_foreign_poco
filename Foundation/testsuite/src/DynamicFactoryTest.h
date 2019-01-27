@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class DynamicFactoryTest: public CppUnit::TestCase
+//class DynamicFactoryTest: public CppUnit::TestCase
+class DynamicFactoryTest: public CppUnit::TestFixture
 {
 public:
-	DynamicFactoryTest(const std::string& name);
+//	DynamicFactoryTest(const std::string& name);
+	DynamicFactoryTest();
 	~DynamicFactoryTest();
 
 	void testDynamicFactoryPtr();

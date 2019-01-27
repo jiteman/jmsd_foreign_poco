@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class FPETest: public CppUnit::TestCase
+//class FPETest: public CppUnit::TestCase
+class FPETest: public CppUnit::TestFixture
 {
 public:
-	FPETest(const std::string& name);
+//	FPETest(const std::string& name);
+	FPETest();
 	~FPETest();
 
 	void testClassify();

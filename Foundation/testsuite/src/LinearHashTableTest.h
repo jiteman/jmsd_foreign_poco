@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class LinearHashTableTest: public CppUnit::TestCase
+//class LinearHashTableTest: public CppUnit::TestCase
+class LinearHashTableTest: public CppUnit::TestFixture
 {
 public:
-	LinearHashTableTest(const std::string& name);
+//	LinearHashTableTest(const std::string& name);
+	LinearHashTableTest();
 	~LinearHashTableTest();
 
 	void testInsert();
@@ -30,7 +32,7 @@ public:
 	void testConstIterator();
 	void testPerformanceInt();
 	void testPerformanceStr();
-	
+
 	void setUp();
 	void tearDown();
 

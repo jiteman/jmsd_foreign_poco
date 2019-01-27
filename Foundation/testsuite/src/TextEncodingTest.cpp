@@ -24,7 +24,8 @@
 using namespace Poco;
 
 
-TextEncodingTest::TextEncodingTest(const std::string& rName): CppUnit::TestCase(rName)
+//TextEncodingTest::TextEncodingTest(const std::string& rName): CppUnit::TestCase(rName)
+TextEncodingTest::TextEncodingTest(): CppUnit::TestFixture()
 {
 }
 
@@ -41,10 +42,10 @@ void TextEncodingTest::testTextEncoding()
 
 	TextEncoding& utf8 = TextEncoding::byName("utf8");
 	assertTrue (std::string("UTF-8") == utf8.canonicalName());
-	
+
 	TextEncoding& latin1 = TextEncoding::byName("latin1");
 	assertTrue (std::string("ISO-8859-1") == latin1.canonicalName());
-	
+
 	TextEncoding& latin2 = TextEncoding::byName("latin2");
 	assertTrue (std::string("ISO-8859-2") == latin2.canonicalName());
 
@@ -63,7 +64,7 @@ void TextEncodingTest::testTextEncoding()
 
 	TextEncoding& glob = TextEncoding::global();
 	assertTrue (std::string("UTF-8") == glob.canonicalName());
-	
+
 	TextEncoding::global(new Latin1Encoding);
 	TextEncoding& glob2 = TextEncoding::global();
 	assertTrue (std::string("ISO-8859-1") == glob2.canonicalName());

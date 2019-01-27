@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class SharedPtrTest: public CppUnit::TestCase
+//class SharedPtrTest: public CppUnit::TestCase
+class SharedPtrTest: public CppUnit::TestFixture
 {
 public:
-	SharedPtrTest(const std::string& name);
+//	SharedPtrTest(const std::string& name);
+	SharedPtrTest();
 	~SharedPtrTest();
 
 	void testSharedPtr();

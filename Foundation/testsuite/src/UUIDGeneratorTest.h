@@ -18,16 +18,18 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class UUIDGeneratorTest: public CppUnit::TestCase
+//class UUIDGeneratorTest: public CppUnit::TestCase
+class UUIDGeneratorTest: public CppUnit::TestFixture
 {
 public:
-	UUIDGeneratorTest(const std::string& name);
+//	UUIDGeneratorTest(const std::string& name);
+	UUIDGeneratorTest();
 	~UUIDGeneratorTest();
 
 	void testTimeBased();
 	void testRandom();
 	void testNameBased();
-	
+
 	void setUp();
 	void tearDown();
 

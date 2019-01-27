@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class SHA1EngineTest: public CppUnit::TestCase
+//class SHA1EngineTest: public CppUnit::TestCase
+class SHA1EngineTest: public CppUnit::TestFixture
 {
 public:
-	SHA1EngineTest(const std::string& name);
+//	SHA1EngineTest(const std::string& name);
+	SHA1EngineTest();
 	~SHA1EngineTest();
 
 	void testSHA1();

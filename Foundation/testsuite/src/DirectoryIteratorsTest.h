@@ -19,10 +19,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class DirectoryIteratorsTest: public CppUnit::TestCase
+//class DirectoryIteratorsTest: public CppUnit::TestCase
+class DirectoryIteratorsTest: public CppUnit::TestFixture
 {
 public:
-	DirectoryIteratorsTest(const std::string& name);
+//	DirectoryIteratorsTest(const std::string& name);
+	DirectoryIteratorsTest();
 	~DirectoryIteratorsTest();
 
 	void testDirectoryIterator();
@@ -35,7 +37,7 @@ public:
 	void tearDown();
 
 	static CppUnit::Test* suite();
-	
+
 protected:
 	Poco::Path path() const;
 	void createSubdir(Poco::Path& p);

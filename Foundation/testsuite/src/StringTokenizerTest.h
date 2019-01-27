@@ -15,10 +15,12 @@
 #include "Poco/Foundation.h"
 #include "Poco/CppUnit/TestCase.h"
 
-class StringTokenizerTest: public CppUnit::TestCase
+//class StringTokenizerTest: public CppUnit::TestCase
+class StringTokenizerTest: public CppUnit::TestFixture
 {
 public:
-	StringTokenizerTest(const std::string& name);
+//	StringTokenizerTest(const std::string& name);
+	StringTokenizerTest();
 	~StringTokenizerTest();
 
 	void testStringTokenizer();

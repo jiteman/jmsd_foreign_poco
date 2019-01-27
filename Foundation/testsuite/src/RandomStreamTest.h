@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class RandomStreamTest: public CppUnit::TestCase
+//class RandomStreamTest: public CppUnit::TestCase
+class RandomStreamTest: public CppUnit::TestFixture
 {
 public:
-	RandomStreamTest(const std::string& name);
+//	RandomStreamTest(const std::string& name);
+	RandomStreamTest();
 	~RandomStreamTest();
 
 	void testStream();

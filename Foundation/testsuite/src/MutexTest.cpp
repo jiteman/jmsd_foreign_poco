@@ -34,7 +34,7 @@ namespace
 			_ran(false)
 		{
 		}
-		
+
 		void run()
 		{
 			try
@@ -49,12 +49,12 @@ namespace
 
 			_ran = true;
 		}
-		
+
 		bool ran() const
 		{
 			return _ran;
 		}
-			
+
 	private:
 		bool _ran;
 	};
@@ -97,7 +97,8 @@ namespace
 }
 
 
-MutexTest::MutexTest(const std::string& rName): CppUnit::TestCase(rName)
+//MutexTest::MutexTest(const std::string& rName): CppUnit::TestCase(rName)
+MutexTest::MutexTest(): CppUnit::TestFixture()
 {
 }
 
@@ -111,10 +112,10 @@ void MutexTest::testMutexRecursion()
 {
 	Mutex mtx(Mutex::MUTEX_NONRECURSIVE);
 	mtx.lock();
-	
+
 	bool success = mtx.tryLock();
 	assertTrue (!success);
-	
+
 	Timestamp mark;
 	success = mtx.tryLock(2000); // Wait 2 seconds
 	assertTrue (!success);
@@ -123,7 +124,7 @@ void MutexTest::testMutexRecursion()
 	Timestamp::TimeDiff elapsed = mark.elapsed();
 	assertTrue (elapsed > 1000000);
 	assertTrue (elapsed < 3000000);
-	
+
 	success = mtx.tryLock(0);
 	assertTrue (!success);
 
@@ -141,10 +142,10 @@ void MutexTest::testRecursiveMutexRecursion()
 {
 	Mutex mtx;
 	mtx.lock();
-	
+
 	bool success = mtx.tryLock();
 	assertTrue (success);
-	
+
 	Timestamp mark;
 	success = mtx.tryLock(2000); // Wait 2 seconds
 	assertTrue (success);
@@ -152,7 +153,7 @@ void MutexTest::testRecursiveMutexRecursion()
 	// Test that we completed almost immediately
 	Timestamp::TimeDiff elapsed = mark.elapsed();
 	assertTrue (elapsed < 100000);
-	
+
 	success = mtx.tryLock(0);
 	assertTrue (success);
 }

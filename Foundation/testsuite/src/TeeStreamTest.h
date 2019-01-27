@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TeeStreamTest: public CppUnit::TestCase
+//class TeeStreamTest: public CppUnit::TestCase
+class TeeStreamTest: public CppUnit::TestFixture
 {
 public:
-	TeeStreamTest(const std::string& name);
+//	TeeStreamTest(const std::string& name);
+	TeeStreamTest();
 	~TeeStreamTest();
 
 	void testTeeInputStream();

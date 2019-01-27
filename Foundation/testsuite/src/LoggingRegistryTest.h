@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class LoggingRegistryTest: public CppUnit::TestCase
+//class LoggingRegistryTest: public CppUnit::TestCase
+class LoggingRegistryTest: public CppUnit::TestFixture
 {
 public:
-	LoggingRegistryTest(const std::string& name);
+//	LoggingRegistryTest(const std::string& name);
+	LoggingRegistryTest();
 	~LoggingRegistryTest();
 
 	void testRegister();

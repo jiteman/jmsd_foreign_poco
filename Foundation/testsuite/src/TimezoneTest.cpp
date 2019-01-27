@@ -18,7 +18,8 @@
 using Poco::Timezone;
 
 
-TimezoneTest::TimezoneTest(const std::string& rName): CppUnit::TestCase(rName)
+//TimezoneTest::TimezoneTest(const std::string& rName): CppUnit::TestCase(rName)
+TimezoneTest::TimezoneTest(): CppUnit::TestFixture()
 {
 }
 

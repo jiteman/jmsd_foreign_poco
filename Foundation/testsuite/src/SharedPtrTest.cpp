@@ -69,7 +69,8 @@ namespace
 }
 
 
-SharedPtrTest::SharedPtrTest(const std::string& rName): CppUnit::TestCase(rName)
+//SharedPtrTest::SharedPtrTest(const std::string& rName): CppUnit::TestCase(rName)
+SharedPtrTest::SharedPtrTest(): CppUnit::TestFixture()
 {
 }
 
@@ -82,7 +83,7 @@ SharedPtrTest::~SharedPtrTest()
 void SharedPtrTest::testSharedPtr()
 {
 	SharedPtr<TestObject> ptr1;
-	assertNull(ptr1.get());
+	assertNullPtr(ptr1.get());
 	TestObject* pTO1 = new TestObject("one");
 	TestObject* pTO2 = new TestObject("two");
 	if (pTO2 < pTO1)
@@ -128,7 +129,7 @@ void SharedPtrTest::testSharedPtr()
 	try
 	{
 		assertTrue (ptr4->data() == "four");
-		fail ("must throw NullPointerException");
+		failmsg ("must throw NullPointerException");
 	}
 	catch (NullPointerException&)
 	{
@@ -183,7 +184,7 @@ void SharedPtrTest::testImplicitCast()
 	{
 		// null assign test
 		SharedPtr<DerivedObject> ptr2;
-		assertNull(ptr2.get());
+		assertNullPtr(ptr2.get());
 		SharedPtr<TestObject> ptr1 = ptr2;
 	}
 	{

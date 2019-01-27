@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NamedEventTest: public CppUnit::TestCase
+//class NamedEventTest: public CppUnit::TestCase
+class NamedEventTest: public CppUnit::TestFixture
 {
 public:
-	NamedEventTest(const std::string& name);
+//	NamedEventTest(const std::string& name);
+	NamedEventTest();
 	~NamedEventTest();
 
 	void testNamedEvent();

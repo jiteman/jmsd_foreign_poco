@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class LRUCacheTest: public CppUnit::TestCase
+//class LRUCacheTest: public CppUnit::TestCase
+class LRUCacheTest: public CppUnit::TestFixture
 {
 public:
-	LRUCacheTest(const std::string& name);
+//	LRUCacheTest(const std::string& name);
+	LRUCacheTest();
 	~LRUCacheTest();
 
 	void testClear();

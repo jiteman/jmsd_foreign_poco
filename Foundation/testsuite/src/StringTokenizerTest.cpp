@@ -20,7 +20,8 @@ using Poco::RangeException;
 using Poco::NotFoundException;
 
 
-StringTokenizerTest::StringTokenizerTest(const std::string& rName): CppUnit::TestCase(rName)
+//StringTokenizerTest::StringTokenizerTest(const std::string& rName): CppUnit::TestCase(rName)
+StringTokenizerTest::StringTokenizerTest(): CppUnit::TestFixture()
 {
 }
 
@@ -63,7 +64,7 @@ void StringTokenizerTest::testStringTokenizer()
 		assertTrue (it != st.end());
 		assertTrue (*it++ == "abc");
 		assertTrue (it == st.end());
-	}	
+	}
 	{
 		StringTokenizer st("  abc  ", "", StringTokenizer::TOK_TRIM);
 		StringTokenizer::Iterator it = st.begin();
@@ -324,7 +325,7 @@ void StringTokenizerTest::testStringTokenizer()
 		assertTrue (st.find("2") == 1);
 		assertTrue (st.find("3") == 2);
 	}
-	
+
 	{
 		Poco::StringTokenizer st(" 2- ","-", Poco::StringTokenizer::TOK_TRIM);
 		assertTrue (st.count() == 2);
@@ -337,7 +338,7 @@ void StringTokenizerTest::testStringTokenizer()
 void StringTokenizerTest::testFind()
 {
 	StringTokenizer st("0,1,2,3,3,2,1,0", ",", StringTokenizer::TOK_TRIM | StringTokenizer::TOK_IGNORE_EMPTY);
-	
+
 	assertTrue (st.count() == 8);
 	assertTrue (2 == st.count("0"));
 	assertTrue (2 == st.count("1"));
@@ -356,7 +357,7 @@ void StringTokenizerTest::testFind()
 	assertTrue (st[5] == "2");
 	assertTrue (st[6] == "1");
 	assertTrue (st[7] == "0");
-	
+
 	assertTrue (st.has("0"));
 	assertTrue (st.has("1"));
 	assertTrue (st.has("2"));
@@ -379,14 +380,14 @@ void StringTokenizerTest::testFind()
 	try
 	{
 		std::size_t p = st.find("4");
-		fail ("must fail");
+		failmsg ("must fail");
 	}
 	catch (NotFoundException&) { }
 
 	try
 	{
 		std::string s = st[8];
-		fail ("must fail");
+		failmsg ("must fail");
 	}
 	catch (RangeException&) { }
 

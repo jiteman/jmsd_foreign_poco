@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ZLibTest: public CppUnit::TestCase
+//class ZLibTest: public CppUnit::TestCase
+class ZLibTest: public CppUnit::TestFixture
 {
 public:
-	ZLibTest(const std::string& name);
+//	ZLibTest(const std::string& name);
+	ZLibTest();
 	~ZLibTest();
 
 	void testDeflate1();

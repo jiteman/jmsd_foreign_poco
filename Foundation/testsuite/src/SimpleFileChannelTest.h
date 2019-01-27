@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class SimpleFileChannelTest: public CppUnit::TestCase
+//class SimpleFileChannelTest: public CppUnit::TestCase
+class SimpleFileChannelTest: public CppUnit::TestFixture
 {
 public:
-	SimpleFileChannelTest(const std::string& name);
+//	SimpleFileChannelTest(const std::string& name);
+	SimpleFileChannelTest();
 	~SimpleFileChannelTest();
 
 	void testRotate();

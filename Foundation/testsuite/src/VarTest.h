@@ -20,10 +20,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class VarTest: public CppUnit::TestCase
+//class VarTest: public CppUnit::TestCase
+class VarTest: public CppUnit::TestFixture
 {
 public:
-	VarTest(const std::string& name);
+//	VarTest(const std::string& name);
+	VarTest();
 	~VarTest();
 
 	void testInt8();
@@ -101,12 +103,12 @@ private:
 	{
 		TL iMin = std::numeric_limits<TS>::min();
 		Poco::Dynamic::Var da = iMin - 1;
-		try { TS i; i = da.convert<TS>(); fail("must fail"); }
+		try { TS i; i = da.convert<TS>(); failmsg("must fail"); }
 		catch (Poco::RangeException&) {}
 
 		TL iMax = std::numeric_limits<TS>::max();
 		da = iMax + 1;
-		try { TS i; i = da.convert<TS>(); fail("must fail"); }
+		try { TS i; i = da.convert<TS>(); failmsg("must fail"); }
 		catch (Poco::RangeException&) {}
 	}
 
@@ -119,13 +121,13 @@ private:
 		{
 			TL iMin = static_cast<TL>(std::numeric_limits<TS>::min());
 			da = iMin * 10;
-			try { TS i; i = da.convert<TS>(); fail("must fail"); }
+			try { TS i; i = da.convert<TS>(); failmsg("must fail"); }
 			catch (Poco::RangeException&) {}
 		}
 
 		TL iMax = static_cast<TL>(std::numeric_limits<TS>::max());
 		da = iMax * 10;
-		try { TS i; i = da.convert<TS>(); fail("must fail"); }
+		try { TS i; i = da.convert<TS>(); failmsg("must fail"); }
 		catch (Poco::RangeException&) {}
 	}
 
@@ -137,14 +139,14 @@ private:
 
 		TS iMin = std::numeric_limits<TS>::min();
 		Poco::Dynamic::Var dMin = iMin;
-		try { TU i; i = dMin.convert<TU>(); fail("must fail"); }
+		try { TU i; i = dMin.convert<TU>(); failmsg("must fail"); }
 		catch (Poco::RangeException&) {}
 
 		if(sizeof(TS) == sizeof(TU))
 		{
 			TU iMax = std::numeric_limits<TU>::max();
 			Poco::Dynamic::Var dMax = iMax;
-			try { TS i; i = dMax.convert<TS>(); fail("must fail"); }
+			try { TS i; i = dMax.convert<TS>(); failmsg("must fail"); }
 			catch (Poco::RangeException&) {}
 		}
 	}
@@ -154,7 +156,7 @@ private:
 	{
 		TL iMax = std::numeric_limits<TS>::max();
 		Poco::Dynamic::Var da = iMax + 1;
-		try { TS i; i = da.convert<TS>(); fail("must fail"); }
+		try { TS i; i = da.convert<TS>(); failmsg("must fail"); }
 		catch (Poco::RangeException&) {}
 	}
 
@@ -204,7 +206,7 @@ private:
 				assertTrue (*it == 3.5);
 				break;
 			default:
-				fail ("must fail - wrong size");
+				failmsg ("must fail - wrong size");
 			}
 		}
 	}

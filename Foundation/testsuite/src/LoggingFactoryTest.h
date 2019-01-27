@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class LoggingFactoryTest: public CppUnit::TestCase
+//class LoggingFactoryTest: public CppUnit::TestCase
+class LoggingFactoryTest: public CppUnit::TestFixture
 {
 public:
-	LoggingFactoryTest(const std::string& name);
+//	LoggingFactoryTest(const std::string& name);
+	LoggingFactoryTest();
 	~LoggingFactoryTest();
 
 	void testBuiltins();

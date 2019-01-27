@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class MutexTest: public CppUnit::TestCase
+//class MutexTest: public CppUnit::TestCase
+class MutexTest: public CppUnit::TestFixture
 {
 public:
-	MutexTest(const std::string& name);
+//	MutexTest(const std::string& name);
+	MutexTest();
 	~MutexTest();
 
 	void testMutexRecursion();

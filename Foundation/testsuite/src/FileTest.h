@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class FileTest: public CppUnit::TestCase
+//class FileTest: public CppUnit::TestCase
+class FileTest: public CppUnit::TestFixture
 {
 public:
-	FileTest(const std::string& name);
+//	FileTest(const std::string& name);
+	FileTest();
 	~FileTest();
 
 	void testFileAttributes1();
@@ -39,7 +41,7 @@ public:
 	void testRename();
 	void testRootDir();
 	void testLongPath();
-	
+
 	void setUp();
 	void tearDown();
 

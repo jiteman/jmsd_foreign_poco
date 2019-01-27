@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class MemoryStreamTest: public CppUnit::TestCase
+//class MemoryStreamTest: public CppUnit::TestCase
+class MemoryStreamTest: public CppUnit::TestFixture
 {
 public:
-	MemoryStreamTest(const std::string& name);
+//	MemoryStreamTest(const std::string& name);
+	MemoryStreamTest();
 	~MemoryStreamTest();
 
 	void testInput();

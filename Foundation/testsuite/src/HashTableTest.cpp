@@ -18,7 +18,8 @@
 using namespace Poco;
 
 
-HashTableTest::HashTableTest(const std::string& rName): CppUnit::TestCase(rName)
+//HashTableTest::HashTableTest(const std::string& rName): CppUnit::TestCase(rName)
+HashTableTest::HashTableTest(): CppUnit::TestFixture()
 {
 }
 

@@ -33,7 +33,7 @@ namespace
 	public:
 		void run()
 		{
-		
+
 			testMutex.lock();
 			_timestamp.update();
 			testMutex.unlock();
@@ -54,7 +54,7 @@ namespace
 		TestTryLock(): _locked(false)
 		{
 		}
-		
+
 		void run()
 		{
 			if (testMutex.tryLock())
@@ -75,7 +75,8 @@ namespace
 }
 
 
-NamedMutexTest::NamedMutexTest(const std::string& rName): CppUnit::TestCase(rName)
+//NamedMutexTest::NamedMutexTest(const std::string& rName): CppUnit::TestCase(rName)
+NamedMutexTest::NamedMutexTest(): CppUnit::TestFixture()
 {
 }
 

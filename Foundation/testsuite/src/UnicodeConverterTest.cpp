@@ -18,7 +18,8 @@
 #include "Poco/UTFString.h"
 
 
-UnicodeConverterTest::UnicodeConverterTest(const std::string& rName): CppUnit::TestCase(rName)
+//UnicodeConverterTest::UnicodeConverterTest(const std::string& rName): CppUnit::TestCase(rName)
+UnicodeConverterTest::UnicodeConverterTest(): CppUnit::TestFixture()
 {
 }
 

@@ -70,7 +70,8 @@ using Poco::safeIntCast;
 using Poco::FPEnvironment;
 
 
-StringTest::StringTest(const std::string& rName): CppUnit::TestCase(rName)
+//StringTest::StringTest(const std::string& rName): CppUnit::TestCase(rName)
+StringTest::StringTest(): CppUnit::TestFixture()
 {
 }
 
@@ -486,7 +487,7 @@ void StringTest::testEndsWith()
 
 	assertTrue (endsWith(s3, std::string("o")));
 
-	assertTrue (!endsWith(s3, std::string("o ")));	
+	assertTrue (!endsWith(s3, std::string("o ")));
 }
 
 
@@ -569,7 +570,7 @@ void StringTest::testStringToFloat()
 			assertTrue (strToFloat(format("1%c234%c567%c34", ts, ts, ds), result, ds, ts));
 
 			if ((std::numeric_limits<double>::max() / 10) < 1.23456e10)
-				fail ("test value larger than max value for this platform");
+				failmsg ("test value larger than max value for this platform");
 			else
 			{
 				float d = 12e34f;
@@ -706,7 +707,7 @@ void StringTest::testStringToDouble()
 			assertEqualDelta(123456789.3456789, result, 0.00000001);
 
 			if ((std::numeric_limits<double>::max() / 10) < 1.23456e10)
-				fail ("test value larger than max value for this platform");
+				failmsg ("test value larger than max value for this platform");
 			else
 			{
 				double d = 12e34;
@@ -833,7 +834,7 @@ void StringTest::testNumericStringPadding()
 	assertTrue (doubleToStr(str, 12.45, 1, 4) == "12.5");
 	assertTrue (doubleToStr(str, 12.45, 2, 6) == " 12.45");
 	assertTrue (doubleToStr(str, 12.455, 3, 7) == " 12.455");
-	assertTrue (doubleToStr(str, 12.455, 2, 6) == " 12.46");	
+	assertTrue (doubleToStr(str, 12.455, 2, 6) == " 12.46");
 	assertTrue (doubleToStr(str, 1.23556E-16, 2, 6) == "1.24e-16");
 }
 
@@ -912,7 +913,7 @@ void StringTest::testNumericLocale()
 	} catch (std::runtime_error& ex)
 	{
 		std::cout << ex.what() << std::endl;
-		warnmsg ("Locale not found, skipping test");
+		failmsg ("Locale not found, skipping test");
 	}
 #endif
 }
@@ -1163,7 +1164,7 @@ void StringTest::testIntToString()
 		char pResult[POCO_MAX_INT_STRING_LEN];
 		std::size_t sz = POCO_MAX_INT_STRING_LEN;
 		intToStr(0, 10, pResult, sz, false, (int) sz + 1, ' ');
-		fail ("must throw RangeException");
+		failmsg ("must throw RangeException");
 	} catch (RangeException&) { }
 }
 
@@ -1205,7 +1206,7 @@ void StringTest::testNumericStringLimit()
 	try
 	{
 		safeIntCast(s, t);
-		fail("cast must fail");
+		failmsg("cast must fail");
 	}
 	catch(Poco::BadCastException&){}
 
@@ -1214,7 +1215,7 @@ void StringTest::testNumericStringLimit()
 	try
 	{
 		safeIntCast(s, t);
-		fail("short => char cast must fail");
+		failmsg("short => char cast must fail");
 	}
 	catch(Poco::BadCastException&){}
 
@@ -1229,7 +1230,7 @@ void StringTest::testNumericStringLimit()
 	try
 	{
 		safeIntCast(ss, st);
-		fail("short => signed char  cast must fail");
+		failmsg("short => signed char  cast must fail");
 	}
 	catch(Poco::BadCastException&){}
 
@@ -1239,7 +1240,7 @@ void StringTest::testNumericStringLimit()
 	try
 	{
 		safeIntCast(ss, st);
-		fail("short => signed char cast must fail");
+		failmsg("short => signed char cast must fail");
 	}
 	catch(Poco::BadCastException&){}
 
@@ -1256,7 +1257,7 @@ void StringTest::testNumericStringLimit()
 	try
 	{
 		safeIntCast(ss, st);
-		fail("cast must fail");
+		failmsg("cast must fail");
 	}
 	catch(Poco::BadCastException&){}
 
@@ -1265,7 +1266,7 @@ void StringTest::testNumericStringLimit()
 	try
 	{
 		safeIntCast(ss, uc);
-		fail("unsigned short => unsigned char cast must fail");
+		failmsg("unsigned short => unsigned char cast must fail");
 	}
 	catch(Poco::BadCastException&){}
 
@@ -1278,7 +1279,7 @@ void StringTest::testNumericStringLimit()
 	try
 	{
 		safeIntCast(i, ti);
-		fail("unsigned int => int cast must fail");
+		failmsg("unsigned int => int cast must fail");
 	}
 	catch(Poco::BadCastException&){}
 
@@ -1297,7 +1298,7 @@ void StringTest::testNumericStringLimit()
 		try
 		{
 			safeIntCast(ul, tl);
-			fail("unsigned long => long cast must fail");
+			failmsg("unsigned long => long cast must fail");
 		}
 		catch(Poco::BadCastException&){}
 		assertTrue(!isIntOverflow<unsigned long>(ul));
@@ -1308,7 +1309,7 @@ void StringTest::testNumericStringLimit()
 		try
 		{
 			safeIntCast(l, ul);
-			fail("unsigned long => long cast must fail");
+			failmsg("unsigned long => long cast must fail");
 		}
 		catch(Poco::BadCastException&){}
 		ul = LONG_MAX;

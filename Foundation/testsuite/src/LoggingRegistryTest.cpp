@@ -25,7 +25,8 @@ using Poco::PatternFormatter;
 using Poco::AutoPtr;
 
 
-LoggingRegistryTest::LoggingRegistryTest(const std::string& rName): CppUnit::TestCase(rName)
+//LoggingRegistryTest::LoggingRegistryTest(const std::string& rName): CppUnit::TestCase(rName)
+LoggingRegistryTest::LoggingRegistryTest(): CppUnit::TestFixture()
 {
 }
 
@@ -64,7 +65,7 @@ void LoggingRegistryTest::testRegister()
 	try
 	{
 		pC = reg.channelForName("c3");
-		fail("not found - must throw");
+		failmsg("not found - must throw");
 	}
 	catch (Poco::NotFoundException&)
 	{
@@ -129,7 +130,7 @@ void LoggingRegistryTest::testUnregister()
 	try
 	{
 		Channel::Ptr pC = reg.channelForName("c1");
-		fail("unregistered - must throw");
+		failmsg("unregistered - must throw");
 	}
 	catch (Poco::NotFoundException&)
 	{
@@ -138,7 +139,7 @@ void LoggingRegistryTest::testUnregister()
 	try
 	{
 		Formatter::Ptr pF = reg.formatterForName("f2");
-		fail("unregistered - must throw");
+		failmsg("unregistered - must throw");
 	}
 	catch (Poco::NotFoundException&)
 	{

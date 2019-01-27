@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class MD4EngineTest: public CppUnit::TestCase
+//class MD4EngineTest: public CppUnit::TestCase
+class MD4EngineTest: public CppUnit::TestFixture
 {
 public:
-	MD4EngineTest(const std::string& name);
+//	MD4EngineTest(const std::string& name);
+	MD4EngineTest();
 	~MD4EngineTest();
 
 	void testMD4();

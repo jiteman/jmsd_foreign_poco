@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class URITest: public CppUnit::TestCase
+//class URITest: public CppUnit::TestCase
+class URITest: public CppUnit::TestFixture
 {
 public:
-	URITest(const std::string& name);
+//	URITest(const std::string& name);
+	URITest();
 	~URITest();
 
 	void testConstruction();

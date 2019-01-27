@@ -21,10 +21,12 @@
 #include <set>
 
 
-class TimedNotificationQueueTest: public CppUnit::TestCase
+//class TimedNotificationQueueTest: public CppUnit::TestCase
+class TimedNotificationQueueTest: public CppUnit::TestFixture
 {
 public:
-	TimedNotificationQueueTest(const std::string& name);
+//	TimedNotificationQueueTest(const std::string& name);
+	TimedNotificationQueueTest();
 	~TimedNotificationQueueTest();
 
 	void testDequeue();

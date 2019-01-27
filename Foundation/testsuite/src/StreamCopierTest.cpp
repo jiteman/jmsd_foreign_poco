@@ -18,7 +18,8 @@
 using Poco::StreamCopier;
 
 
-StreamCopierTest::StreamCopierTest(const std::string& rName): CppUnit::TestCase(rName)
+//StreamCopierTest::StreamCopierTest(const std::string& rName): CppUnit::TestCase(rName)
+StreamCopierTest::StreamCopierTest(): CppUnit::TestFixture()
 {
 }
 

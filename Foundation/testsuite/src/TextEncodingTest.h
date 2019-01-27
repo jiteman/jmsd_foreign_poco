@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TextEncodingTest: public CppUnit::TestCase
+//class TextEncodingTest: public CppUnit::TestCase
+class TextEncodingTest: public CppUnit::TestFixture
 {
 public:
-	TextEncodingTest(const std::string& name);
+//	TextEncodingTest(const std::string& name);
+	TextEncodingTest();
 	~TextEncodingTest();
 
 	void testTextEncoding();

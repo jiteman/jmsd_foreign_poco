@@ -18,11 +18,13 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ThreadTest: public CppUnit::TestCase
+//class ThreadTest: public CppUnit::TestCase
+class ThreadTest: public CppUnit::TestFixture
 {
 public:
-    ThreadTest(const std::string& name);
-    ~ThreadTest();
+//	ThreadTest(const std::string& name);
+	ThreadTest();
+	~ThreadTest();
 
     void testThread();
     void testNamedThread();

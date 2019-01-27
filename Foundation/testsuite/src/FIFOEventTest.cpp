@@ -24,7 +24,8 @@ using namespace Poco;
 #define LARGEINC 100
 
 
-FIFOEventTest::FIFOEventTest(const std::string& rName): CppUnit::TestCase(rName)
+//FIFOEventTest::FIFOEventTest(const std::string& rName): CppUnit::TestCase(rName)
+FIFOEventTest::FIFOEventTest(): CppUnit::TestFixture()
 {
 }
 
@@ -54,12 +55,12 @@ void FIFOEventTest::testNoDelegate()
 	Simple -= delegate(this, &FIFOEventTest::onSimple);
 	Simple.notify(this, tmp);
 	assertTrue (_count == 0);
-	
+
 	ConstSimple += delegate(this, &FIFOEventTest::onConstSimple);
 	ConstSimple -= delegate(this, &FIFOEventTest::onConstSimple);
 	ConstSimple.notify(this, tmp);
 	assertTrue (_count == 0);
-	
+
 	//Note: passing &args will not work due to &
 	EventArgs* pArgs = &args;
 	Complex += delegate(this, &FIFOEventTest::onComplex);
@@ -98,11 +99,11 @@ void FIFOEventTest::testSingleDelegate()
 	Simple += delegate(this, &FIFOEventTest::onSimple);
 	Simple.notify(this, tmp);
 	assertTrue (_count == 2);
-	
+
 	ConstSimple += delegate(this, &FIFOEventTest::onConstSimple);
 	ConstSimple.notify(this, tmp);
 	assertTrue (_count == 3);
-	
+
 	EventArgs* pArgs = &args;
 	Complex += delegate(this, &FIFOEventTest::onComplex);
 	Complex.notify(this, pArgs);
@@ -123,13 +124,13 @@ void FIFOEventTest::testSingleDelegate()
 	// check if 2nd notify also works
 	Const2Complex.notify(this, pArgs);
 	assertTrue (_count == 8);
-	
+
 }
 
 void FIFOEventTest::testDuplicateRegister()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += delegate(this, &FIFOEventTest::onSimple);
@@ -145,7 +146,7 @@ void FIFOEventTest::testDuplicateUnregister()
 {
 	// duplicate unregister shouldn't give an error,
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple -= delegate(this, &FIFOEventTest::onSimple); // should work
@@ -169,7 +170,7 @@ void FIFOEventTest::testDuplicateUnregister()
 void FIFOEventTest::testDisabling()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += delegate(this, &FIFOEventTest::onSimple);
@@ -203,7 +204,7 @@ void FIFOEventTest::testFIFOOrder()
 
 	Simple -= delegate(&o1, &DummyDelegate::onSimple);
 	Simple -= delegate(&o2, &DummyDelegate::onSimple2);
-	
+
 	// now try with the wrong order
 	Simple += delegate(&o2, &DummyDelegate::onSimple2);
 	Simple += delegate(&o1, &DummyDelegate::onSimple);
@@ -238,7 +239,7 @@ void FIFOEventTest::testFIFOOrderExpire()
 	Simple -= delegate(&o2, &DummyDelegate::onSimple2);
 	Simple.notify(this, tmp);
 	assertTrue (tmp == 2);
-	
+
 	// now start mixing of expire and non expire
 	tmp = 0;
 	Simple += delegate(&o1, &DummyDelegate::onSimple);
@@ -255,7 +256,7 @@ void FIFOEventTest::testFIFOOrderExpire()
 	// now try with the wrong order
 	Simple += delegate(&o2, &DummyDelegate::onSimple2, 5000);
 	Simple += delegate(&o1, &DummyDelegate::onSimple);
-	
+
 	try
 	{
 		tmp = 0;
@@ -264,7 +265,7 @@ void FIFOEventTest::testFIFOOrderExpire()
 	}
 	catch (Poco::InvalidArgumentException&)
 	{
-		
+
 	}
 
 }
@@ -272,7 +273,7 @@ void FIFOEventTest::testFIFOOrderExpire()
 void FIFOEventTest::testExpire()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += delegate(this, &FIFOEventTest::onSimple, 500);
@@ -287,7 +288,7 @@ void FIFOEventTest::testExpire()
 void FIFOEventTest::testExpireReRegister()
 {
 	int tmp = 0;
-	
+
 	assertTrue (_count == 0);
 
 	Simple += delegate(this, &FIFOEventTest::onSimple, 500);

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class SimpleHashTableTest: public CppUnit::TestCase
+//class SimpleHashTableTest: public CppUnit::TestCase
+class SimpleHashTableTest: public CppUnit::TestFixture
 {
 public:
-	SimpleHashTableTest(const std::string& name);
+//	SimpleHashTableTest(const std::string& name);
+	SimpleHashTableTest();
 	~SimpleHashTableTest();
 
 	void testInsert();

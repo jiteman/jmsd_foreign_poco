@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class StreamTokenizerTest: public CppUnit::TestCase
+//class StreamTokenizerTest: public CppUnit::TestCase
+class StreamTokenizerTest: public CppUnit::TestFixture
 {
 public:
-	StreamTokenizerTest(const std::string& name);
+//	StreamTokenizerTest(const std::string& name);
+	StreamTokenizerTest();
 	~StreamTokenizerTest();
 
 	void testTokenizer1();

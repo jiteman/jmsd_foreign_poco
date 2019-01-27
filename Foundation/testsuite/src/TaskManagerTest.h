@@ -18,7 +18,8 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TaskManagerTest: public CppUnit::TestCase
+//class TaskManagerTest: public CppUnit::TestCase
+class TaskManagerTest: public CppUnit::TestFixture
 {
 public:
 	struct S
@@ -27,7 +28,8 @@ public:
 		std::string str;
 	};
 
-	TaskManagerTest(const std::string& name);
+//	TaskManagerTest(const std::string& name);
+	TaskManagerTest();
 	~TaskManagerTest();
 
 	void testFinish();

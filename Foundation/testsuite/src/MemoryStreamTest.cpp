@@ -20,7 +20,8 @@ using Poco::MemoryInputStream;
 using Poco::MemoryOutputStream;
 
 
-MemoryStreamTest::MemoryStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+//MemoryStreamTest::MemoryStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+MemoryStreamTest::MemoryStreamTest(): CppUnit::TestFixture()
 {
 }
 
@@ -34,22 +35,22 @@ void MemoryStreamTest::testInput()
 {
 	const char* data = "This is a test";
 	MemoryInputStream istr1(data, 14);
-	
+
 	int c = istr1.get();
 	assertTrue (c == 'T');
 	c = istr1.get();
 	assertTrue (c == 'h');
-	
+
 	std::string str;
 	istr1 >> str;
 	assertTrue (str == "is");
-	
+
 	char buffer[32];
 	istr1.read(buffer, sizeof(buffer));
 	assertTrue (istr1.gcount() == 10);
 	buffer[istr1.gcount()] = 0;
 	assertTrue (std::string(" is a test") == buffer);
-	
+
 	const char* data2 = "123";
 	MemoryInputStream istr2(data2, 3);
 	c = istr2.get();
@@ -77,7 +78,7 @@ void MemoryStreamTest::testOutput()
 	ostr1 << "This is a test " << 42 << std::ends;
 	assertTrue (ostr1.charsWritten() == 18);
 	assertTrue (std::string("This is a test 42") == output);
-	
+
 	char output2[4];
 	MemoryOutputStream ostr2(output2, 4);
 	ostr2 << "test";

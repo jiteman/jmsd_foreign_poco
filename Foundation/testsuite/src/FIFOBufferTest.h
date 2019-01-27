@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class FIFOBufferTest: public CppUnit::TestCase
+//class FIFOBufferTest: public CppUnit::TestCase
+class FIFOBufferTest: public CppUnit::TestFixture
 {
 public:
-	FIFOBufferTest(const std::string& name);
+//	FIFOBufferTest(const std::string& name);
+	FIFOBufferTest();
 	~FIFOBufferTest();
 
 	void testNextWrite();

@@ -21,7 +21,8 @@ using Poco::UUIDGenerator;
 using Poco::UUID;
 
 
-UUIDGeneratorTest::UUIDGeneratorTest(const std::string& rName): CppUnit::TestCase(rName)
+//UUIDGeneratorTest::UUIDGeneratorTest(const std::string& rName): CppUnit::TestCase(rName)
+UUIDGeneratorTest::UUIDGeneratorTest(): CppUnit::TestFixture()
 {
 }
 
@@ -34,7 +35,7 @@ UUIDGeneratorTest::~UUIDGeneratorTest()
 void UUIDGeneratorTest::testTimeBased()
 {
 	UUIDGenerator& gen = UUIDGenerator::defaultGenerator();
-	
+
 	std::set<UUID> uuids;
 	for (int i = 0; i < 1000; ++i)
 	{

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class RegularExpressionTest: public CppUnit::TestCase
+//class RegularExpressionTest: public CppUnit::TestCase
+class RegularExpressionTest: public CppUnit::TestFixture
 {
 public:
-	RegularExpressionTest(const std::string& name);
+//	RegularExpressionTest(const std::string& name);
+	RegularExpressionTest();
 	~RegularExpressionTest();
 
 	void testIndex();

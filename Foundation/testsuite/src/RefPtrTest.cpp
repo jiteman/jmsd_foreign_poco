@@ -260,7 +260,8 @@ private:
 }
 
 
-RefPtrTest::RefPtrTest(const std::string& rName): CppUnit::TestCase(rName)
+//RefPtrTest::RefPtrTest(const std::string& rName): CppUnit::TestCase(rName)
+RefPtrTest::RefPtrTest(): CppUnit::TestFixture()
 {
 }
 
@@ -295,7 +296,7 @@ void RefPtrTest::testRefPtr()
 void RefPtrTest::testOps()
 {
 	RefPtr<TestObj> ptr1;
-	assertNull(ptr1.get());
+	assertNullPtr(ptr1.get());
 	TestObj* pTO1 = new TestObj;
 	TestObj* pTO2 = new TestObj;
 	if (pTO2 < pTO1)
@@ -339,7 +340,7 @@ void RefPtrTest::testOps()
 	try
 	{
 		assertTrue (ptr4->rc() > 0);
-		fail ("must throw NullPointerException");
+		failmsg ("must throw NullPointerException");
 	}
 	catch (NullPointerException&)
 	{
@@ -567,7 +568,7 @@ void RefPtrTest::testWeakRefPtr()
 				if (auto l = toWPtr.lock())
 					assertTrue (toPtr->referenceCount() == 2);
 				else
-					fail ("1 WeakRefPtr failed to lock!");
+					failmsg ("1 WeakRefPtr failed to lock!");
 			}
 			assertTrue (toPtr->referenceCount() == 1);
 		}
@@ -590,7 +591,7 @@ void RefPtrTest::testWeakRefPtr()
 			assertTrue(-1 == wp1->func());
 		}
 		else
-			fail ("2 WeakRefPtr failed to lock!");
+			failmsg ("2 WeakRefPtr failed to lock!");
 	}
 	assertTrue (child->referenceCount() == 1);
 
@@ -605,7 +606,7 @@ void RefPtrTest::testWeakRefPtr()
 			assertTrue(-1 == wp2->func());
 		}
 		else
-			fail ("3 WeakRefPtr failed to lock!");
+			failmsg ("3 WeakRefPtr failed to lock!");
 	}
 	assertTrue (child->referenceCount() == 1);
 

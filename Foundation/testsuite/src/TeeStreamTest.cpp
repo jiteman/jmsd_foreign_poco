@@ -19,7 +19,8 @@ using Poco::TeeInputStream;
 using Poco::TeeOutputStream;
 
 
-TeeStreamTest::TeeStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+//TeeStreamTest::TeeStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+TeeStreamTest::TeeStreamTest(): CppUnit::TestFixture()
 {
 }
 

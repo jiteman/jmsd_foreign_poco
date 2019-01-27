@@ -24,10 +24,12 @@
 class TestNotification;
 
 
-class NotificationCenterTest: public CppUnit::TestCase
+//class NotificationCenterTest: public CppUnit::TestCase
+class NotificationCenterTest: public CppUnit::TestFixture
 {
 public:
-	NotificationCenterTest(const std::string& name);
+//	NotificationCenterTest(const std::string& name);
+	NotificationCenterTest();
 	~NotificationCenterTest();
 
 	void test1();
@@ -49,7 +51,7 @@ protected:
 	void handle3(Poco::Notification* pNf);
 	void handleTest(TestNotification* pNf);
 	void handleAuto(const Poco::AutoPtr<Poco::Notification>& pNf);
-	
+
 private:
 	std::set<std::string> _set;
 };

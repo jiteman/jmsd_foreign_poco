@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ProcessTest: public CppUnit::TestCase
+//class ProcessTest: public CppUnit::TestCase
+class ProcessTest: public CppUnit::TestFixture
 {
 public:
-	ProcessTest(const std::string& name);
+//	ProcessTest(const std::string& name);
+	ProcessTest();
 	~ProcessTest();
 
 	void testLaunch();

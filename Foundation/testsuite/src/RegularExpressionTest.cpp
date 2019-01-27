@@ -19,7 +19,8 @@ using Poco::RegularExpression;
 using Poco::RegularExpressionException;
 
 
-RegularExpressionTest::RegularExpressionTest(const std::string& rName): CppUnit::TestCase(rName)
+//RegularExpressionTest::RegularExpressionTest(const std::string& rName): CppUnit::TestCase(rName)
+RegularExpressionTest::RegularExpressionTest(): CppUnit::TestFixture()
 {
 }
 

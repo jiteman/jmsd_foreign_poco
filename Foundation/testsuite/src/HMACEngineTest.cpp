@@ -20,7 +20,8 @@ using Poco::MD5Engine;
 using Poco::DigestEngine;
 
 
-HMACEngineTest::HMACEngineTest(const std::string& rName): CppUnit::TestCase(rName)
+//HMACEngineTest::HMACEngineTest(const std::string& rName): CppUnit::TestCase(rName)
+HMACEngineTest::HMACEngineTest(): CppUnit::TestFixture()
 {
 }
 
@@ -33,21 +34,21 @@ HMACEngineTest::~HMACEngineTest()
 void HMACEngineTest::testHMAC()
 {
 	// test vectors from RFC 2104
-	
+
 	std::string key(16, 0x0b);
 	std::string data("Hi There");
 	HMACEngine<MD5Engine> hmac1(key);
 	hmac1.update(data);
 	std::string digest = DigestEngine::digestToHex(hmac1.digest());
 	assertTrue (digest == "9294727a3638bb1c13f48ef8158bfc9d");
-	
+
 	key  = "Jefe";
 	data = "what do ya want for nothing?";
 	HMACEngine<MD5Engine> hmac2(key);
 	hmac2.update(data);
 	digest = DigestEngine::digestToHex(hmac2.digest());
 	assertTrue (digest == "750c783e6ab0b503eaa86e310a5db738");
-	
+
 	key  = std::string(16, char(0xaa));
 	data = std::string(50, char(0xdd));
 	HMACEngine<MD5Engine> hmac3(key);

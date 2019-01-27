@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class StreamConverterTest: public CppUnit::TestCase
+//class StreamConverterTest: public CppUnit::TestCase
+class StreamConverterTest: public CppUnit::TestFixture
 {
 public:
-	StreamConverterTest(const std::string& name);
+//	StreamConverterTest(const std::string& name);
+	StreamConverterTest();
 	~StreamConverterTest();
 
 	void testIdentityASCIIIn();

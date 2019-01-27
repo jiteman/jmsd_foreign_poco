@@ -29,8 +29,14 @@ using Poco::delegate;
 using std::memcpy;
 
 
-FIFOBufferTest::FIFOBufferTest(const std::string& rName):
-	CppUnit::TestCase(rName),
+//FIFOBufferTest::FIFOBufferTest(const std::string& rName):
+//	CppUnit::TestCase(rName),
+//	_notToReadable(0),
+//	_notToWritable(0),
+//	_readableToNot(0),
+//	_writableToNot(0)
+FIFOBufferTest::FIFOBufferTest():
+	CppUnit::TestFixture(),
 	_notToReadable(0),
 	_notToWritable(0),
 	_readableToNot(0),
@@ -65,11 +71,11 @@ void FIFOBufferTest::testNextWrite()
 	buffer.write(text.data(), text.size());
 	char cbuffer[BUFFER_SIZE];
 	std::memset(cbuffer, 0, buffer.size());
-	
+
 	buffer.read(cbuffer, 4);
 
 	assertTrue (std::string(cbuffer, 4) == std::string("The "));
-	
+
 	buffer.peek(cbuffer, buffer.used());
 	assertTrue (std::string(cbuffer, buffer.used()) ==
 			std::string("Quick Brown Dog Jumps Over The Lazy Fox."));
@@ -88,7 +94,7 @@ void FIFOBufferTest::testEOFAndError()
 	typedef FIFOBuffer::Type T;
 
 	FIFOBuffer f(20, true);
-	
+
 	assertTrue (f.isEmpty());
 	assertTrue (!f.isFull());
 
@@ -151,21 +157,21 @@ void FIFOBufferTest::testEOFAndError()
 	assertTrue (5 == f.used());
 	f.setError();
 	assertTrue (0 == f.write(b));
-	
+
 	try
 	{
 		f.copy(b.begin(), 5);
-		fail ("must throw InvalidAccessException");
+		failmsg ("must throw InvalidAccessException");
 	}
 	catch (InvalidAccessException&) { }
 
 	try
 	{
 		f.advance(5);
-		fail ("must throw InvalidAccessException");
+		failmsg ("must throw InvalidAccessException");
 	}
 	catch (InvalidAccessException&) { }
-	
+
 	assertTrue (1 == _notToWritable);
 	assertTrue (2 == _writableToNot);
 	assertTrue (2 == _notToReadable);
@@ -194,7 +200,7 @@ void FIFOBufferTest::testChar()
 	typedef FIFOBuffer::Type T;
 
 	FIFOBuffer f(20, true);
-	
+
 	assertTrue (f.isEmpty());
 	assertTrue (!f.isFull());
 
@@ -237,7 +243,7 @@ void FIFOBufferTest::testChar()
 	assertTrue ('7' == f[2]);
 	assertTrue ('8' == f[3]);
 	assertTrue ('9' == f[4]);
-	try { T i = f[10]; fail ("must fail"); }
+	try { T i = f[10]; failmsg ("must fail"); }
 	catch (InvalidAccessException&) { }
 
 	v.clear();
@@ -265,7 +271,7 @@ void FIFOBufferTest::testChar()
 	assertTrue ('h' == f[12]);
 	assertTrue ('i' == f[13]);
 	assertTrue ('j' == f[14]);
-	try { T i = f[15]; fail ("must fail"); }
+	try { T i = f[15]; failmsg ("must fail"); }
 	catch (InvalidAccessException&) { }
 
 	f.read(b, 10);
@@ -277,7 +283,7 @@ void FIFOBufferTest::testChar()
 	assertTrue ('h' == f[2]);
 	assertTrue ('i' == f[3]);
 	assertTrue ('j' == f[4]);
-	try { T i = f[5]; fail ("must fail"); }
+	try { T i = f[5]; failmsg ("must fail"); }
 	catch (InvalidAccessException&) { }
 
 	assertTrue (1 == _notToReadable);
@@ -293,7 +299,7 @@ void FIFOBufferTest::testChar()
 	assertTrue (5 == b.size());
 	assertTrue (20 == f.size());
 	assertTrue (0 == f.used());
-	try { T i = f[0]; fail ("must fail"); }
+	try { T i = f[0]; failmsg ("must fail"); }
 	catch (InvalidAccessException&) { }
 	assertTrue (f.isEmpty());
 
@@ -459,7 +465,7 @@ void FIFOBufferTest::testChar()
 	try
 	{
 		f.copy(&arr[0], 8);
-		fail("must fail");
+		failmsg("must fail");
 	} catch (InvalidAccessException&) { }
 
 	f.copy(&arr[0], 3);
@@ -486,7 +492,7 @@ void FIFOBufferTest::testChar()
 	try
 	{
 		f.copy(&arr[0], 1);
-		fail("must fail");
+		failmsg("must fail");
 	} catch (InvalidAccessException&) { }
 
 	f.drain(1);
@@ -510,7 +516,7 @@ void FIFOBufferTest::testChar()
 	assertTrue (10 == f.size());
 	assertTrue (10 == f.used());
 	assertTrue (0 == f.available());
-	
+
 	assertTrue (f[0] == '2');
 	assertTrue (f[1] == '3');
 	assertTrue (f[2] == '4');
@@ -564,7 +570,7 @@ void FIFOBufferTest::testInt()
 	assertTrue (7 == f[2]);
 	assertTrue (8 == f[3]);
 	assertTrue (9 == f[4]);
-	try { T i = f[10]; fail ("must fail"); }
+	try { T i = f[10]; failmsg ("must fail"); }
 	catch (InvalidAccessException&) { }
 
 	v.clear();
@@ -592,7 +598,7 @@ void FIFOBufferTest::testInt()
 	assertTrue (17 == f[12]);
 	assertTrue (18 == f[13]);
 	assertTrue (19 == f[14]);
-	try { T i = f[15]; fail ("must fail"); }
+	try { T i = f[15]; failmsg ("must fail"); }
 	catch (InvalidAccessException&) { }
 
 	f.read(b, 10);
@@ -604,14 +610,14 @@ void FIFOBufferTest::testInt()
 	assertTrue (17 == f[2]);
 	assertTrue (18 == f[3]);
 	assertTrue (19 == f[4]);
-	try { T i = f[5]; fail ("must fail"); }
+	try { T i = f[5]; failmsg ("must fail"); }
 	catch (InvalidAccessException&) { }
 
 	f.read(b, 6);
 	assertTrue (5 == b.size());
 	assertTrue (20 == f.size());
 	assertTrue (0 == f.used());
-	try { T i = f[0]; fail ("must fail"); }
+	try { T i = f[0]; failmsg ("must fail"); }
 	catch (InvalidAccessException&) { }
 
 	assertTrue (f.isEmpty());

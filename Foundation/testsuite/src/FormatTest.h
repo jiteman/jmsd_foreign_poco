@@ -15,10 +15,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class FormatTest: public CppUnit::TestCase
+//class FormatTest: public CppUnit::TestCase
+class FormatTest: public CppUnit::TestFixture
 {
 public:
-	FormatTest(const std::string& name);
+//	FormatTest(const std::string& name);
+	FormatTest();
 	~FormatTest();
 
 	void testChar();

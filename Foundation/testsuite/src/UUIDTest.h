@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class UUIDTest: public CppUnit::TestCase
+//class UUIDTest: public CppUnit::TestCase
+class UUIDTest: public CppUnit::TestFixture
 {
 public:
-	UUIDTest(const std::string& name);
+//	UUIDTest(const std::string& name);
+	UUIDTest();
 	~UUIDTest();
 
 	void testParse();

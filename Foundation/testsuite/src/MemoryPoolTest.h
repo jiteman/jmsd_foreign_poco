@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class MemoryPoolTest: public CppUnit::TestCase
+//class MemoryPoolTest: public CppUnit::TestCase
+class MemoryPoolTest: public CppUnit::TestFixture
 {
 public:
-	MemoryPoolTest(const std::string& name);
+//	MemoryPoolTest(const std::string& name);
+	MemoryPoolTest();
 	~MemoryPoolTest();
 
 	void testMemoryPool();

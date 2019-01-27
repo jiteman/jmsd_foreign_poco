@@ -17,7 +17,8 @@
 using Poco::UTF8;
 
 
-UTF8StringTest::UTF8StringTest(const std::string& rName): CppUnit::TestCase(rName)
+//UTF8StringTest::UTF8StringTest(const std::string& rName): CppUnit::TestCase(rName)
+UTF8StringTest::UTF8StringTest(): CppUnit::TestFixture()
 {
 }
 
@@ -31,32 +32,32 @@ void UTF8StringTest::testCompare()
 {
 	std::string a1("aaaaa");
 	std::string b1("bbbbb");
-	
+
 	assertTrue (UTF8::icompare(a1, b1) < 0);
 
 	std::string a2("aaaaa");
 	std::string b2("BBBBB");
-	
+
 	assertTrue (UTF8::icompare(a2, b2) < 0);
 
 	std::string a3("AAAAA");
 	std::string b3("bbbbb");
-	
+
 	assertTrue (UTF8::icompare(a3, b3) < 0);
 
 	std::string a4("aaaaa");
 	std::string b4("AAAAA");
-	
+
 	assertTrue (UTF8::icompare(a4, b4) == 0);
-	
+
 	std::string a5("AAAAA");
 	std::string b5("bbbbb");
-	
+
 	assertTrue (UTF8::icompare(a5, b5) < 0);
 
 	std::string a6("\303\274\303\266\303\244"); // "u"o"a
 	std::string b6("\303\234\303\226\303\204"); // "U"O"A
-	
+
 	assertTrue (UTF8::icompare(a6, b6) == 0);
 }
 
@@ -72,7 +73,7 @@ void UTF8StringTest::testTransform()
 	assertTrue (s2 == "ABCDE123");
 
 	std::string s3("\303\274\303\266\303\244"); // "u"o"a
-	UTF8::toUpperInPlace(s3);	
+	UTF8::toUpperInPlace(s3);
 	assertTrue (s3 == "\303\234\303\226\303\204"); // "U"O"A
 	UTF8::toLowerInPlace(s3);
 	assertTrue (s3 == "\303\274\303\266\303\244"); // "u"o"a

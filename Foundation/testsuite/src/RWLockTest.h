@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class RWLockTest: public CppUnit::TestCase
+//class RWLockTest: public CppUnit::TestCase
+class RWLockTest: public CppUnit::TestFixture
 {
 public:
-	RWLockTest(const std::string& name);
+//	RWLockTest(const std::string& name);
+	RWLockTest();
 	~RWLockTest();
 
 	void testLock();

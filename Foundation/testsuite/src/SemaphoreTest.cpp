@@ -29,28 +29,28 @@ public:
 	SemaRunnable(int n, int max): _ran(false), _sema(n, max)
 	{
 	}
-	
+
 	void run()
 	{
 		_sema.wait();
 		_ran = true;
 	}
-	
+
 	bool ran() const
 	{
 		return _ran;
 	}
-	
+
 	void set()
 	{
 		_sema.set();
 	}
-	
+
 	void wait()
 	{
 		_sema.wait();
 	}
-	
+
 	void wait(long milliseconds)
 	{
 		_sema.wait(milliseconds);
@@ -60,14 +60,15 @@ public:
 	{
 		return _sema.tryWait(milliseconds);
 	}
-	
+
 private:
 	bool _ran;
 	Semaphore _sema;
 };
 
 
-SemaphoreTest::SemaphoreTest(const std::string& rName): CppUnit::TestCase(rName)
+//SemaphoreTest::SemaphoreTest(const std::string& rName): CppUnit::TestCase(rName)
+SemaphoreTest::SemaphoreTest(): CppUnit::TestFixture()
 {
 }
 
@@ -100,7 +101,7 @@ void SemaphoreTest::testInitZero()
 	assertTrue (r.tryWait(0));
 	r.wait();
 	assertTrue (!r.tryWait(10));
-	
+
 	Thread t;
 	t.start(r);
 	Thread::sleep(100);

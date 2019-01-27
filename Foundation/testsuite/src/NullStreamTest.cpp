@@ -18,7 +18,8 @@ using Poco::NullInputStream;
 using Poco::NullOutputStream;
 
 
-NullStreamTest::NullStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+//NullStreamTest::NullStreamTest(const std::string& rName): CppUnit::TestCase(rName)
+NullStreamTest::NullStreamTest(): CppUnit::TestFixture()
 {
 }
 

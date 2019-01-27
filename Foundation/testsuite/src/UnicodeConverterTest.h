@@ -21,10 +21,12 @@
 #include <cstring>
 
 
-class UnicodeConverterTest: public CppUnit::TestCase
+//class UnicodeConverterTest: public CppUnit::TestCase
+class UnicodeConverterTest: public CppUnit::TestFixture
 {
 public:
-	UnicodeConverterTest(const std::string& name);
+//	UnicodeConverterTest(const std::string& name);
+	UnicodeConverterTest();
 	~UnicodeConverterTest();
 
 	void testUTF16();

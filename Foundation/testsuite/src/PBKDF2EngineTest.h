@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class PBKDF2EngineTest: public CppUnit::TestCase
+//class PBKDF2EngineTest: public CppUnit::TestCase
+class PBKDF2EngineTest: public CppUnit::TestFixture
 {
 public:
-	PBKDF2EngineTest(const std::string& name);
+//	PBKDF2EngineTest(const std::string& name);
+	PBKDF2EngineTest();
 	~PBKDF2EngineTest();
 
 	void testPBKDF2a();

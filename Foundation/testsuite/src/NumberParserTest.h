@@ -22,10 +22,12 @@
 #undef min
 #include <limits>
 
-class NumberParserTest: public CppUnit::TestCase
+//class NumberParserTest: public CppUnit::TestCase
+class NumberParserTest: public CppUnit::TestFixture
 {
 public:
-	NumberParserTest(const std::string& name);
+//	NumberParserTest(const std::string& name);
+	NumberParserTest();
 	~NumberParserTest();
 
 	void testParse();

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class HashMapTest: public CppUnit::TestCase
+//class HashMapTest: public CppUnit::TestCase
+class HashMapTest: public CppUnit::TestFixture
 {
 public:
-	HashMapTest(const std::string& name);
+//	HashMapTest(const std::string& name);
+	HashMapTest();
 	~HashMapTest();
 
 	void testInsert();

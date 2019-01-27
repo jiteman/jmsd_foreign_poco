@@ -20,7 +20,8 @@
 #include "Poco/EventArgs.h"
 
 
-class FIFOEventTest: public CppUnit::TestCase
+//class FIFOEventTest: public CppUnit::TestCase
+class FIFOEventTest: public CppUnit::TestFixture
 {
 	Poco::FIFOEvent<void> Void;
 	Poco::FIFOEvent<int> Simple;
@@ -30,7 +31,8 @@ class FIFOEventTest: public CppUnit::TestCase
 	Poco::FIFOEvent<const Poco::EventArgs*> ConstComplex;
 	Poco::FIFOEvent<const Poco::EventArgs * const> Const2Complex;
 public:
-	FIFOEventTest(const std::string& name);
+//	FIFOEventTest(const std::string& name);
+	FIFOEventTest();
 	~FIFOEventTest();
 
 	void testNoDelegate();

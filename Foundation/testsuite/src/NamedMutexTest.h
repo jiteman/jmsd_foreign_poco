@@ -18,17 +18,19 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NamedMutexTest: public CppUnit::TestCase
+//class NamedMutexTest: public CppUnit::TestCase
+class NamedMutexTest: public CppUnit::TestFixture
 {
 public:
 #if POCO != POCO_OS_CYGWIN
-	NamedMutexTest(const std::string& name);
+//	NamedMutexTest(const std::string& name);
+	NamedMutexTest();
 	~NamedMutexTest();
 
 	void testLock();
 	void testTryLock();
 #endif
-	
+
 	void setUp();
 	void tearDown();
 

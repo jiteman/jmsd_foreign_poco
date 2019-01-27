@@ -21,10 +21,12 @@
 #include <set>
 
 
-class PriorityNotificationQueueTest: public CppUnit::TestCase
+//class PriorityNotificationQueueTest: public CppUnit::TestCase
+class PriorityNotificationQueueTest: public CppUnit::TestFixture
 {
 public:
-	PriorityNotificationQueueTest(const std::string& name);
+//	PriorityNotificationQueueTest(const std::string& name);
+	PriorityNotificationQueueTest();
 	~PriorityNotificationQueueTest();
 
 	void testQueueDequeue();

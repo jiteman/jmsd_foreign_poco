@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class LineEndingConverterTest: public CppUnit::TestCase
+//class LineEndingConverterTest: public CppUnit::TestCase
+class LineEndingConverterTest: public CppUnit::TestFixture
 {
 public:
-	LineEndingConverterTest(const std::string& name);
+//	LineEndingConverterTest(const std::string& name);
+	LineEndingConverterTest();
 	~LineEndingConverterTest();
 
 	void testInputDosToUnix();

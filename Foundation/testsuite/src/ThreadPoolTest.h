@@ -20,16 +20,18 @@
 #include "Poco/Mutex.h"
 
 
-class ThreadPoolTest: public CppUnit::TestCase
+//class ThreadPoolTest: public CppUnit::TestCase
+class ThreadPoolTest: public CppUnit::TestFixture
 {
 public:
-	ThreadPoolTest(const std::string& name);
+//	ThreadPoolTest(const std::string& name);
+	ThreadPoolTest();
 	~ThreadPoolTest();
 
 	void testThreadPool();
 	void testThreadPoolUniformDistribution();
 	void testThreadPoolCustomDistribution();
-	
+
 	void setUp();
 	void tearDown();
 

@@ -31,7 +31,8 @@ using Poco::DateTimeFormatter;
 using Poco::AutoPtr;
 
 
-SimpleFileChannelTest::SimpleFileChannelTest(const std::string& rName): CppUnit::TestCase(rName)
+//SimpleFileChannelTest::SimpleFileChannelTest(const std::string& rName): CppUnit::TestCase(rName)
+SimpleFileChannelTest::SimpleFileChannelTest(): CppUnit::TestFixture()
 {
 }
 

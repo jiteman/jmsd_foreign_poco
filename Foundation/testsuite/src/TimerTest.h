@@ -20,10 +20,12 @@
 #include "Poco/Event.h"
 
 
-class TimerTest: public CppUnit::TestCase
+//class TimerTest: public CppUnit::TestCase
+class TimerTest: public CppUnit::TestFixture
 {
 public:
-	TimerTest(const std::string& name);
+//	TimerTest(const std::string& name);
+	TimerTest();
 	~TimerTest();
 
 	void testTimer();

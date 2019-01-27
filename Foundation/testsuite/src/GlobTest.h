@@ -19,10 +19,12 @@
 #include <set>
 
 
-class GlobTest: public CppUnit::TestCase
+//class GlobTest: public CppUnit::TestCase
+class GlobTest: public CppUnit::TestFixture
 {
 public:
-	GlobTest(const std::string& name);
+//	GlobTest(const std::string& name);
+	GlobTest();
 	~GlobTest();
 
 	void testMatchChars();

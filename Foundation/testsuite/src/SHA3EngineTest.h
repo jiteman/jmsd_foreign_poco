@@ -15,10 +15,12 @@
 #include "Poco/Foundation.h"
 #include "Poco/CppUnit/TestCase.h"
 
-class SHA3EngineTest: public CppUnit::TestCase
+//class SHA3EngineTest: public CppUnit::TestCase
+class SHA3EngineTest: public CppUnit::TestFixture
 {
 public:
-	SHA3EngineTest(const std::string& name);
+//	SHA3EngineTest(const std::string& name);
+	SHA3EngineTest();
 	~SHA3EngineTest();
 
 	void testSHA3_224();

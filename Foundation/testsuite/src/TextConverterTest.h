@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TextConverterTest: public CppUnit::TestCase
+//class TextConverterTest: public CppUnit::TestCase
+class TextConverterTest: public CppUnit::TestFixture
 {
 public:
-	TextConverterTest(const std::string& name);
+//	TextConverterTest(const std::string& name);
+	TextConverterTest();
 	~TextConverterTest();
 
 	void testIdentityASCII();

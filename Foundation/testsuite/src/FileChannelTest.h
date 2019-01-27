@@ -18,7 +18,8 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class FileChannelTest: public CppUnit::TestCase
+//class FileChannelTest: public CppUnit::TestCase
+class FileChannelTest: public CppUnit::TestFixture
 {
 public:
 	enum TimeRotation
@@ -28,7 +29,8 @@ public:
 		MIN
 	};
 
-	FileChannelTest(const std::string& name);
+//	FileChannelTest(const std::string& name);
+	FileChannelTest();
 	~FileChannelTest();
 
 	void testRotateBySize();

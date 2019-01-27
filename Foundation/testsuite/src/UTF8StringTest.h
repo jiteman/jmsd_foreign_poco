@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class UTF8StringTest: public CppUnit::TestCase
+//class UTF8StringTest: public CppUnit::TestCase
+class UTF8StringTest: public CppUnit::TestFixture
 {
 public:
-	UTF8StringTest(const std::string& name);
+//	UTF8StringTest(const std::string& name);
+	UTF8StringTest();
 	~UTF8StringTest();
 
 	void testCompare();

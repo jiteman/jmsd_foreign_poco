@@ -34,7 +34,8 @@ using std::strftime;
 #endif
 
 
-LocalDateTimeTest::LocalDateTimeTest(const std::string& rName): CppUnit::TestCase(rName)
+//LocalDateTimeTest::LocalDateTimeTest(const std::string& rName): CppUnit::TestCase(rName)
+LocalDateTimeTest::LocalDateTimeTest(): CppUnit::TestFixture()
 {
 }
 
@@ -59,7 +60,7 @@ void LocalDateTimeTest::testGregorian1()
 	//          the one on 1970-1-1
 	//assertTrue (dt.tzd() == Timezone::tzd());
 	assertTrue (dt.julianDay() == 2440587.5);
-	
+
 	dt.assign(2001, 9, 9, 1, 46, 40);
 	assertTrue (dt.year() == 2001);
 	assertTrue (dt.month() == 9);
@@ -86,7 +87,7 @@ void LocalDateTimeTest::testGregorian2()
 	assertTrue (dt.millisecond() == 0);
 	assertTrue (dt.dayOfWeek() == 4);
 	assertTrue (dt.tzd() == 2*3600);
-	
+
 	dt.assign(-7*3600, 2001, 9, 9, 1, 46, 40, 0, 0);
 	assertTrue (dt.year() == 2001);
 	assertTrue (dt.month() == 9);
@@ -128,12 +129,12 @@ void LocalDateTimeTest::testConversions()
 	assertTrue (dt5.millisecond() == 234);
 	assertTrue (dt5.dayOfWeek() == 5);
 	assertTrue (dt5.tzd() == -4*3600);
-	
+
 	DateTime dt6(2005, 1, 28, 14, 24, 44, 234, 0);
 	LocalDateTime dt7(3600, dt6);
 	LocalDateTime dt8(3600, dt6, false);
 	LocalDateTime dt9(3600, dt6, true);
-	
+
 	assertTrue (dt7.hour() == 15);
 	assertTrue (dt8.hour() == 14);
 	assertTrue (dt9.hour() == 15);
@@ -163,7 +164,7 @@ void LocalDateTimeTest::testCalcs()
 	assertTrue (dt1.week(DateTime::MONDAY) == 1);
 	dt1.assign(2007, 12, 31);
 	assertTrue (dt1.week(DateTime::MONDAY) == 53);
-	
+
 	// Jan 1 is Mon
 	dt1.assign(2001, 1, 1);
 	assertTrue (dt1.week() == 1);
@@ -199,7 +200,7 @@ void LocalDateTimeTest::testCalcs()
 	assertTrue (dt1.week() == 3);
 	dt1.assign(2003, 1, 20);
 	assertTrue (dt1.week() == 4);
-	
+
 	// Jan 1 is Thu
 	dt1.assign(2004, 1, 1);
 	assertTrue (dt1.week() == 1);
@@ -235,7 +236,7 @@ void LocalDateTimeTest::testCalcs()
 	assertTrue (dt1.week() == 2);
 	dt1.assign(2000, 1, 17);
 	assertTrue (dt1.week() == 3);
-	
+
 	// Jan 1 is Sun
 	dt1.assign(1995, 1, 1);
 	assertTrue (dt1.week() == 0);
@@ -256,7 +257,7 @@ void LocalDateTimeTest::testAMPM()
 	assertTrue (dt1.isAM());
 	assertTrue (!dt1.isPM());
 	assertTrue (dt1.hourAMPM() == 12);
-	
+
 	dt1.assign(2005, 1, 1, 12, 15, 30);
 	assertTrue (!dt1.isAM());
 	assertTrue (dt1.isPM());
@@ -274,14 +275,14 @@ void LocalDateTimeTest::testRelational1()
 	LocalDateTime dt1(2005, 1, 1, 0, 15, 30);
 	LocalDateTime dt2(2005, 1, 2, 0, 15, 30);
 	LocalDateTime dt3(dt1);
-	
+
 	assertTrue (dt1 < dt2);
 	assertTrue (dt1 <= dt2);
 	assertTrue (dt2 > dt1);
 	assertTrue (dt2 >= dt1);
 	assertTrue (dt1 != dt2);
 	assertTrue (!(dt1 == dt2));
-	
+
 	assertTrue (dt1 == dt3);
 	assertTrue (!(dt1 != dt3));
 	assertTrue (dt1 >= dt3);
@@ -303,7 +304,7 @@ void LocalDateTimeTest::testRelational2()
 	assertTrue (dt2 >= dt1);
 	assertTrue (dt1 != dt2);
 	assertTrue (!(dt1 == dt2));
-	
+
 	assertTrue (dt1 == dt3);
 	assertTrue (!(dt1 != dt3));
 	assertTrue (dt1 >= dt3);
@@ -317,13 +318,13 @@ void LocalDateTimeTest::testArithmetics1()
 {
 	LocalDateTime dt1(2005, 1, 1, 0, 15, 30);
 	LocalDateTime dt2(2005, 1, 2, 0, 15, 30);
-	
+
 	Timespan s = dt2 - dt1;
 	assertTrue (s.days() == 1);
-	
+
 	LocalDateTime dt3 = dt1 + s;
 	assertTrue (dt3 == dt2);
-	
+
 	dt3 -= s;
 	assertTrue (dt3 == dt1);
 	dt1 += s;
@@ -335,13 +336,13 @@ void LocalDateTimeTest::testArithmetics2()
 {
 	LocalDateTime dt1(2*3600, 2005, 1, 1, 15, 30, 0, 0, 0);
 	LocalDateTime dt2(5*3600, 2005, 1, 2, 18, 30, 0, 0, 0);
-	
+
 	Timespan s = dt2 - dt1;
 	assertTrue (s.days() == 1);
-	
+
 	LocalDateTime dt3 = dt1 + s;
 	assertTrue (dt3 == dt2);
-	
+
 	dt3 -= s;
 	assertTrue (dt3 == dt1);
 	dt1 += s;
@@ -353,7 +354,7 @@ void LocalDateTimeTest::testSwap()
 {
 	LocalDateTime dt1(2005, 1, 1, 0, 15, 30);
 	LocalDateTime dt2(2005, 1, 2, 0, 15, 30);
-	
+
 	assertTrue (dt1 < dt2);
 	dt1.swap(dt2);
 	assertTrue (dt2 < dt1);
@@ -376,7 +377,7 @@ void LocalDateTimeTest::testTimezone()
 		std::string tzNow, tzThen;
 		char tzBuf[48] = {0};
 		if (0 == std::strftime(&tzBuf[0], sizeof(tzBuf), "%Z", &then))
-			fail ("Insufficient character array length.");
+			failmsg ("Insufficient character array length.");
 
 		tzNow = tzThen = tzBuf;
 		int iterations = 0;

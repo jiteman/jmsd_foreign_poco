@@ -28,7 +28,8 @@ using Poco::DeflatingStreamBuf;
 using Poco::StreamCopier;
 
 
-ZLibTest::ZLibTest(const std::string& rName): CppUnit::TestCase(rName)
+//ZLibTest::ZLibTest(const std::string& rName): CppUnit::TestCase(rName)
+ZLibTest::ZLibTest(): CppUnit::TestFixture()
 {
 }
 
@@ -134,7 +135,7 @@ void ZLibTest::testGzip2()
 		0xc9, 0xc9, 0xd7, 0x51, 0x28, 0xcf, 0x2f, 0xca, 0x49, 0x51, 0xe4, 0x02, 0x00, 0x18, 0xa7, 0x55,
 		0x7b, 0x0e, 0x00, 0x00, 0x00, 0x00
 	};
-	
+
 	std::string gzstr((char*) gzdata, sizeof(gzdata));
 	std::istringstream istr(gzstr);
 	InflatingInputStream inflater(istr, InflatingStreamBuf::STREAM_GZIP);
@@ -142,7 +143,7 @@ void ZLibTest::testGzip2()
 	inflater >> data;
 	assertTrue (data == "Hello,");
 	inflater >> data;
-	assertTrue (data == "world!");	
+	assertTrue (data == "world!");
 }
 
 
@@ -171,7 +172,7 @@ void ZLibTest::testGzip3()
 	inflater >> data;
 	assertTrue (data == "bcdefabcdefabcdefabcdefabcdefabcdefa");
 	inflater >> data;
-	assertTrue (data == "bcdefabcdefabcdefabcdefabcdefabcdefa");	
+	assertTrue (data == "bcdefabcdefabcdefabcdefabcdefabcdefa");
 }
 
 

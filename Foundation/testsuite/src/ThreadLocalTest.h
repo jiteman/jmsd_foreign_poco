@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ThreadLocalTest: public CppUnit::TestCase
+//class ThreadLocalTest: public CppUnit::TestCase
+class ThreadLocalTest: public CppUnit::TestFixture
 {
 public:
-	ThreadLocalTest(const std::string& name);
+//	ThreadLocalTest(const std::string& name);
+	ThreadLocalTest();
 	~ThreadLocalTest();
 
 	void testLocality();

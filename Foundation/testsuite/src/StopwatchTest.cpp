@@ -21,7 +21,8 @@ using Poco::Timestamp;
 using Poco::Thread;
 
 
-StopwatchTest::StopwatchTest(const std::string& rName): CppUnit::TestCase(rName)
+//StopwatchTest::StopwatchTest(const std::string& rName): CppUnit::TestCase(rName)
+StopwatchTest::StopwatchTest(): CppUnit::TestFixture()
 {
 }
 
@@ -38,11 +39,11 @@ void StopwatchTest::testStopwatch()
 	Thread::sleep(200);
 	sw.stop();
 	Timestamp::TimeDiff d = sw.elapsed();
-	assertTrue (d >= 180000 && d <= 300000);	
-	sw.start();	
+	assertTrue (d >= 180000 && d <= 300000);
+	sw.start();
 	Thread::sleep(100);
 	d = sw.elapsed();
-	assertTrue (d >= 280000 && d <= 400000);	
+	assertTrue (d >= 280000 && d <= 400000);
 	Thread::sleep(100);
 	sw.stop();
 	d = sw.elapsed();
@@ -52,7 +53,7 @@ void StopwatchTest::testStopwatch()
 	Thread::sleep(200);
 	sw.stop();
 	d = sw.elapsed();
-	assertTrue (d >= 180000 && d <= 300000);	
+	assertTrue (d >= 180000 && d <= 300000);
 }
 
 

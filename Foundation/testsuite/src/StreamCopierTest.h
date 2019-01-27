@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class StreamCopierTest: public CppUnit::TestCase
+//class StreamCopierTest: public CppUnit::TestCase
+class StreamCopierTest: public CppUnit::TestFixture
 {
 public:
-	StreamCopierTest(const std::string& name);
+//	StreamCopierTest(const std::string& name);
+	StreamCopierTest();
 	~StreamCopierTest();
 
 	void testBufferedCopy();

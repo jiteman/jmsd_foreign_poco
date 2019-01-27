@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class SemaphoreTest: public CppUnit::TestCase
+//class SemaphoreTest: public CppUnit::TestCase
+class SemaphoreTest: public CppUnit::TestFixture
 {
 public:
-	SemaphoreTest(const std::string& name);
+//	SemaphoreTest(const std::string& name);
+	SemaphoreTest();
 	~SemaphoreTest();
 
 	void testInitZero();

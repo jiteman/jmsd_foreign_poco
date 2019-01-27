@@ -146,7 +146,8 @@ private:
 };
 
 
-ThreadTest::ThreadTest(const std::string& rName): CppUnit::TestCase(rName)
+//ThreadTest::ThreadTest(const std::string& rName): CppUnit::TestCase(rName)
+ThreadTest::ThreadTest(): CppUnit::TestFixture()
 {
 }
 

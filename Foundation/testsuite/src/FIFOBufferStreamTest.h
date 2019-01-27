@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class FIFOBufferStreamTest: public CppUnit::TestCase
+//class FIFOBufferStreamTest: public CppUnit::TestCase
+class FIFOBufferStreamTest: public CppUnit::TestFixture
 {
 public:
-	FIFOBufferStreamTest(const std::string& name);
+//	FIFOBufferStreamTest(const std::string& name);
+	FIFOBufferStreamTest();
 	~FIFOBufferStreamTest();
 
 	void testInput();

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class RandomTest: public CppUnit::TestCase
+//class RandomTest: public CppUnit::TestCase
+class RandomTest: public CppUnit::TestFixture
 {
 public:
-	RandomTest(const std::string& name);
+//	RandomTest(const std::string& name);
+	RandomTest();
 	~RandomTest();
 
 	void testSequence1();
@@ -29,7 +31,7 @@ public:
 	void testDistribution1();
 	void testDistribution2();
 	void testDistribution3();
-	
+
 	void setUp();
 	void tearDown();
 

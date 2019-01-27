@@ -18,7 +18,8 @@ using Poco::MD4Engine;
 using Poco::DigestEngine;
 
 
-MD4EngineTest::MD4EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+//MD4EngineTest::MD4EngineTest(const std::string& rName): CppUnit::TestCase(rName)
+MD4EngineTest::MD4EngineTest(): CppUnit::TestFixture()
 {
 }
 
@@ -48,7 +49,7 @@ void MD4EngineTest::testMD4()
 
 	engine.update("abcdefghijklmnopqrstuvwxyz");
 	assertTrue (DigestEngine::digestToHex(engine.digest()) == "d79e1c308aa5bbcdeea8ed63df412da9");
-	
+
 	engine.update("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 	engine.update("abcdefghijklmnopqrstuvwxyz0123456789");
 	assertTrue (DigestEngine::digestToHex(engine.digest()) == "043f8582f241db351ce627e153e7f0e4");

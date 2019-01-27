@@ -20,7 +20,8 @@ using Poco::Int64;
 using Poco::UInt64;
 
 
-NumberFormatterTest::NumberFormatterTest(const std::string& rName): CppUnit::TestCase(rName)
+//NumberFormatterTest::NumberFormatterTest(const std::string& rName): CppUnit::TestCase(rName)
+NumberFormatterTest::NumberFormatterTest(): CppUnit::TestFixture()
 {
 }
 
@@ -254,7 +255,7 @@ void NumberFormatterTest::testAppend()
 	NumberFormatter::append0(s, 123u, 5);
 	assertTrue (s == "00123");
 
-	
+
 	s.erase();
 	NumberFormatter::append(s, 123.4);
 	assertTrue (s == "123.4");

@@ -27,7 +27,8 @@ using Poco::PipeOutputStream;
 using Poco::Path;
 
 
-ProcessTest::ProcessTest(const std::string& rName): CppUnit::TestCase(rName)
+//ProcessTest::ProcessTest(const std::string& rName): CppUnit::TestCase(rName)
+ProcessTest::ProcessTest(): CppUnit::TestFixture()
 {
 }
 

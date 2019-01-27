@@ -23,7 +23,8 @@ using Poco::RunnableAdapter;
 using Poco::Thread;
 
 
-ThreadPoolTest::ThreadPoolTest(const std::string& rName): CppUnit::TestCase(rName), _event(Event::EVENT_MANUALRESET)
+//ThreadPoolTest::ThreadPoolTest(const std::string& rName): CppUnit::TestCase(rName), _event(Event::EVENT_MANUALRESET)
+ThreadPoolTest::ThreadPoolTest(): CppUnit::TestFixture(), _event(Event::EVENT_MANUALRESET)
 {
 }
 
@@ -83,7 +84,7 @@ void ThreadPoolTest::startThreadPoolTest(int affinityPolicy)
 	{
 		pool.start(ra, cpu);
 		failmsg("thread pool exhausted - must throw exception");
-	}	
+	}
 	catch (Poco::NoThreadAvailableException&)
 	{
 	}
@@ -91,17 +92,17 @@ void ThreadPoolTest::startThreadPoolTest(int affinityPolicy)
 	{
 		failmsg("wrong exception thrown");
 	}
-	
+
 	_event.set(); // go!!!
 	pool.joinAll();
-	
+
 	assertTrue (_count == 40000);
-	
+
 	assertTrue (pool.allocated() == 4);
 	assertTrue (pool.used() == 0);
 	assertTrue (pool.capacity() == 4);
 	assertTrue (pool.available() == 4);
-	
+
 	Thread::sleep(4000);
 
 	pool.collect();
@@ -109,7 +110,7 @@ void ThreadPoolTest::startThreadPoolTest(int affinityPolicy)
 	assertTrue (pool.used() == 0);
 	assertTrue (pool.capacity() == 4);
 	assertTrue (pool.available() == 4);
-	
+
 	_count = 0;
 	_event.reset();
 	pool.start(ra, cpu);
@@ -127,11 +128,11 @@ void ThreadPoolTest::startThreadPoolTest(int affinityPolicy)
 	pool.joinAll();
 
 	assertTrue (_count == 20000);
-	
+
 	assertTrue (pool.allocated() == 2);
 	assertTrue (pool.used() == 0);
 	assertTrue (pool.capacity() == 4);
-	assertTrue (pool.available() == 4);	
+	assertTrue (pool.available() == 4);
 }
 
 
