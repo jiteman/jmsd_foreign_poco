@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NameTest: public CppUnit::TestCase
+//class NameTest: public CppUnit::TestCase
+class NameTest: public CppUnit::TestFixture
 {
 public:
-	NameTest(const std::string& name);
+//	NameTest(const std::string& name);
+	NameTest();
 	~NameTest();
 
 	void testSplit();
@@ -30,7 +32,7 @@ public:
 	void testName();
 	void testCompare();
 	void testSwap();
-	
+
 	void setUp();
 	void tearDown();
 

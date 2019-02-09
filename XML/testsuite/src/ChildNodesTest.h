@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ChildNodesTest: public CppUnit::TestCase
+//class ChildNodesTest: public CppUnit::TestCase
+class ChildNodesTest: public CppUnit::TestFixture
 {
 public:
-	ChildNodesTest(const std::string& name);
+//	ChildNodesTest(const std::string& name);
+	ChildNodesTest();
 	~ChildNodesTest();
 
 	void testChildNodes();

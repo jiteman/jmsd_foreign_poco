@@ -21,7 +21,8 @@ using Poco::XML::Name;
 using Poco::XML::AutoPtr;
 
 
-NamePoolTest::NamePoolTest(const std::string& name): CppUnit::TestCase(name)
+//NamePoolTest::NamePoolTest(const std::string& name): CppUnit::TestCase(name)
+NamePoolTest::NamePoolTest(): CppUnit::TestFixture()
 {
 }
 
@@ -36,17 +37,17 @@ void NamePoolTest::testNamePool()
 	AutoPtr<NamePool> pool = new NamePool;
 	const Name* pName = 0;
 	Name name("pre:local", "http://www.appinf.com");
-	
+
 	pName = &pool->insert(name);
 	const Name* pName2 = &pool->insert("pre:local", "http://www.appinf.com", "local");
 	assertTrue (pName == pName2);
-	
+
 	pName2 = &pool->insert("pre:local2", "http://www.appinf.com", "local2");
 	assertTrue (pName2 != pName);
-	
+
 	pName2 = &pool->insert(name);
 	assertTrue (pName2 == pName);
-	
+
 	pName2 = &pool->insert(*pName);
 	assertTrue (pName2 == pName);
 }

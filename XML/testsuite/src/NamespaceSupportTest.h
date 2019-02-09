@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NamespaceSupportTest: public CppUnit::TestCase
+//class NamespaceSupportTest: public CppUnit::TestCase
+class NamespaceSupportTest: public CppUnit::TestFixture
 {
 public:
-	NamespaceSupportTest(const std::string& name);
+//	NamespaceSupportTest(const std::string& name);
+	NamespaceSupportTest();
 	~NamespaceSupportTest();
 
 	void testNamespaceSupport();

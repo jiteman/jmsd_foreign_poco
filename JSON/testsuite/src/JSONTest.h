@@ -27,10 +27,12 @@
 #include <sstream>
 
 
-class JSONTest: public CppUnit::TestCase
+//class JSONTest: public CppUnit::TestCase
+class JSONTest: public CppUnit::TestFixture
 {
 public:
-	JSONTest(const std::string& name);
+//	JSONTest(const std::string& name);
+	JSONTest();
 	~JSONTest();
 
 	void testNullProperty();

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NamePoolTest: public CppUnit::TestCase
+//class NamePoolTest: public CppUnit::TestCase
+class NamePoolTest: public CppUnit::TestFixture
 {
 public:
-	NamePoolTest(const std::string& name);
+//	NamePoolTest(const std::string& name);
+	NamePoolTest();
 	~NamePoolTest();
 
 	void testNamePool();

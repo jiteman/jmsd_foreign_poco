@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NodeTest: public CppUnit::TestCase
+//class NodeTest: public CppUnit::TestCase
+class NodeTest: public CppUnit::TestFixture
 {
 public:
-	NodeTest(const std::string& name);
+//	NodeTest(const std::string& name);
+	NodeTest();
 	~NodeTest();
 
 	void testInsert();

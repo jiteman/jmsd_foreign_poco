@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class AttributesImplTest: public CppUnit::TestCase
+//class AttributesImplTest: public CppUnit::TestCase
+class AttributesImplTest: public CppUnit::TestFixture
 {
 public:
-	AttributesImplTest(const std::string& name);
+//	AttributesImplTest(const std::string& name);
+	AttributesImplTest();
 	~AttributesImplTest();
 
 	void testNoNamespaces();

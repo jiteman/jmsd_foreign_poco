@@ -17,7 +17,8 @@
 using Poco::XML::Name;
 
 
-NameTest::NameTest(const std::string& name): CppUnit::TestCase(name)
+//NameTest::NameTest(const std::string& name): CppUnit::TestCase(name)
+NameTest::NameTest(): CppUnit::TestFixture()
 {
 }
 
@@ -35,12 +36,12 @@ void NameTest::testSplit()
 	Name::split(qname, prefix, local);
 	assertTrue (prefix.empty());
 	assertTrue (local == "name");
-	
+
 	qname = "p:l";
 	Name::split(qname, prefix, local);
 	assertTrue (prefix == "p");
 	assertTrue (local == "l");
-	
+
 	qname = "pre:local";
 	Name::split(qname, prefix, local);
 	assertTrue (prefix == "pre");
@@ -111,17 +112,17 @@ void NameTest::testCompare()
 	Name n1("pre:local");
 	Name n2(n1);
 	Name n3("pre:local2");
-	
+
 	assertTrue (n1.equals(n2));
 	assertTrue (!n1.equals(n3));
-	
+
 	n1.assign("pre:local", "http://www.appinf.com", "local");
 	n2.assign("pre:local", "http://www.appinf.com", "local");
 	n3.assign("pre:local2", "http://www.appinf.com", "local2");
-	
+
 	assertTrue (n1.equals(n2));
 	assertTrue (!n1.equals(n3));
-	
+
 	assertTrue (n1.equals("pre:local", "http://www.appinf.com", "local"));
 	assertTrue (!n1.equals("pre:local", "", ""));
 	assertTrue (n1.equalsWeakly("pre:local", "", ""));

@@ -43,7 +43,7 @@ public:
 		_capture(capture)
 	{
 	}
-	
+
 	void handleEvent(Event* evt)
 	{
 		XMLString type = evt->type();
@@ -59,7 +59,7 @@ public:
 		}
 		Node* pTarget = static_cast<Node*>(evt->target());
 		Node* pCurrentTarget = static_cast<Node*>(evt->currentTarget());
-		
+
 		_log.append(_name);
 		_log.append(":");
 		_log.append(type);
@@ -73,7 +73,7 @@ public:
 		_log.append(evt->bubbles() ? "B" : "-");
 		_log.append(":");
 		_log.append(evt->cancelable() ? "C" : "-");
-		
+
 		MutationEvent* pME = dynamic_cast<MutationEvent*>(evt);
 		if (pME)
 		{
@@ -103,22 +103,22 @@ public:
 			_log.append(pME->newValue());
 		}
 		_log.append("\n");
-		
+
 		if (_cancel) evt->stopPropagation();
 		if (_readd)
 			pCurrentTarget->addEventListener(type, this, _capture);
 	}
-	
+
 	static const XMLString& log()
 	{
 		return _log;
 	}
-	
+
 	static void reset()
 	{
 		_log.clear();
 	}
-	
+
 private:
 	XMLString _name;
 	bool      _cancel;
@@ -131,7 +131,8 @@ private:
 XMLString TestEventListener::_log;
 
 
-EventTest::EventTest(const std::string& name): CppUnit::TestCase(name)
+//EventTest::EventTest(const std::string& name): CppUnit::TestCase(name)
+EventTest::EventTest(): CppUnit::TestFixture()
 {
 }
 
@@ -158,7 +159,7 @@ void EventTest::testInsert()
 	pDoc->addEventListener(MutationEvent::DOMSubtreeModified, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeInserted, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeInsertedIntoDocument, &docCapListener, true);
-	
+
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeInserted, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeInsertedIntoDocument, &rootListener, false);
@@ -166,9 +167,9 @@ void EventTest::testInsert()
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeInserted, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeInsertedIntoDocument, &rootCapListener, true);
-	
+
 	pDoc->appendChild(pRoot);
-	
+
 	const XMLString& log = TestEventListener::log();
 
 	assertTrue (log ==
@@ -182,9 +183,9 @@ void EventTest::testInsert()
 		"docCap:DOMSubtreeModified:AT_TARGET:#document:#document:B:-:MODIFICATION::::\n"
 		"doc:DOMSubtreeModified:AT_TARGET:#document:#document:B:-:MODIFICATION::::\n"
 	);
-	
+
 	TestEventListener::reset();
-	
+
 	AutoPtr<Text> pText = pDoc->createTextNode("text");
 	pRoot->appendChild(pText);
 
@@ -220,7 +221,7 @@ void EventTest::testInsertSubtree()
 	pDoc->addEventListener(MutationEvent::DOMSubtreeModified, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeInserted, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeInsertedIntoDocument, &docCapListener, true);
-	
+
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeInserted, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeInsertedIntoDocument, &rootListener, false);
@@ -228,7 +229,7 @@ void EventTest::testInsertSubtree()
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeInserted, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeInsertedIntoDocument, &rootCapListener, true);
-	
+
 	AutoPtr<Text> pText = pDoc->createTextNode("text");
 	pRoot->appendChild(pText);
 
@@ -270,7 +271,7 @@ void EventTest::testRemove()
 	pDoc->addEventListener(MutationEvent::DOMSubtreeModified, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeRemoved, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeRemovedFromDocument, &docCapListener, true);
-	
+
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeRemoved, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeRemovedFromDocument, &rootListener, false);
@@ -278,9 +279,9 @@ void EventTest::testRemove()
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeRemoved, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeRemovedFromDocument, &rootCapListener, true);
-	
+
 	pDoc->appendChild(pRoot);
-	
+
 	AutoPtr<Text> pText = pDoc->createTextNode("text");
 	pRoot->appendChild(pText);
 
@@ -321,7 +322,7 @@ void EventTest::testRemoveSubtree()
 	pDoc->addEventListener(MutationEvent::DOMSubtreeModified, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeRemoved, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeRemovedFromDocument, &docCapListener, true);
-	
+
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeRemoved, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeRemovedFromDocument, &rootListener, false);
@@ -329,9 +330,9 @@ void EventTest::testRemoveSubtree()
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeRemoved, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeRemovedFromDocument, &rootCapListener, true);
-	
+
 	pDoc->appendChild(pRoot);
-	
+
 	AutoPtr<Text> pText = pDoc->createTextNode("text");
 	pRoot->appendChild(pText);
 
@@ -339,7 +340,7 @@ void EventTest::testRemoveSubtree()
 
 	pDoc->removeChild(pRoot);
 
-	const XMLString& log = TestEventListener::log();	
+	const XMLString& log = TestEventListener::log();
 	assertTrue (log ==
 		"docCap:DOMNodeRemoved:CAPTURING_PHASE:root:#document:B:-:MODIFICATION:#document:::\n"
 		"rootCap:DOMNodeRemoved:AT_TARGET:root:root:B:-:MODIFICATION:#document:::\n"
@@ -372,17 +373,17 @@ void EventTest::testCharacterData()
 	TestEventListener textCapListener("textCap");
 
 	pDoc->addEventListener(MutationEvent::DOMCharacterDataModified, &docListener, false);
-	pDoc->addEventListener(MutationEvent::DOMCharacterDataModified, &docCapListener, true);	
+	pDoc->addEventListener(MutationEvent::DOMCharacterDataModified, &docCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMCharacterDataModified, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMCharacterDataModified, &rootCapListener, true);
 	pText->addEventListener(MutationEvent::DOMCharacterDataModified, &textListener, false);
 	pText->addEventListener(MutationEvent::DOMCharacterDataModified, &textCapListener, true);
 
 	TestEventListener::reset();
-	
+
 	pText->setData("modified");
 
-	const XMLString& log = TestEventListener::log();	
+	const XMLString& log = TestEventListener::log();
 	assertTrue (log ==
 		"docCap:DOMCharacterDataModified:CAPTURING_PHASE:#text:#document:B:-:MODIFICATION:::text:modified\n"
 		"rootCap:DOMCharacterDataModified:CAPTURING_PHASE:#text:root:B:-:MODIFICATION:::text:modified\n"
@@ -410,14 +411,14 @@ void EventTest::testCancel()
 	TestEventListener textCapListener("textCap");
 
 	pDoc->addEventListener(MutationEvent::DOMCharacterDataModified, &docListener, false);
-	pDoc->addEventListener(MutationEvent::DOMCharacterDataModified, &docCapListener, true);	
+	pDoc->addEventListener(MutationEvent::DOMCharacterDataModified, &docCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMCharacterDataModified, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMCharacterDataModified, &rootCapListener, true);
 	pText->addEventListener(MutationEvent::DOMCharacterDataModified, &textListener, false);
 	pText->addEventListener(MutationEvent::DOMCharacterDataModified, &textCapListener, true);
 
 	TestEventListener::reset();
-	
+
 	pText->setData("modified");
 
 	const XMLString& log = TestEventListener::log();
@@ -432,22 +433,22 @@ void EventTest::testAttributes()
 
 	TestEventListener rootListener("root");
 	pRoot->addEventListener(MutationEvent::DOMAttrModified, &rootListener, false);
-	
+
 	pRoot->setAttribute("a1", "v1");
 
-	const XMLString& log = TestEventListener::log();		
+	const XMLString& log = TestEventListener::log();
 	assertTrue (log == "root:DOMAttrModified:AT_TARGET:root:root:B:-:ADDITION:a1:a1::v1\n");
-	
+
 	TestEventListener::reset();
 	pRoot->setAttribute("a1", "V1");
 	assertTrue (log == "root:DOMAttrModified:AT_TARGET:root:root:B:-:MODIFICATION:a1:a1:v1:V1\n");
-	
+
 	TestEventListener::reset();
 	pRoot->setAttribute("a2", "v2");
 	assertTrue (log == "root:DOMAttrModified:AT_TARGET:root:root:B:-:ADDITION:a2:a2::v2\n");
 
 	TestEventListener::reset();
-	pRoot->removeAttribute("a1");	
+	pRoot->removeAttribute("a1");
 	assertTrue (log == "root:DOMAttrModified:AT_TARGET:root:root:B:-:REMOVAL:a1:a1:V1:\n");
 }
 
@@ -469,7 +470,7 @@ void EventTest::testAddRemoveInEvent()
 	pDoc->addEventListener(MutationEvent::DOMSubtreeModified, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeInserted, &docCapListener, true);
 	pDoc->addEventListener(MutationEvent::DOMNodeInsertedIntoDocument, &docCapListener, true);
-	
+
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeInserted, &rootListener, false);
 	pRoot->addEventListener(MutationEvent::DOMNodeInsertedIntoDocument, &rootListener, false);
@@ -477,9 +478,9 @@ void EventTest::testAddRemoveInEvent()
 	pRoot->addEventListener(MutationEvent::DOMSubtreeModified, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeInserted, &rootCapListener, true);
 	pRoot->addEventListener(MutationEvent::DOMNodeInsertedIntoDocument, &rootCapListener, true);
-	
+
 	pDoc->appendChild(pRoot);
-	
+
 	const XMLString& log = TestEventListener::log();
 	assertTrue (log ==
 		"docCap:DOMNodeInserted:CAPTURING_PHASE:root:#document:B:-:MODIFICATION:#document:::\n"
@@ -492,9 +493,9 @@ void EventTest::testAddRemoveInEvent()
 		"docCap:DOMSubtreeModified:AT_TARGET:#document:#document:B:-:MODIFICATION::::\n"
 		"doc:DOMSubtreeModified:AT_TARGET:#document:#document:B:-:MODIFICATION::::\n"
 	);
-	
+
 	TestEventListener::reset();
-	
+
 	AutoPtr<Text> pText = pDoc->createTextNode("text");
 	pRoot->appendChild(pText);
 
@@ -519,25 +520,25 @@ void EventTest::testSuspended()
 	AutoPtr<Element> pRoot = pDoc->createElement("root");
 
 	pDoc->suspendEvents();
-	
+
 	TestEventListener rootListener("root");
 	pRoot->addEventListener(MutationEvent::DOMAttrModified, &rootListener, false);
-	
+
 	pRoot->setAttribute("a1", "v1");
 
-	const XMLString& log = TestEventListener::log();		
+	const XMLString& log = TestEventListener::log();
 	assertTrue (log.empty());
-	
+
 	TestEventListener::reset();
 	pRoot->setAttribute("a1", "V1");
 	assertTrue (log.empty());
-	
+
 	TestEventListener::reset();
 	pRoot->setAttribute("a2", "v2");
 	assertTrue (log.empty());
 
 	TestEventListener::reset();
-	pRoot->removeAttribute("a1");	
+	pRoot->removeAttribute("a1");
 	assertTrue (log.empty());
 }
 

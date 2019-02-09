@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class DocumentTest: public CppUnit::TestCase
+//class DocumentTest: public CppUnit::TestCase
+class DocumentTest: public CppUnit::TestFixture
 {
 public:
-	DocumentTest(const std::string& name);
+//	DocumentTest(const std::string& name);
+	DocumentTest();
 	~DocumentTest();
 
 	void testDocumentElement();

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TextTest: public CppUnit::TestCase
+//class TextTest: public CppUnit::TestCase
+class TextTest: public CppUnit::TestFixture
 {
 public:
-	TextTest(const std::string& name);
+//	TextTest(const std::string& name);
+	TextTest();
 	~TextTest();
 
 	void testLength();

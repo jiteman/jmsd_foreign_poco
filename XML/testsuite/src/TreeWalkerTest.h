@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class TreeWalkerTest: public CppUnit::TestCase
+//class TreeWalkerTest: public CppUnit::TestCase
+class TreeWalkerTest: public CppUnit::TestFixture
 {
 public:
-	TreeWalkerTest(const std::string& name);
+//	TreeWalkerTest(const std::string& name);
+	TreeWalkerTest();
 	~TreeWalkerTest();
 
 	void testShowAll();

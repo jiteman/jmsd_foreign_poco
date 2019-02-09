@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class EventTest: public CppUnit::TestCase
+//class EventTest: public CppUnit::TestCase
+class EventTest: public CppUnit::TestFixture
 {
 public:
-	EventTest(const std::string& name);
+//	EventTest(const std::string& name);
+	EventTest();
 	~EventTest();
 
 	void testInsert();

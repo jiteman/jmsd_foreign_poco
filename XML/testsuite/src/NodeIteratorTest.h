@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NodeIteratorTest: public CppUnit::TestCase
+//class NodeIteratorTest: public CppUnit::TestCase
+class NodeIteratorTest: public CppUnit::TestFixture
 {
 public:
-	NodeIteratorTest(const std::string& name);
+//	NodeIteratorTest(const std::string& name);
+	NodeIteratorTest();
 	~NodeIteratorTest();
 
 	void testShowAll();

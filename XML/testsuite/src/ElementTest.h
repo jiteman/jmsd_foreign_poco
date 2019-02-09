@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ElementTest: public CppUnit::TestCase
+//class ElementTest: public CppUnit::TestCase
+class ElementTest: public CppUnit::TestFixture
 {
 public:
-	ElementTest(const std::string& name);
+//	ElementTest(const std::string& name);
+	ElementTest();
 	~ElementTest();
 
 	void testAttributes();
@@ -35,7 +37,7 @@ public:
 	void testChildElementNS();
 	void testNodeByPath();
 	void testNodeByPathNS();
-	
+
 	void setUp();
 	void tearDown();
 
