@@ -23,7 +23,8 @@ using Poco::NotFoundException;
 using Poco::JSON::JSONException;
 
 
-JSONConfigurationTest::JSONConfigurationTest(const std::string& name) : AbstractConfigurationTest(name)
+//JSONConfigurationTest::JSONConfigurationTest(const std::string& name) : AbstractConfigurationTest(name)
+JSONConfigurationTest::JSONConfigurationTest() : AbstractConfigurationTest()
 {
 }
 

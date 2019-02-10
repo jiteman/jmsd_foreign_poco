@@ -21,8 +21,9 @@
 class XMLConfigurationTest: public AbstractConfigurationTest
 {
 public:
-	XMLConfigurationTest(const std::string& name);
-	virtual ~XMLConfigurationTest();
+//	XMLConfigurationTest(const std::string& name);
+	XMLConfigurationTest();
+	~XMLConfigurationTest();
 
 	void testLoad();
 	void testSave();

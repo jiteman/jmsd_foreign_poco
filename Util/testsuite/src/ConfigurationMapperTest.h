@@ -21,8 +21,9 @@
 class ConfigurationMapperTest: public AbstractConfigurationTest
 {
 public:
-	ConfigurationMapperTest(const std::string& name);
-	virtual ~ConfigurationMapperTest();
+//	ConfigurationMapperTest(const std::string& name);
+	ConfigurationMapperTest();
+	~ConfigurationMapperTest();
 
 	void testMapper1();
 	void testMapper2();

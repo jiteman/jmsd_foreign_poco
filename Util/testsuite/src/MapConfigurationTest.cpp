@@ -20,7 +20,8 @@ using Poco::Util::MapConfiguration;
 using Poco::AutoPtr;
 
 
-MapConfigurationTest::MapConfigurationTest(const std::string& name): AbstractConfigurationTest(name)
+//MapConfigurationTest::MapConfigurationTest(const std::string& name): AbstractConfigurationTest(name)
+MapConfigurationTest::MapConfigurationTest(): AbstractConfigurationTest()
 {
 }
 
@@ -33,10 +34,10 @@ MapConfigurationTest::~MapConfigurationTest()
 void MapConfigurationTest::testClear()
 {
 	AutoPtr<MapConfiguration> pConf = new MapConfiguration;
-	
+
 	pConf->setString("foo", "bar");
 	assertTrue (pConf->hasProperty("foo"));
-	
+
 	pConf->clear();
 	assertTrue (!pConf->hasProperty("foo"));
 }

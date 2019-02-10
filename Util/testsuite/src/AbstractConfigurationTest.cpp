@@ -30,7 +30,8 @@ using Poco::Int64;
 using Poco::UInt64;
 
 
-AbstractConfigurationTest::AbstractConfigurationTest(const std::string& name): CppUnit::TestCase(name)
+//AbstractConfigurationTest::AbstractConfigurationTest(const std::string& name): CppUnit::TestCase(name)
+AbstractConfigurationTest::AbstractConfigurationTest(): CppUnit::TestFixture()
 {
 }
 
@@ -55,23 +56,23 @@ void AbstractConfigurationTest::testHasProperty()
 void AbstractConfigurationTest::testGetString()
 {
 	AutoPtr<AbstractConfiguration> pConf = createConfiguration();
-	
+
 	assertTrue (pConf->getString("prop1") == "foo");
 	assertTrue (pConf->getString("prop2") == "bar");
 	assertTrue (pConf->getString("prop3.string1") == "foo");
 	assertTrue (pConf->getString("prop3.string2") == "bar");
 	assertTrue (pConf->getString("ref1") == "foobar");
 	assertTrue (pConf->getRawString("ref1") == "${prop3.string1}${prop3.string2}");
-	
+
 	try
 	{
 		std::string res = pConf->getString("foo");
-		fail("nonexistent property - must throw");
+		failmsg("nonexistent property - must throw");
 	}
 	catch (Poco::NotFoundException&)
 	{
 	}
-	
+
 	assertTrue (pConf->getString("prop1", "FOO") == "foo");
 	assertTrue (pConf->getString("prop2", "BAR") == "bar");
 	assertTrue (pConf->getString("prop3.string1", "FOO") == "foo");
@@ -89,16 +90,16 @@ void AbstractConfigurationTest::testGetInt()
 	assertTrue (pConf->getInt("prop4.hex") == 0x1f);
 	assertTrue (pConf->getUInt("prop4.hex") == 0x1f);
 	assertTrue (pConf->getInt("ref2") == 42);
-	
+
 	try
 	{
 		pConf->getInt("prop1");
-		fail("not a number - must throw");
+		failmsg("not a number - must throw");
 	}
 	catch (Poco::SyntaxException&)
 	{
 	}
-	
+
 	assertTrue (pConf->getInt("prop4.int1", 100) == 42);
 	assertTrue (pConf->getInt("prop4.int2", 100) == -42);
 	assertTrue (pConf->getInt("prop4.int3", 100) == 100);
@@ -120,7 +121,7 @@ void AbstractConfigurationTest::testGetInt64()
 	try
 	{
 		POCO_UNUSED Int64 x = pConf->getInt64("prop1");
-		fail("not a number - must throw");
+		failmsg("not a number - must throw");
 	}
 	catch (Poco::SyntaxException&)
 	{
@@ -139,16 +140,16 @@ void AbstractConfigurationTest::testGetDouble()
 
 	assertTrue (pConf->getDouble("prop4.double1") == 1);
 	assertTrue (pConf->getDouble("prop4.double2") == -1.5);
-	
+
 	try
 	{
 		pConf->getDouble("prop1");
-		fail("not a number - must throw");
+		failmsg("not a number - must throw");
 	}
 	catch (Poco::SyntaxException&)
 	{
 	}
-	
+
 	assertTrue (pConf->getDouble("prop4.double1", 123.5) == 1);
 	assertTrue (pConf->getDouble("prop4.double2", 123.5) == -1.5);
 	assertTrue (pConf->getDouble("prop4.double3", 123.5) == 123.5);
@@ -171,7 +172,7 @@ void AbstractConfigurationTest::testGetBool()
 	try
 	{
 		pConf->getBool("prop1");
-		fail("not a boolean - must throw");
+		failmsg("not a boolean - must throw");
 	}
 	catch (Poco::SyntaxException&)
 	{
@@ -190,16 +191,16 @@ void AbstractConfigurationTest::testExpand()
 
 	assertTrue (pConf->getString("ref1") == "foobar");
 	assertTrue (pConf->getInt("ref2") == 42);
-	
+
 	try
 	{
 		std::string s = pConf->getString("ref3");
-		fail("circular reference - must throw");
+		failmsg("circular reference - must throw");
 	}
 	catch (Poco::CircularReferenceException&)
 	{
 	}
-	
+
 	assertTrue (pConf->getString("ref5") == "${refx}");
 	assertTrue (pConf->getString("ref6") == "${refx}");
 
@@ -287,19 +288,19 @@ void AbstractConfigurationTest::testChangeEvents()
 	assertTrue (_changingValue == "foobar");
 	assertTrue (_changedKey == "set.string1");
 	assertTrue (_changedValue == "foobar");
-	
+
 	pConf->setInt("set.int1", 42);
 	assertTrue (_changingKey == "set.int1");
 	assertTrue (_changingValue == "42");
 	assertTrue (_changedKey == "set.int1");
 	assertTrue (_changedValue == "42");
-	
+
 	pConf->setDouble("set.double1", 1.5);
 	assertTrue (_changingKey == "set.double1");
 	assertTrue (_changingValue == "1.5");
 	assertTrue (_changedKey == "set.double1");
 	assertTrue (_changedValue == "1.5");
-	
+
 	pConf->setBool("set.bool1", true);
 	assertTrue (_changingKey == "set.bool1");
 	assertTrue (_changingValue == "true");
@@ -343,7 +344,7 @@ void AbstractConfigurationTest::testKeys()
 
 	pConf->keys("prop1", keys);
 	assertTrue (keys.empty());
-	
+
 	pConf->keys("prop3", keys);
 	assertTrue (keys.size() == 2);
 	assertTrue (std::find(keys.begin(), keys.end(), "string1") != keys.end());

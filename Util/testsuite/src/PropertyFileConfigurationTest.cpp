@@ -24,7 +24,8 @@ using Poco::AutoPtr;
 using Poco::NotFoundException;
 
 
-PropertyFileConfigurationTest::PropertyFileConfigurationTest(const std::string& name): AbstractConfigurationTest(name)
+//PropertyFileConfigurationTest::PropertyFileConfigurationTest(const std::string& name): AbstractConfigurationTest(name)
+PropertyFileConfigurationTest::PropertyFileConfigurationTest(): AbstractConfigurationTest()
 {
 }
 
@@ -43,10 +44,10 @@ void PropertyFileConfigurationTest::testLoad()
 void PropertyFileConfigurationTest::testLoadEmpty()
 {
 	static const std::string propFile = " ";
-		
+
 	std::istringstream istr(propFile);
 	AutoPtr<PropertyFileConfiguration> pConf = new PropertyFileConfiguration(istr);
-	
+
 	AbstractConfiguration::Keys keys;
 	pConf->keys(keys);
 	assertTrue (keys.size() == 0);
@@ -75,10 +76,10 @@ void PropertyFileConfigurationTest::testLoad(bool preserveComment)
 		"prop4 = escaped[\\t\\r\\n\\f]\n"
 		"#prop4 = foo\n"
 		"prop5:foo";
-		
+
 	std::istringstream istr(propFile);
 	AutoPtr<PropertyFileConfiguration> pConf = new PropertyFileConfiguration(istr, preserveComment);
-	
+
 	assertTrue (pConf->getString("prop1") == "value1");
 	assertTrue (pConf->getString("prop2") == "value2");
 	assertTrue (pConf->getString("prop3.prop31") == "value3");
@@ -86,7 +87,7 @@ void PropertyFileConfigurationTest::testLoad(bool preserveComment)
 	assertTrue (pConf->getString("prop3.prop33") == "value5, value6, value7, value8, value9");
 	assertTrue (pConf->getString("prop4") == "escaped[\t\r\n\f]");
 	assertTrue (pConf->getString("prop5") == "foo");
-	
+
 	AbstractConfiguration::Keys keys;
 	pConf->keys(keys);
 	assertTrue (keys.size() == 5);
@@ -95,17 +96,17 @@ void PropertyFileConfigurationTest::testLoad(bool preserveComment)
 	assertTrue (std::find(keys.begin(), keys.end(), "prop3") != keys.end());
 	assertTrue (std::find(keys.begin(), keys.end(), "prop4") != keys.end());
 	assertTrue (std::find(keys.begin(), keys.end(), "prop5") != keys.end());
-	
+
 	pConf->keys("prop3", keys);
 	assertTrue (keys.size() == 3);
 	assertTrue (std::find(keys.begin(), keys.end(), "prop31") != keys.end());
 	assertTrue (std::find(keys.begin(), keys.end(), "prop32") != keys.end());
 	assertTrue (std::find(keys.begin(), keys.end(), "prop33") != keys.end());
-	
+
 	try
 	{
 		std::string s = pConf->getString("foo");
-		fail("No property - must throw");
+		failmsg("No property - must throw");
 	}
 	catch (NotFoundException&)
 	{
@@ -125,8 +126,8 @@ void PropertyFileConfigurationTest::testSave()
 	pConf->save(ostr);
 	std::string propFile = ostr.str();
 	assertTrue (propFile == "prop1: value1\n"
-	                    "prop2: 42\n"
-	                    "prop3: value\\\\1\\txxx\n");
+						"prop2: 42\n"
+						"prop3: value\\\\1\\txxx\n");
 }
 
 void PropertyFileConfigurationTest::testLoadSaveWithPreserveComment()
@@ -146,54 +147,54 @@ void PropertyFileConfigurationTest::testLoadSaveWithPreserveComment()
 
 	std::ostringstream ostr;
 	pConf->save(ostr);
-	assertEqual ("! comment #\n"
-	             "prop1: value1\n"
-	             "# comment #\n"
-	             "# comment !\n"
+	assertEqual (::std::string( "! comment #\n"
+				 "prop1: value1\n"
+				 "# comment #\n"
+				 "# comment !\n"
 					 "prop2: value2\n"
 					 "! comment !\n"
 					 "prop3: foo\n"
-					 "prop4: \n",
+					 "prop4: \n" ),
 					 ostr.str());
 
 	pConf->setString("prop4", "value4");
 	ostr.clear();
 	ostr.str("");
 	pConf->save(ostr);
-	assertEqual ("! comment #\n"
-	             "prop1: value1\n"
-	             "# comment #\n"
-	             "# comment !\n"
+	assertEqual (::std::string( "! comment #\n"
+				 "prop1: value1\n"
+				 "# comment #\n"
+				 "# comment !\n"
 					 "prop2: value2\n"
 					 "! comment !\n"
 					 "prop3: foo\n"
-					 "prop4: value4\n",
+					 "prop4: value4\n" ),
 					 ostr.str());
 
 	pConf->remove("prop2");
 	ostr.clear();
 	ostr.str("");
 	pConf->save(ostr);
-	assertEqual ("! comment #\n"
-	             "prop1: value1\n"
-	             "# comment #\n"
-	             "# comment !\n"
+	assertEqual (::std::string( "! comment #\n"
+				 "prop1: value1\n"
+				 "# comment #\n"
+				 "# comment !\n"
 					 "! comment !\n"
 					 "prop3: foo\n"
-					 "prop4: value4\n",
+					 "prop4: value4\n"),
 					 ostr.str());
 
 	pConf->setString("prop4", "value5");
 	ostr.clear();
 	ostr.str("");
 	pConf->save(ostr);
-	assertEqual ("! comment #\n"
-	             "prop1: value1\n"
-	             "# comment #\n"
-	             "# comment !\n"
+	assertEqual (::std::string( "! comment #\n"
+				 "prop1: value1\n"
+				 "# comment #\n"
+				 "# comment !\n"
 					 "! comment !\n"
 					 "prop3: foo\n"
-					 "prop4: value5\n",
+					 "prop4: value5\n" ),
 					 ostr.str());
 }
 
@@ -224,6 +225,6 @@ CppUnit::Test* PropertyFileConfigurationTest::suite()
 	CppUnit_addTest(pSuite, PropertyFileConfigurationTest, testSave);
 	CppUnit_addTest(pSuite, PropertyFileConfigurationTest, testLoadWithPreserveComment);
 	CppUnit_addTest(pSuite, PropertyFileConfigurationTest, testLoadSaveWithPreserveComment);
-	
+
 	return pSuite;
 }

@@ -29,7 +29,8 @@ using Poco::Int64;
 using Poco::UInt64;
 
 
-WinConfigurationTest::WinConfigurationTest(const std::string& name): CppUnit::TestCase(name)
+//WinConfigurationTest::WinConfigurationTest(const std::string& name): CppUnit::TestCase(name)
+WinConfigurationTest::WinConfigurationTest(): CppUnit::TestFixture()
 {
 }
 
@@ -75,14 +76,14 @@ void WinConfigurationTest::testConfiguration()
 
 	assertTrue (pReg->hasProperty("name1"));
 	assertTrue (pReg->hasProperty("name2"));
-	
+
 	std::string dfl = pReg->getString("nonexistent", "default");
 	assertTrue (dfl == "default");
-	
+
 	AutoPtr<Poco::Util::AbstractConfiguration> pView = pReg->createView("config");
 	dfl = pView->getString("sub.foo", "default");
 	assertTrue (dfl == "default");
-	
+
 	pView->setString("sub.foo", "bar");
 	assertTrue (pView->getString("sub.foo", "default") == "bar");
 

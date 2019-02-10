@@ -22,7 +22,8 @@ using Poco::Util::OptionSet;
 using Poco::Util::HelpFormatter;
 
 
-HelpFormatterTest::HelpFormatterTest(const std::string& name): CppUnit::TestCase(name)
+//HelpFormatterTest::HelpFormatterTest(const std::string& name): CppUnit::TestCase(name)
+HelpFormatterTest::HelpFormatterTest(): CppUnit::TestFixture()
 {
 }
 
@@ -40,7 +41,7 @@ void HelpFormatterTest::testHelpFormatter()
 			.required(false)
 			.repeatable(true)
 			.argument("path"));
-			
+
 	set.addOption(
 		Option("library-dir", "L", "specify a search path for locating library files (this option has a very long description)")
 			.required(false)
@@ -56,7 +57,7 @@ void HelpFormatterTest::testHelpFormatter()
 		.description("enable verbose mode")
 		.required(false)
 		.repeatable(false));
-		
+
 	set.addOption(
 		Option("optimize", "O")
 		.description("enable optimization")
@@ -66,10 +67,10 @@ void HelpFormatterTest::testHelpFormatter()
 
 	HelpFormatter formatter(set);
 	formatter.format(std::cout);
-	
+
 	formatter.setCommand("cc");
 	formatter.format(std::cout);
-	
+
 	formatter.setUsage("OPTIONS FILES");
 	formatter.setHeader("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. "
 		"Vivamus volutpat imperdiet massa. Nulla at ipsum vitae risus facilisis posuere. "
@@ -79,10 +80,10 @@ void HelpFormatterTest::testHelpFormatter()
 		"Etiam odio dolor, fermentum quis, mollis nec, sodales sed, tellus. "
 		"Quisque consequat orci eu augue. Aliquam ac nibh ac neque hendrerit iaculis.");
 	formatter.format(std::cout);
-	
+
 	formatter.setUnixStyle(false);
 	formatter.format(std::cout);
-	
+
 	formatter.setHeader("");
 	formatter.setFooter("tab: a\tb\tcde\tf\n\ta\n\t\tb");
 	formatter.format(std::cout);

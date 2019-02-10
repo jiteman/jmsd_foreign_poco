@@ -42,7 +42,8 @@ using Poco::Message;
 using Poco::AutoPtr;
 
 
-LoggingConfiguratorTest::LoggingConfiguratorTest(const std::string& name): CppUnit::TestCase(name)
+//LoggingConfiguratorTest::LoggingConfiguratorTest(const std::string& name): CppUnit::TestCase(name)
+LoggingConfiguratorTest::LoggingConfiguratorTest(): CppUnit::TestFixture()
 {
 }
 
@@ -88,7 +89,7 @@ void LoggingConfiguratorTest::testConfigurator()
 	Logger& root = Logger::get("");
 	assertTrue (root.getLevel() == Message::PRIO_WARNING);
 	FormattingChannel::Ptr pFC = root.getChannel().cast<FormattingChannel>();
-	assertNotNull (pFC);
+	assertFalse( pFC.isNull() );
 #if defined(_WIN32) && !defined(_WIN32_WCE)
 	assertTrue (!pFC->getChannel().cast<Poco::WindowsConsoleChannel>().isNull());
 #else
@@ -115,7 +116,7 @@ void LoggingConfiguratorTest::testBadConfiguration1()
 {
 	// this is mainly testing for memory leaks in case of
 	// a bad configuration.
-	
+
 	static const std::string config =
 		"logging.loggers.root.channel = c1\n"
 		"logging.loggers.root.level = warning\n"
@@ -146,7 +147,7 @@ void LoggingConfiguratorTest::testBadConfiguration1()
 	try
 	{
 		configurator.configure(pConfig);
-		fail("bad configuration - must throw");
+		failmsg("bad configuration - must throw");
 	}
 	catch (Poco::Exception&)
 	{
@@ -158,7 +159,7 @@ void LoggingConfiguratorTest::testBadConfiguration2()
 {
 	// this is mainly testing for memory leaks in case of
 	// a bad configuration.
-	
+
 	static const std::string config =
 		"logging.loggers.root.channel = c1\n"
 		"logging.loggers.root.level = unknown\n"
@@ -189,7 +190,7 @@ void LoggingConfiguratorTest::testBadConfiguration2()
 	try
 	{
 		configurator.configure(pConfig);
-		fail("bad configuration - must throw");
+		failmsg("bad configuration - must throw");
 	}
 	catch (Poco::Exception&)
 	{
@@ -201,7 +202,7 @@ void LoggingConfiguratorTest::testBadConfiguration3()
 {
 	// this is mainly testing for memory leaks in case of
 	// a bad configuration.
-	
+
 	static const std::string config =
 		"logging.loggers.root.channel = c1\n"
 		"logging.loggers.root.level = warning\n"
@@ -232,7 +233,7 @@ void LoggingConfiguratorTest::testBadConfiguration3()
 	try
 	{
 		configurator.configure(pConfig);
-		fail("bad configuration - must throw");
+		failmsg("bad configuration - must throw");
 	}
 	catch (Poco::Exception&)
 	{
@@ -244,7 +245,7 @@ void LoggingConfiguratorTest::testBadConfiguration4()
 {
 	// this is mainly testing for memory leaks in case of
 	// a bad configuration.
-	
+
 	static const std::string config =
 		"logging.loggers.root.channel = c1\n"
 		"logging.loggers.root.level = warning\n"
@@ -276,7 +277,7 @@ void LoggingConfiguratorTest::testBadConfiguration4()
 	try
 	{
 		configurator.configure(pConfig);
-		fail("bad configuration - must throw");
+		failmsg("bad configuration - must throw");
 	}
 	catch (Poco::Exception&)
 	{

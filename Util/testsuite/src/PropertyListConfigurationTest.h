@@ -21,8 +21,9 @@
 class PropertyListConfigurationTest: public AbstractConfigurationTest
 {
 public:
-	PropertyListConfigurationTest(const std::string& name);
-	virtual ~PropertyListConfigurationTest();
+//	PropertyListConfigurationTest(const std::string& name);
+	PropertyListConfigurationTest();
+	~PropertyListConfigurationTest();
 
 	void testLoad();
 	void testSave();

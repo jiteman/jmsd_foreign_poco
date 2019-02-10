@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ValidatorTest: public CppUnit::TestCase
+//class ValidatorTest: public CppUnit::TestCase
+class ValidatorTest: public CppUnit::TestFixture
 {
 public:
-	ValidatorTest(const std::string& name);
+//	ValidatorTest(const std::string& name);
+	ValidatorTest();
 	~ValidatorTest();
 
 	void testRegExpValidator();

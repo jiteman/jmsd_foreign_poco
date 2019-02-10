@@ -21,8 +21,9 @@
 class JSONConfigurationTest: public AbstractConfigurationTest
 {
 public:
-	JSONConfigurationTest(const std::string& name);
-	virtual ~JSONConfigurationTest();
+//	JSONConfigurationTest(const std::string& name);
+	JSONConfigurationTest();
+	~JSONConfigurationTest();
 
 	void testLoad();
 	void testSetArrayElement();

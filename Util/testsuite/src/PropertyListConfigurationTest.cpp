@@ -24,7 +24,8 @@ using Poco::NotImplementedException;
 using Poco::NotFoundException;
 
 
-PropertyListConfigurationTest::PropertyListConfigurationTest(const std::string& name): AbstractConfigurationTest(name)
+//PropertyListConfigurationTest::PropertyListConfigurationTest(const std::string& name): AbstractConfigurationTest(name)
+PropertyListConfigurationTest::PropertyListConfigurationTest(): AbstractConfigurationTest()
 {
 }
 
@@ -84,7 +85,7 @@ void PropertyListConfigurationTest::testLoad()
 	try
 	{
 		std::string s = pConf->getString("foo");
-		fail("No property - must throw");
+		failmsg("No property - must throw");
 	}
 	catch (NotFoundException&)
 	{

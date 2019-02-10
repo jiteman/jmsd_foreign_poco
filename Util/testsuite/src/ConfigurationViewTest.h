@@ -21,8 +21,9 @@
 class ConfigurationViewTest: public AbstractConfigurationTest
 {
 public:
-	ConfigurationViewTest(const std::string& name);
-	virtual ~ConfigurationViewTest();
+//	ConfigurationViewTest(const std::string& name);
+	ConfigurationViewTest();
+	~ConfigurationViewTest();
 
 	void testView();
 

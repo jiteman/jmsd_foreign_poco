@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class OptionTest: public CppUnit::TestCase
+//class OptionTest: public CppUnit::TestCase
+class OptionTest: public CppUnit::TestFixture
 {
 public:
-	OptionTest(const std::string& name);
+//	OptionTest(const std::string& name);
+	OptionTest();
 	~OptionTest();
 
 	void testOption();

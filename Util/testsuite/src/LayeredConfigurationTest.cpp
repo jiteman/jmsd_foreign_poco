@@ -26,7 +26,8 @@ using Poco::NotFoundException;
 using Poco::RuntimeException;
 
 
-LayeredConfigurationTest::LayeredConfigurationTest(const std::string& name): AbstractConfigurationTest(name)
+//LayeredConfigurationTest::LayeredConfigurationTest(const std::string& name): AbstractConfigurationTest(name)
+LayeredConfigurationTest::LayeredConfigurationTest(): AbstractConfigurationTest()
 {
 }
 
@@ -39,25 +40,25 @@ LayeredConfigurationTest::~LayeredConfigurationTest()
 void LayeredConfigurationTest::testEmpty()
 {
 	AutoPtr<LayeredConfiguration> pLC = new LayeredConfiguration;
-	
+
 	AbstractConfiguration::Keys keys;
 	pLC->keys(keys);
 	assertTrue (keys.empty());
-	
+
 	assertTrue (!pLC->hasProperty("foo"));
 	try
 	{
 		pLC->setString("foo", "bar");
-		fail("empty LayeredConfiguration - must throw");
+		failmsg("empty LayeredConfiguration - must throw");
 	}
 	catch (RuntimeException&)
 	{
 	}
-	
+
 	try
 	{
 		std::string s = pLC->getString("foo");
-		fail("empty LayeredConfiguration - must throw");
+		failmsg("empty LayeredConfiguration - must throw");
 	}
 	catch (NotFoundException&)
 	{
@@ -69,10 +70,10 @@ void LayeredConfigurationTest::testOneLayer()
 {
 	AutoPtr<LayeredConfiguration> pLC = new LayeredConfiguration;
 	AutoPtr<MapConfiguration> pMC = new MapConfiguration;
-	
+
 	pMC->setString("prop1", "value1");
 	pMC->setString("prop2", "value2");
-	
+
 	pLC->addWriteable(pMC, 0);
 
 	AbstractConfiguration::Keys keys;
@@ -80,7 +81,7 @@ void LayeredConfigurationTest::testOneLayer()
 	assertTrue (keys.size() == 2);
 	assertTrue (std::find(keys.begin(), keys.end(), "prop1") != keys.end());
 	assertTrue (std::find(keys.begin(), keys.end(), "prop2") != keys.end());
-	
+
 	assertTrue (pLC->getString("prop1") == "value1");
 	assertTrue (pLC->getString("prop2") == "value2");
 
@@ -97,12 +98,12 @@ void LayeredConfigurationTest::testTwoLayers()
 	AutoPtr<LayeredConfiguration> pLC = new LayeredConfiguration;
 	AutoPtr<MapConfiguration> pMC1 = new MapConfiguration;
 	AutoPtr<MapConfiguration> pMC2 = new MapConfiguration;
-	
+
 	pMC1->setString("prop1", "value1");
 	pMC1->setString("prop2", "value2");
 	pMC2->setString("prop2", "value3");
 	pMC2->setString("prop3", "value4");
-	
+
 	pLC->add(pMC1, 0);
 	pLC->addWriteable(pMC2, 1);
 
@@ -112,7 +113,7 @@ void LayeredConfigurationTest::testTwoLayers()
 	assertTrue (std::find(keys.begin(), keys.end(), "prop1") != keys.end());
 	assertTrue (std::find(keys.begin(), keys.end(), "prop2") != keys.end());
 	assertTrue (std::find(keys.begin(), keys.end(), "prop3") != keys.end());
-	
+
 	assertTrue (pLC->getString("prop1") == "value1");
 	assertTrue (pLC->getString("prop2") == "value2");
 	assertTrue (pLC->getString("prop3") == "value4");
@@ -181,7 +182,7 @@ void LayeredConfigurationTest::testRemove()
 	assertTrue (std::find(keys.begin(), keys.end(), "prop1") != keys.end());
 	assertTrue (std::find(keys.begin(), keys.end(), "prop2") != keys.end());
 	assertTrue (std::find(keys.begin(), keys.end(), "prop3") != keys.end());
-	
+
 	assertTrue (pLC->getString("prop1") == "value1");
 	assertTrue (pLC->getString("prop2") == "value3");
 	assertTrue (pLC->getString("prop3") == "value4");

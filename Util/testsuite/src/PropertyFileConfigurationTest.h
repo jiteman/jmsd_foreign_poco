@@ -21,14 +21,15 @@
 class PropertyFileConfigurationTest: public AbstractConfigurationTest
 {
 public:
-	PropertyFileConfigurationTest(const std::string& name);
-	virtual ~PropertyFileConfigurationTest();
+//	PropertyFileConfigurationTest(const std::string& name);
+	PropertyFileConfigurationTest();
+	~PropertyFileConfigurationTest();
 
 	void testLoad();
-   void testLoadEmpty();
-   void testLoadWithPreserveComment();
+	void testLoadEmpty();
+	void testLoadWithPreserveComment();
 	void testSave();
-   void testLoadSaveWithPreserveComment();
+	void testLoadSaveWithPreserveComment();
 
 	void setUp();
 	void tearDown();

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class WinRegistryTest: public CppUnit::TestCase
+//class WinRegistryTest: public CppUnit::TestCase
+class WinRegistryTest: public CppUnit::TestFixture
 {
 public:
-	WinRegistryTest(const std::string& name);
+//	WinRegistryTest(const std::string& name);
+	WinRegistryTest();
 	~WinRegistryTest();
 
 	void testRegistry();

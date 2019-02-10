@@ -22,7 +22,8 @@
 class FilesystemConfigurationTest: public AbstractConfigurationTest
 {
 public:
-	FilesystemConfigurationTest(const std::string& name);
+//	FilesystemConfigurationTest(const std::string& name);
+	FilesystemConfigurationTest();
 	virtual ~FilesystemConfigurationTest();
 
 	void testFilesystemConfiguration();

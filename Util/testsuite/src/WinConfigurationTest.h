@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class WinConfigurationTest: public CppUnit::TestCase
+//class WinConfigurationTest: public CppUnit::TestCase
+class WinConfigurationTest: public CppUnit::TestFixture
 {
 public:
-	WinConfigurationTest(const std::string& name);
+//	WinConfigurationTest(const std::string& name);
+	WinConfigurationTest();
 	~WinConfigurationTest();
 
 	void testConfiguration();

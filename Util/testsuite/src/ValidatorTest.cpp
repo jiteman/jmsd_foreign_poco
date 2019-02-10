@@ -26,7 +26,8 @@ using Poco::Util::InvalidArgumentException;
 using Poco::AutoPtr;
 
 
-ValidatorTest::ValidatorTest(const std::string& name): CppUnit::TestCase(name)
+//ValidatorTest::ValidatorTest(const std::string& name): CppUnit::TestCase(name)
+ValidatorTest::ValidatorTest(): CppUnit::TestFixture()
 {
 }
 
@@ -40,14 +41,14 @@ void ValidatorTest::testRegExpValidator()
 {
 	Option option("option", "o");
 	AutoPtr<Validator> pVal(new RegExpValidator("[0-9]+"));
-	
+
 	pVal->validate(option, "0");
 	pVal->validate(option, "12345");
 
 	try
 	{
 		pVal->validate(option, " 234");
-		fail("does not match - must throw");
+		failmsg("does not match - must throw");
 	}
 	catch (InvalidArgumentException& exc)
 	{
@@ -58,7 +59,7 @@ void ValidatorTest::testRegExpValidator()
 	try
 	{
 		pVal->validate(option, "234asdf");
-		fail("does not match - must throw");
+		failmsg("does not match - must throw");
 	}
 	catch (InvalidArgumentException& exc)
 	{
@@ -69,7 +70,7 @@ void ValidatorTest::testRegExpValidator()
 	try
 	{
 		pVal->validate(option, "abc");
-		fail("does not match - must throw");
+		failmsg("does not match - must throw");
 	}
 	catch (InvalidArgumentException& exc)
 	{
@@ -80,7 +81,7 @@ void ValidatorTest::testRegExpValidator()
 	try
 	{
 		pVal->validate(option, "");
-		fail("does not match - must throw");
+		failmsg("does not match - must throw");
 	}
 	catch (InvalidArgumentException& exc)
 	{
@@ -94,15 +95,15 @@ void ValidatorTest::testIntValidator()
 {
 	Option option("option", "o");
 	AutoPtr<Validator> pVal(new IntValidator(0, 100));
-	
+
 	pVal->validate(option, "0");
 	pVal->validate(option, "100");
 	pVal->validate(option, "55");
-	
+
 	try
 	{
 		pVal->validate(option, "-1");
-		fail("out of range - must throw");
+		failmsg("out of range - must throw");
 	}
 	catch (InvalidArgumentException& exc)
 	{
@@ -113,7 +114,7 @@ void ValidatorTest::testIntValidator()
 	try
 	{
 		pVal->validate(option, "101");
-		fail("out of range - must throw");
+		failmsg("out of range - must throw");
 	}
 	catch (InvalidArgumentException& exc)
 	{
@@ -124,7 +125,7 @@ void ValidatorTest::testIntValidator()
 	try
 	{
 		pVal->validate(option, "asdf");
-		fail("not a number - must throw");
+		failmsg("not a number - must throw");
 	}
 	catch (InvalidArgumentException& exc)
 	{

@@ -21,8 +21,9 @@
 class IniFileConfigurationTest: public AbstractConfigurationTest
 {
 public:
-	IniFileConfigurationTest(const std::string& name);
-	virtual ~IniFileConfigurationTest();
+//	IniFileConfigurationTest(const std::string& name);
+	IniFileConfigurationTest();
+	~IniFileConfigurationTest();
 
 	void testLoad();
 	void testCaseInsensitiveRemove();

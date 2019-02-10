@@ -18,7 +18,8 @@
 using Poco::Util::Option;
 
 
-OptionTest::OptionTest(const std::string& name): CppUnit::TestCase(name)
+//OptionTest::OptionTest(const std::string& name): CppUnit::TestCase(name)
+OptionTest::OptionTest(): CppUnit::TestFixture()
 {
 }
 
@@ -34,11 +35,11 @@ void OptionTest::testOption()
 		.required(false)
 		.repeatable(true)
 		.argument("path");
-		
+
 	Option libOpt = Option("library-dir", "L", "specify a library search path", false)
 		.repeatable(true)
 		.argument("path");
-		
+
 	Option outOpt = Option("output", "o", "specify the output file", true)
 		.argument("file", true);
 
@@ -46,13 +47,13 @@ void OptionTest::testOption()
 		.description("enable verbose mode")
 		.required(false)
 		.repeatable(false);
-		
+
 	Option optOpt = Option("optimize", "O")
 		.description("enable optimization")
 		.required(false)
 		.repeatable(false)
 		.argument("level", false);
-		
+
 	assertTrue (incOpt.shortName() == "I");
 	assertTrue (incOpt.fullName() == "include-dir");
 	assertTrue (incOpt.repeatable());
@@ -60,7 +61,7 @@ void OptionTest::testOption()
 	assertTrue (incOpt.argumentName() == "path");
 	assertTrue (incOpt.argumentRequired());
 	assertTrue (incOpt.takesArgument());
-		
+
 	assertTrue (libOpt.shortName() == "L");
 	assertTrue (libOpt.fullName() == "library-dir");
 	assertTrue (libOpt.repeatable());
@@ -100,7 +101,7 @@ void OptionTest::testMatches1()
 		.required(false)
 		.repeatable(true)
 		.argument("path");
-		
+
 	assertTrue (incOpt.matchesShort("Iinclude"));
 	assertTrue (incOpt.matchesPartial("include:include"));
 	assertTrue (incOpt.matchesPartial("include-dir:include"));
@@ -109,12 +110,12 @@ void OptionTest::testMatches1()
 	assertTrue (incOpt.matchesPartial("include"));
 	assertTrue (incOpt.matchesShort("I"));
 	assertTrue (incOpt.matchesPartial("i"));
-	
+
 	assertTrue (incOpt.matchesFull("include-dir:include"));
 	assertTrue (incOpt.matchesFull("INClude-dir:include"));
 	assertTrue (!incOpt.matchesFull("include:include"));
 	assertTrue (!incOpt.matchesFull("include-dir2:include"));
-	
+
 	assertTrue (!incOpt.matchesPartial("include-dir2=include"));
 	assertTrue (!incOpt.matchesShort("linclude"));
 }
@@ -126,7 +127,7 @@ void OptionTest::testMatches2()
 		.required(false)
 		.repeatable(true)
 		.argument("path");
-		
+
 	assertTrue (!incOpt.matchesShort("Iinclude"));
 	assertTrue (incOpt.matchesPartial("include:include"));
 	assertTrue (incOpt.matchesPartial("include-dir:include"));
@@ -134,12 +135,12 @@ void OptionTest::testMatches2()
 	assertTrue (incOpt.matchesPartial("INCLUDE=include"));
 	assertTrue (incOpt.matchesPartial("I"));
 	assertTrue (incOpt.matchesPartial("i"));
-	
+
 	assertTrue (incOpt.matchesFull("include-dir:include"));
 	assertTrue (incOpt.matchesFull("INClude-dir:include"));
 	assertTrue (!incOpt.matchesFull("include:include"));
 	assertTrue (!incOpt.matchesFull("include-dir2:include"));
-	
+
 	assertTrue (!incOpt.matchesFull("include-dir2=include"));
 	assertTrue (!incOpt.matchesShort("linclude"));
 }
@@ -165,11 +166,11 @@ void OptionTest::testProcess1()
 	assertTrue (arg == "/usr/include");
 	incOpt.process("Include-dir:/proj/include", arg);
 	assertTrue (arg == "/proj/include");
-	
+
 	try
 	{
 		incOpt.process("I", arg);
-		fail("argument required - must throw");
+		failmsg("argument required - must throw");
 	}
 	catch (Poco::Util::MissingArgumentException&)
 	{
@@ -178,35 +179,35 @@ void OptionTest::testProcess1()
 	try
 	{
 		incOpt.process("Include", arg);
-		fail("argument required - must throw");
+		failmsg("argument required - must throw");
 	}
 	catch (Poco::Util::MissingArgumentException&)
 	{
 	}
-	
+
 	try
 	{
 		incOpt.process("Llib", arg);
-		fail("wrong option - must throw");
+		failmsg("wrong option - must throw");
 	}
 	catch (Poco::Util::UnknownOptionException&)
 	{
 	}
-	
+
 	Option vrbOpt = Option("verbose", "v")
 		.description("enable verbose mode")
 		.required(false)
 		.repeatable(false);
-	
+
 	vrbOpt.process("v", arg);
 	assertTrue (arg.empty());
 	vrbOpt.process("verbose", arg);
 	assertTrue (arg.empty());
-	
+
 	try
 	{
 		vrbOpt.process("v2", arg);
-		fail("no argument expected - must throw");
+		failmsg("no argument expected - must throw");
 	}
 	catch (Poco::Util::UnexpectedArgumentException&)
 	{
@@ -215,18 +216,18 @@ void OptionTest::testProcess1()
 	try
 	{
 		vrbOpt.process("verbose:2", arg);
-		fail("no argument expected - must throw");
+		failmsg("no argument expected - must throw");
 	}
 	catch (Poco::Util::UnexpectedArgumentException&)
 	{
 	}
-	
+
 	Option optOpt = Option("optimize", "O")
 		.description("enable optimization")
 		.required(false)
 		.repeatable(false)
 		.argument("level", false);
-		
+
 	optOpt.process("O", arg);
 	assertTrue (arg.empty());
 	optOpt.process("O2", arg);
@@ -258,20 +259,20 @@ void OptionTest::testProcess2()
 	assertTrue (arg == "/usr/include");
 	incOpt.process("Include-dir:/proj/include", arg);
 	assertTrue (arg == "/proj/include");
-	
+
 	try
 	{
 		incOpt.process("Iinclude", arg);
-		fail("unknown option - must throw");
+		failmsg("unknown option - must throw");
 	}
 	catch (Poco::Util::UnknownOptionException&)
 	{
 	}
-	
+
 	try
 	{
 		incOpt.process("I", arg);
-		fail("argument required - must throw");
+		failmsg("argument required - must throw");
 	}
 	catch (Poco::Util::MissingArgumentException&)
 	{
@@ -280,35 +281,35 @@ void OptionTest::testProcess2()
 	try
 	{
 		incOpt.process("Include", arg);
-		fail("argument required - must throw");
+		failmsg("argument required - must throw");
 	}
 	catch (Poco::Util::MissingArgumentException&)
 	{
 	}
-	
+
 	try
 	{
 		incOpt.process("Llib", arg);
-		fail("wrong option - must throw");
+		failmsg("wrong option - must throw");
 	}
 	catch (Poco::Util::UnknownOptionException&)
 	{
 	}
-	
+
 	Option vrbOpt = Option("verbose", "")
 		.description("enable verbose mode")
 		.required(false)
 		.repeatable(false);
-	
+
 	vrbOpt.process("v", arg);
 	assertTrue (arg.empty());
 	vrbOpt.process("verbose", arg);
 	assertTrue (arg.empty());
-	
+
 	try
 	{
 		vrbOpt.process("v2", arg);
-		fail("no argument expected - must throw");
+		failmsg("no argument expected - must throw");
 	}
 	catch (Poco::Util::UnknownOptionException&)
 	{
@@ -317,7 +318,7 @@ void OptionTest::testProcess2()
 	try
 	{
 		vrbOpt.process("verbose:2", arg);
-		fail("no argument expected - must throw");
+		failmsg("no argument expected - must throw");
 	}
 	catch (Poco::Util::UnexpectedArgumentException&)
 	{

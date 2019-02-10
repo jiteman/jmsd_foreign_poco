@@ -21,8 +21,9 @@
 class LayeredConfigurationTest: public AbstractConfigurationTest
 {
 public:
-	LayeredConfigurationTest(const std::string& name);
-	virtual ~LayeredConfigurationTest();
+//	LayeredConfigurationTest(const std::string& name);
+	LayeredConfigurationTest();
+	~LayeredConfigurationTest();
 
 	void testEmpty();
 	void testOneLayer();

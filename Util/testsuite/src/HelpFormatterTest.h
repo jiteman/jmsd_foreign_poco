@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class HelpFormatterTest: public CppUnit::TestCase
+//class HelpFormatterTest: public CppUnit::TestCase
+class HelpFormatterTest: public CppUnit::TestFixture
 {
 public:
-	HelpFormatterTest(const std::string& name);
+//	HelpFormatterTest(const std::string& name);
+	HelpFormatterTest();
 	~HelpFormatterTest();
 
 	void testHelpFormatter();

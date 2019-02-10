@@ -20,7 +20,8 @@ using Poco::Util::OptionSet;
 using Poco::Util::Option;
 
 
-OptionSetTest::OptionSetTest(const std::string& name): CppUnit::TestCase(name)
+//OptionSetTest::OptionSetTest(const std::string& name): CppUnit::TestCase(name)
+OptionSetTest::OptionSetTest(): CppUnit::TestFixture()
 {
 }
 
@@ -66,7 +67,7 @@ void OptionSetTest::testOptionSet()
 			.required(false)
 			.repeatable(true)
 			.argument("path"));
-	
+
 	assertTrue (set.hasOption("include", false));
 	assertTrue (set.hasOption("I", true));
 	assertTrue (set.hasOption("Include", true));
@@ -76,12 +77,12 @@ void OptionSetTest::testOptionSet()
 	assertTrue (set.hasOption("item", false));
 	assertTrue (!set.hasOption("i", false));
 	assertTrue (!set.hasOption("in", false));
-	
+
 	assertTrue (set.hasOption("help"));
 	assertTrue (set.hasOption("h", true));
 	assertTrue (set.hasOption("helper"));
 	assertTrue (set.hasOption("H", true));
-	
+
 	const Option& opt1 = set.getOption("include");
 	assertTrue (opt1.fullName() == "include");
 
@@ -99,11 +100,11 @@ void OptionSetTest::testOptionSet()
 
 	const Option& opt6 = set.getOption("helpe");
 	assertTrue (opt6.fullName() == "helper");
-	
+
 	try
 	{
 		set.getOption("in");
-		fail("ambiguous - must throw");
+		failmsg("ambiguous - must throw");
 	}
 	catch (Poco::Util::AmbiguousOptionException&)
 	{
@@ -112,7 +113,7 @@ void OptionSetTest::testOptionSet()
 	try
 	{
 		set.getOption("he");
-		fail("ambiguous - must throw");
+		failmsg("ambiguous - must throw");
 	}
 	catch (Poco::Util::AmbiguousOptionException&)
 	{
@@ -121,7 +122,7 @@ void OptionSetTest::testOptionSet()
 	try
 	{
 		set.getOption("i");
-		fail("ambiguous - must throw");
+		failmsg("ambiguous - must throw");
 	}
 	catch (Poco::Util::AmbiguousOptionException&)
 	{

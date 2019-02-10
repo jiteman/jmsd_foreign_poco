@@ -21,8 +21,9 @@
 class MapConfigurationTest: public AbstractConfigurationTest
 {
 public:
-	MapConfigurationTest(const std::string& name);
-	virtual ~MapConfigurationTest();
+//	MapConfigurationTest(const std::string& name);
+	MapConfigurationTest();
+	~MapConfigurationTest();
 
 	void testClear();
 
