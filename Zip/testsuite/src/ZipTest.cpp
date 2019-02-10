@@ -34,7 +34,8 @@
 using namespace Poco::Zip;
 
 
-ZipTest::ZipTest(const std::string& name): CppUnit::TestCase(name)
+//ZipTest::ZipTest(const std::string& name): CppUnit::TestCase(name)
+ZipTest::ZipTest(): CppUnit::TestFixture()
 {
 }
 
@@ -270,7 +271,7 @@ void ZipTest::testDecompressZip64()
 	files[Poco::Path::temp() + "data1.bin"] = static_cast<Poco::UInt64>(KB)*4096+1;
 	files[Poco::Path::temp() + "data2.bin"] = static_cast<Poco::UInt64>(KB)*16;
 	files[Poco::Path::temp() + "data3.bin"] = static_cast<Poco::UInt64>(KB)*4096-1;
-	
+
 	for(std::map<std::string, Poco::UInt64>::const_iterator it = files.begin(); it != files.end(); it++)
 	{
 		Poco::File file(it->first);

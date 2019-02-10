@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class CompressTest: public CppUnit::TestCase
+//class CompressTest: public CppUnit::TestCase
+class CompressTest: public CppUnit::TestFixture
 {
 public:
-	CompressTest(const std::string& name);
+//	CompressTest(const std::string& name);
+	CompressTest();
 	~CompressTest();
 
 	void testSingleFile();

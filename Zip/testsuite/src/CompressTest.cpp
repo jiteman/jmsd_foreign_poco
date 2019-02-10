@@ -25,7 +25,8 @@
 using namespace Poco::Zip;
 
 
-CompressTest::CompressTest(const std::string& name): CppUnit::TestCase(name)
+//CompressTest::CompressTest(const std::string& name): CppUnit::TestCase(name)
+CompressTest::CompressTest(): CppUnit::TestFixture()
 {
 }
 
@@ -115,7 +116,7 @@ void CompressTest::testManipulatorReplace()
 	}
 	ZipManipulator zm(Poco::Path::temp() + "appinf.zip", true);
 	zm.replaceFile("test.zip", ZipTest::getTestFile("data", "doc.zip"));
-	
+
 	ZipArchive archive=zm.commit();
 	assertTrue (archive.findHeader("test.zip") != archive.headerEnd());
 	assertTrue (archive.findHeader("doc.zip") == archive.headerEnd());
@@ -162,7 +163,7 @@ void CompressTest::testZip64()
 	files["data1.bin"] = static_cast<Poco::UInt64>(KB)*4096+1;
 	files["data2.bin"] = static_cast<Poco::UInt64>(KB)*16;
 	files["data3.bin"] = static_cast<Poco::UInt64>(KB)*4096-1;
-	
+
 	for(FileMap::const_iterator it = files.begin(); it != files.end(); it++)
 	{
 		std::cout << '\t' << "createDataFile(" << it->first << ", " << it->second << ");" << std::endl;

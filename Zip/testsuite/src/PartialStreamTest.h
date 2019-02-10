@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class PartialStreamTest: public CppUnit::TestCase
+//class PartialStreamTest: public CppUnit::TestCase
+class PartialStreamTest: public CppUnit::TestFixture
 {
 public:
 	PartialStreamTest(const std::string& name);
+	PartialStreamTest();
 	~PartialStreamTest();
 
 	void testReading();

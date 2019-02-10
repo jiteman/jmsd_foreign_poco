@@ -22,7 +22,8 @@
 using namespace Poco::Zip;
 
 
-PartialStreamTest::PartialStreamTest(const std::string& name): CppUnit::TestCase(name)
+//PartialStreamTest::PartialStreamTest(const std::string& name): CppUnit::TestCase(name)
+PartialStreamTest::PartialStreamTest(): CppUnit::TestFixture()
 {
 }
 
@@ -114,7 +115,7 @@ void PartialStreamTest::testAutoDetect()
 		'\x11', '\x00', '\x00', '\x00', // compressed size
 		'\x00', '\x00', '\x00', '\x00'  // uncompressed size (ignored)
 	};
-	
+
 	Poco::MemoryInputStream istr(data, sizeof(data));
 	AutoDetectInputStream adi(istr, header, crc, false, 0);
 	std::string result;

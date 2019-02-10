@@ -19,10 +19,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ZipTest: public CppUnit::TestCase
+//class ZipTest: public CppUnit::TestCase
+class ZipTest: public CppUnit::TestFixture
 {
 public:
-	ZipTest(const std::string& name);
+//	ZipTest(const std::string& name);
+	ZipTest();
 	~ZipTest();
 
 	void testSkipSingleFile();
@@ -51,7 +53,7 @@ public:
 
 private:
 	void onDecompressError(const void* pSender, std::pair<const Poco::Zip::ZipLocalFileHeader, const std::string>& info);
-	
+
 	int _errCnt;
 };
 
