@@ -19,10 +19,12 @@
 #include "Poco/SAX/XMLReader.h"
 
 
-class SAXParserTest: public CppUnit::TestCase
+//class SAXParserTest: public CppUnit::TestCase
+class SAXParserTest: public CppUnit::TestFixture
 {
 public:
-	SAXParserTest(const std::string& name);
+//	SAXParserTest(const std::string& name);
+	SAXParserTest();
 	~SAXParserTest();
 
 	void testSimple1();

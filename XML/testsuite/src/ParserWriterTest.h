@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class ParserWriterTest: public CppUnit::TestCase
+//class ParserWriterTest: public CppUnit::TestCase
+class ParserWriterTest: public CppUnit::TestFixture
 {
 public:
-	ParserWriterTest(const std::string& name);
+//	ParserWriterTest(const std::string& name);
+	ParserWriterTest();
 	~ParserWriterTest();
 
 	void testParseWriteXHTML();

@@ -21,7 +21,8 @@ using Poco::XML::XMLWriter;
 using Poco::XML::AttributesImpl;
 
 
-XMLWriterTest::XMLWriterTest(const std::string& name): CppUnit::TestCase(name)
+//XMLWriterTest::XMLWriterTest(const std::string& name): CppUnit::TestCase(name)
+XMLWriterTest::XMLWriterTest(): CppUnit::TestFixture()
 {
 }
 
@@ -124,8 +125,8 @@ void XMLWriterTest::testDTDPretty()
 	writer.endDocument();
 	std::string xml = str.str();
 	assertTrue (xml == "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-	               "<!DOCTYPE test SYSTEM \"http://www.appinf.com/DTDs/test\">\n"
-	               "<foo/>\n");
+				   "<!DOCTYPE test SYSTEM \"http://www.appinf.com/DTDs/test\">\n"
+				   "<foo/>\n");
 }
 
 
@@ -142,8 +143,8 @@ void XMLWriterTest::testDTD()
 	writer.endDocument();
 	std::string xml = str.str();
 	assertTrue (xml == "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-	               "<!DOCTYPE test SYSTEM \"http://www.appinf.com/DTDs/test\">"
-	               "<foo/>");
+				   "<!DOCTYPE test SYSTEM \"http://www.appinf.com/DTDs/test\">"
+				   "<foo/>");
 }
 
 
@@ -160,8 +161,8 @@ void XMLWriterTest::testDTDPublic()
 	writer.endDocument();
 	std::string xml = str.str();
 	assertTrue (xml == "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-	               "<!DOCTYPE test PUBLIC \"test\" \"http://www.appinf.com/DTDs/test\">"
-	               "<foo/>");
+				   "<!DOCTYPE test PUBLIC \"test\" \"http://www.appinf.com/DTDs/test\">"
+				   "<foo/>");
 }
 
 
@@ -182,11 +183,11 @@ void XMLWriterTest::testDTDNotation()
 	writer.endDocument();
 	std::string xml = str.str();
 	assertTrue (xml == "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-	               "<!DOCTYPE test [\n"
-	               "\t<!NOTATION mov SYSTEM \"quicktime\">\n"
-	               "\t<!NOTATION xml PUBLIC \"-//W3C//NOTATION XML 1.0//EN\">\n"
-	               "]>\n"
-	               "<foo/>\n");
+				   "<!DOCTYPE test [\n"
+				   "\t<!NOTATION mov SYSTEM \"quicktime\">\n"
+				   "\t<!NOTATION xml PUBLIC \"-//W3C//NOTATION XML 1.0//EN\">\n"
+				   "]>\n"
+				   "<foo/>\n");
 }
 
 
@@ -207,11 +208,11 @@ void XMLWriterTest::testDTDEntity()
 	writer.endDocument();
 	std::string xml = str.str();
 	assertTrue (xml == "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-	               "<!DOCTYPE test [\n"
-	               "\t<!NOTATION mov SYSTEM \"quicktime\">\n"
-	               "\t<!ENTITY movie SYSTEM \"movie.mov\" NDATA mov>\n"
-	               "]>\n"
-	               "<foo/>\n");
+				   "<!DOCTYPE test [\n"
+				   "\t<!NOTATION mov SYSTEM \"quicktime\">\n"
+				   "\t<!ENTITY movie SYSTEM \"movie.mov\" NDATA mov>\n"
+				   "]>\n"
+				   "<foo/>\n");
 }
 
 

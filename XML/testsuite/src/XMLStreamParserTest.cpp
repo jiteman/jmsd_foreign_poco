@@ -21,8 +21,10 @@
 using namespace Poco::XML;
 
 
-XMLStreamParserTest::XMLStreamParserTest(const std::string& name):
-	CppUnit::TestCase(name)
+//XMLStreamParserTest::XMLStreamParserTest(const std::string& name):
+XMLStreamParserTest::XMLStreamParserTest()
+	:
+		CppUnit::TestFixture()
 {
 }
 

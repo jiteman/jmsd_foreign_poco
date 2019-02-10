@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class XMLStreamParserTest: public CppUnit::TestCase
+//class XMLStreamParserTest: public CppUnit::TestCase
+class XMLStreamParserTest: public CppUnit::TestFixture
 {
 public:
 	XMLStreamParserTest(const std::string& name);
+	XMLStreamParserTest();
 	~XMLStreamParserTest();
 
 	void testParser();

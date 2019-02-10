@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class XMLWriterTest: public CppUnit::TestCase
+//class XMLWriterTest: public CppUnit::TestCase
+class XMLWriterTest: public CppUnit::TestFixture
 {
 public:
 	XMLWriterTest(const std::string& name);
+	XMLWriterTest();
 	~XMLWriterTest();
 
 	void testTrivial();

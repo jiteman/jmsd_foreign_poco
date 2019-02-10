@@ -62,7 +62,8 @@ public:
 };
 
 
-SAXParserTest::SAXParserTest(const std::string& name): CppUnit::TestCase(name)
+//SAXParserTest::SAXParserTest(const std::string& name): CppUnit::TestCase(name)
+SAXParserTest::SAXParserTest(): CppUnit::TestFixture()
 {
 }
 
@@ -141,8 +142,8 @@ void SAXParserTest::testNotation()
 	SAXParser parser;
 	std::string xml = parse(parser, XMLWriter::CANONICAL, NOTATION);
 	assertTrue (xml == "<!DOCTYPE test [<!NOTATION mov SYSTEM \"quicktime\">"
-	               "<!NOTATION xml PUBLIC \"-//W3C//NOTATION XML 1.0//EN\">]>"
-	               "<foo/>");
+				   "<!NOTATION xml PUBLIC \"-//W3C//NOTATION XML 1.0//EN\">]>"
+				   "<foo/>");
 }
 
 
@@ -151,8 +152,8 @@ void SAXParserTest::testExternalUnparsed()
 	SAXParser parser;
 	std::string xml = parse(parser, XMLWriter::CANONICAL, EXTERNAL_UNPARSED);
 	assertTrue (xml == "<!DOCTYPE test [<!NOTATION mov SYSTEM \"quicktime\">"
-	               "<!ENTITY movie SYSTEM \"movie.mov\" NDATA mov>]>"
-	               "<sample/>");
+				   "<!ENTITY movie SYSTEM \"movie.mov\" NDATA mov>]>"
+				   "<sample/>");
 }
 
 
@@ -433,12 +434,12 @@ const std::string SAXParserTest::DTD =
 
 
 const std::string SAXParserTest::INTERNAL_ENTITY =
-    "<!DOCTYPE sample [\n"
-    "\t<!ENTITY appinf \"Applied Informatics\">\n"
-    "]>\n"
-    "<root>\n"
-    "\t<company>&appinf;</company>\n"
-    "</root>";
+	"<!DOCTYPE sample [\n"
+	"\t<!ENTITY appinf \"Applied Informatics\">\n"
+	"]>\n"
+	"<root>\n"
+	"\t<company>&appinf;</company>\n"
+	"</root>";
 
 
 const std::string SAXParserTest::NOTATION =
