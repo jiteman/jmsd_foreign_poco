@@ -189,7 +189,7 @@ private:
 			it = map.erase(it);
 			--nb_values;
 
-			assertEqualTyped( T::size_type, map.count(it2->first), 0);
+			assertEqualTyped( typename T::size_type, map.count(it2->first), 0);
 			assertEqual(map.size(), nb_values);
 			++it2;
 		}
@@ -224,7 +224,7 @@ private:
 		for(std::size_t i = 0; i < nb_values/2; i++)
 		{
 			if(i%2 == 0) {
-				assertEqualTyped( T::size_type, map.erase(utils::get_key< key_tt >( i ) ), 1 );
+				assertEqualTyped( typename T::size_type, map.erase(utils::get_key< key_tt >( i ) ), 1 );
 			}
 		}
 		assertEqual(map.size(), nb_values/4);

@@ -85,7 +85,8 @@ namespace {
 }
 
 
-TuplesTest::TuplesTest(const std::string& rName): CppUnit::TestCase(rName)
+//TuplesTest::TuplesTest(const std::string& rName): CppUnit::TestCase(rName)
+TuplesTest::TuplesTest(): CppUnit::TestFixture()
 {
 }
 

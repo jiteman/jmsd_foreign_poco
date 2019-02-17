@@ -26,7 +26,8 @@ using Poco::Path;
 typedef int (*GimmeFiveFunc)();
 
 
-SharedLibraryTest::SharedLibraryTest(const std::string& rName): CppUnit::TestCase(rName)
+//SharedLibraryTest::SharedLibraryTest(const std::string& rName): CppUnit::TestCase(rName)
+SharedLibraryTest::SharedLibraryTest(): CppUnit::TestFixture()
 {
 }
 

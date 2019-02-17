@@ -32,7 +32,8 @@ using Poco::NotFoundException;
 using Poco::InvalidArgumentException;
 
 
-NamedTuplesTest::NamedTuplesTest(const std::string& rName): CppUnit::TestCase(rName)
+//NamedTuplesTest::NamedTuplesTest(const std::string& rName): CppUnit::TestCase(rName)
+NamedTuplesTest::NamedTuplesTest(): CppUnit::TestFixture()
 {
 }
 
@@ -50,7 +51,7 @@ void NamedTuplesTest::testNamedTuple1()
 
 	assertTrue (aTuple["A"] == "");
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg ("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 1);
 	
@@ -72,7 +73,7 @@ void NamedTuplesTest::testNamedTuple1()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -86,7 +87,7 @@ void NamedTuplesTest::testNamedTuple2()
 	assertTrue (aTuple["A"] == "");
 	assertTrue (aTuple["B"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 2);
 	
@@ -111,7 +112,7 @@ void NamedTuplesTest::testNamedTuple2()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -128,7 +129,7 @@ void NamedTuplesTest::testNamedTuple3()
 	assertTrue (aTuple["B"] == 0);
 	assertTrue (aTuple["C"] == false);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 3);
 	
@@ -156,7 +157,7 @@ void NamedTuplesTest::testNamedTuple3()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -174,7 +175,7 @@ void NamedTuplesTest::testNamedTuple4()
 	assertTrue (aTuple["B"] == 0);
 	assertTrue (aTuple["C"] == false);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 4);
 	
@@ -204,7 +205,7 @@ void NamedTuplesTest::testNamedTuple4()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -224,7 +225,7 @@ void NamedTuplesTest::testNamedTuple5()
 	assertTrue (aTuple["C"] == false);
 	assertTrue (aTuple["E"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 5);
 	
@@ -257,7 +258,7 @@ void NamedTuplesTest::testNamedTuple5()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -279,7 +280,7 @@ void NamedTuplesTest::testNamedTuple6()
 	assertTrue (aTuple["E"] == 0);
 	assertTrue (aTuple["F"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 6);
 	
@@ -315,7 +316,7 @@ void NamedTuplesTest::testNamedTuple6()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -338,7 +339,7 @@ void NamedTuplesTest::testNamedTuple7()
 	assertTrue (aTuple["E"] == 0);
 	assertTrue (aTuple["F"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 7);
 	
@@ -376,7 +377,7 @@ void NamedTuplesTest::testNamedTuple7()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -401,7 +402,7 @@ void NamedTuplesTest::testNamedTuple8()
 	assertTrue (aTuple["F"] == 0);
 	assertTrue (aTuple["H"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 8);
 	
@@ -442,7 +443,7 @@ void NamedTuplesTest::testNamedTuple8()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -470,7 +471,7 @@ void NamedTuplesTest::testNamedTuple9()
 	assertTrue (aTuple["H"] == 0);
 	assertTrue (aTuple["I"] == "");
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 9);
 	
@@ -514,7 +515,7 @@ void NamedTuplesTest::testNamedTuple9()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -543,7 +544,7 @@ void NamedTuplesTest::testNamedTuple10()
 	assertTrue (aTuple["I"] == "");
 	assertTrue (aTuple["J"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 10);
 	
@@ -590,7 +591,7 @@ void NamedTuplesTest::testNamedTuple10()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -621,7 +622,7 @@ void NamedTuplesTest::testNamedTuple11()
 	assertTrue (aTuple["J"] == 0);
 	assertTrue (aTuple["K"] == "");
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 11);
 	
@@ -671,7 +672,7 @@ void NamedTuplesTest::testNamedTuple11()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -704,7 +705,7 @@ void NamedTuplesTest::testNamedTuple12()
 	assertTrue (aTuple["K"] == "");
 	assertTrue (aTuple["L"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 12);
 	
@@ -756,7 +757,7 @@ void NamedTuplesTest::testNamedTuple12()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -791,7 +792,7 @@ void NamedTuplesTest::testNamedTuple13()
 	assertTrue (aTuple["L"] == 0);
 	assertTrue (aTuple["M"] == false);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 13);
 	
@@ -845,7 +846,7 @@ void NamedTuplesTest::testNamedTuple13()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -881,7 +882,7 @@ void NamedTuplesTest::testNamedTuple14()
 	assertTrue (aTuple["L"] == 0);
 	assertTrue (aTuple["M"] == false);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 14);
 	
@@ -938,7 +939,7 @@ void NamedTuplesTest::testNamedTuple14()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -975,7 +976,7 @@ void NamedTuplesTest::testNamedTuple15()
 	assertTrue (aTuple["L"] == 0);
 	assertTrue (aTuple["M"] == false);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 15);
 	
@@ -1035,7 +1036,7 @@ void NamedTuplesTest::testNamedTuple15()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -1074,7 +1075,7 @@ void NamedTuplesTest::testNamedTuple16()
 	assertTrue (aTuple["M"] == false);
 	assertTrue (aTuple["O"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 16);
 	
@@ -1138,7 +1139,7 @@ void NamedTuplesTest::testNamedTuple16()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -1179,7 +1180,7 @@ void NamedTuplesTest::testNamedTuple17()
 	assertTrue (aTuple["O"] == 0);
 	assertTrue (aTuple["P"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 17);
 	
@@ -1246,7 +1247,7 @@ void NamedTuplesTest::testNamedTuple17()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -1289,7 +1290,7 @@ void NamedTuplesTest::testNamedTuple18()
 	assertTrue (aTuple["P"] == 0);
 	assertTrue (aTuple["R"] == 0);
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 18);
 	
@@ -1359,7 +1360,7 @@ void NamedTuplesTest::testNamedTuple18()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -1404,7 +1405,7 @@ void NamedTuplesTest::testNamedTuple19()
 	assertTrue (aTuple["R"] == 0);
 	assertTrue (aTuple["S"] == "");
 
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 19);
 	
@@ -1477,7 +1478,7 @@ void NamedTuplesTest::testNamedTuple19()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -1523,7 +1524,7 @@ void NamedTuplesTest::testNamedTuple20()
 	assertTrue (aTuple["R"] == 0);
 	assertTrue (aTuple["S"] == "");
 	assertTrue (aTuple["T"] == 0);
-	try { int xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 20);
 	
@@ -1600,7 +1601,7 @@ void NamedTuplesTest::testNamedTuple20()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(20, ""); fail("must fail"); }
+	try { aTuple.setName(20, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -1648,7 +1649,7 @@ void NamedTuplesTest::testNamedTuple21()
 	assertTrue (aTuple["S"] == "");
 	assertTrue (aTuple["T"] == 0);
 	assertTrue (aTuple["U"] == false);
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 21);
 	
@@ -1727,7 +1728,7 @@ void NamedTuplesTest::testNamedTuple21()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(21, ""); fail("must fail"); }
+	try { aTuple.setName(21, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -1779,7 +1780,7 @@ void NamedTuplesTest::testNamedTuple22()
 	assertTrue (aTuple["U"] == "");
 	assertTrue (aTuple["V"] == 0);
 
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 22);
 	
@@ -1861,7 +1862,7 @@ void NamedTuplesTest::testNamedTuple22()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(30, ""); fail("must fail"); }
+	try { aTuple.setName(30, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -1914,7 +1915,7 @@ void NamedTuplesTest::testNamedTuple23()
 	assertTrue (aTuple["V"] == 0);
 	assertTrue (aTuple["W"] == false);
 
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 23);
 	
@@ -1999,7 +2000,7 @@ void NamedTuplesTest::testNamedTuple23()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(30, ""); fail("must fail"); }
+	try { aTuple.setName(30, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -2054,7 +2055,7 @@ void NamedTuplesTest::testNamedTuple24()
 	assertTrue (aTuple["W"] == false);
 	assertTrue (aTuple["X"] == 0); 
 
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 24);
 	
@@ -2140,7 +2141,7 @@ void NamedTuplesTest::testNamedTuple24()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(30, ""); fail("must fail"); }
+	try { aTuple.setName(30, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -2197,7 +2198,7 @@ void NamedTuplesTest::testNamedTuple25()
 	assertTrue (aTuple["W"] == false);
 	assertTrue (aTuple["Y"] == 0);
 
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 25);
 	
@@ -2285,7 +2286,7 @@ void NamedTuplesTest::testNamedTuple25()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(30, ""); fail("must fail"); }
+	try { aTuple.setName(30, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -2344,7 +2345,7 @@ void NamedTuplesTest::testNamedTuple26()
 	assertTrue (aTuple["Y"] == 0);
 	assertTrue (aTuple["Z"] == 0);
 
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 26);
 	
@@ -2432,7 +2433,7 @@ void NamedTuplesTest::testNamedTuple26()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(30, ""); fail("must fail"); }
+	try { aTuple.setName(30, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -2493,7 +2494,7 @@ void NamedTuplesTest::testNamedTuple27()
 	assertTrue (aTuple["Y"] == 0);
 	assertTrue (aTuple["Z"] == 0);
 
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 27);
 	
@@ -2585,7 +2586,7 @@ void NamedTuplesTest::testNamedTuple27()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(30, ""); fail("must fail"); }
+	try { aTuple.setName(30, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -2648,7 +2649,7 @@ void NamedTuplesTest::testNamedTuple28()
 	assertTrue (aTuple["Z"] == 0);
 	assertTrue (aTuple["B1"] == 0);
 
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 28);
 	
@@ -2742,7 +2743,7 @@ void NamedTuplesTest::testNamedTuple28()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(30, ""); fail("must fail"); }
+	try { aTuple.setName(30, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -2807,7 +2808,7 @@ void NamedTuplesTest::testNamedTuple29()
 	assertTrue (aTuple["B1"] == 0); 
 	assertTrue (aTuple["C1"] == "");
 
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 29);
 	
@@ -2905,7 +2906,7 @@ void NamedTuplesTest::testNamedTuple29()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(30, ""); fail("must fail"); }
+	try { aTuple.setName(30, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 
@@ -2972,7 +2973,7 @@ void NamedTuplesTest::testNamedTuple30()
 	assertTrue (aTuple["C1"] == "");
 	assertTrue (aTuple["D1"] == 0);
 
-	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; fail ("must fail"); }
+	try { int POCO_UNUSED xyz; xyz = aTuple["XYZ"]; failmsg("must fail"); }
 	catch (NotFoundException&) { }
 	assertTrue (aTuple.length == 30);
 	
@@ -3073,7 +3074,7 @@ void NamedTuplesTest::testNamedTuple30()
 	aTuple.setName(0, "New Name");
 	assertTrue (aTuple.getName(0) == "New Name");
 
-	try { aTuple.setName(30, ""); fail("must fail"); }
+	try { aTuple.setName(30, ""); failmsg("must fail"); }
 	catch (InvalidArgumentException&) { }
 }
 

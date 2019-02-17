@@ -196,8 +196,8 @@ void DirectoryIteratorsTest::testSimpleRecursiveDirectoryIteratorOnError()
 				_onErrorPath += second.separator();
 			if (second.separator() != *errorPath.rbegin())
 				errorPath += second.separator();
-			assertEquals(_onErrorPath, errorPath);
-			assertEquals(14, (long) result.size());
+			assertEqual(_onErrorPath, errorPath);
+			assertEqualTyped( ::std::vector< ::std::string >::size_type, 14, result.size() );
 		}
 	}
 	catch (NotFoundException&) { }
@@ -258,8 +258,8 @@ void DirectoryIteratorsTest::testSiblingsFirstRecursiveDirectoryIteratorOnError(
 				_onErrorPath += first.separator();
 			if (first.separator() != *errorPath.rbegin())
 				errorPath += first.separator();
-			assertEquals(_onErrorPath, errorPath);
-			assertEquals(7, (long) result.size());
+			assertEqual(_onErrorPath, errorPath);
+			assertEqualTyped( ::std::vector< ::std::string >::size_type, 7, result.size() );
 		}
 	}
 	catch (NotFoundException&) { }

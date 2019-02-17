@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class NamedTuplesTest: public CppUnit::TestCase
+//class NamedTuplesTest: public CppUnit::TestCase
+class NamedTuplesTest: public CppUnit::TestFixture
 {
 public:
-	NamedTuplesTest(const std::string& name);
+//	NamedTuplesTest(const std::string& name);
+	NamedTuplesTest();
 	~NamedTuplesTest();
 
 	void testNamedTuple1();

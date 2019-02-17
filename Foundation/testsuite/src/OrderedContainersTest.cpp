@@ -148,7 +148,9 @@ void OrderedContainersTest::testRangeInsert()
 	OrderedMap<int, int> map = {{-1, 0}, {-2, 0}};
 	map.insert(values.begin() + 10, values.end() - 5);
 
-	assertEqualTyped( ( OrderedMap< int, int >::size_type ), map.size(), 987);
+	typedef OrderedMap< int, int > T;
+
+	assertEqualTyped( typename T::size_type, map.size(), 987);
 
 	assertEqualTyped( int, map.values_container()[0].first, -1);
 	assertEqualTyped( int, map.values_container()[0].second, 0);
@@ -178,7 +180,8 @@ void OrderedContainersTest::testInsertWithHint()
 	// end() hint
 	assertTrue(map.insert(map.find(10), std::make_pair(2, 4)) == map.find(2));
 
-	assertEqualTyped( ( OrderedMap<int, int>::size_type ), map.size(), 3);
+	typedef OrderedMap< int, int > OM;
+	assertEqualTyped( typename OM::size_type, map.size(), 3);
 
 	// end() hint, new value
 	assertEqualTyped( ( OrderedMap<int, int>::size_type ), map.insert(map.find(10), std::make_pair(4, 3))->first, 4);

@@ -18,10 +18,12 @@
 #include "Poco/CppUnit/TestCase.h"
 
 
-class SharedLibraryTest: public CppUnit::TestCase
+//class SharedLibraryTest: public CppUnit::TestCase
+class SharedLibraryTest: public CppUnit::TestFixture
 {
 public:
-	SharedLibraryTest(const std::string& name);
+//	SharedLibraryTest(const std::string& name);
+	SharedLibraryTest();
 	~SharedLibraryTest();
 
 	void testSharedLibrary1();
