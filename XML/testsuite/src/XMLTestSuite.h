@@ -16,8 +16,10 @@
 
 #include "Poco/CppUnit/TestSuite.h"
 
+#include "tp_xml.h"
 
-class XMLTestSuite
+
+class JMSD_TEST_POCO_XML_SHARED_INTERFACE XMLTestSuite
 {
 public:
 	static CppUnit::Test* suite();

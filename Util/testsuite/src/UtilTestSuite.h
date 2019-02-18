@@ -16,8 +16,10 @@
 
 #include "Poco/CppUnit/TestSuite.h"
 
+#include "tp_util.h"
 
-class UtilTestSuite
+
+class JMSD_TEST_POCO_UTIL_SHARED_INTERFACE UtilTestSuite
 {
 public:
 	static CppUnit::Test* suite();

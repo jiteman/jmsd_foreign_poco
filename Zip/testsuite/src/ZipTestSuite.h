@@ -16,8 +16,10 @@
 
 #include "Poco/CppUnit/TestSuite.h"
 
+#include "tp_zip.h"
 
-class ZipTestSuite
+
+class JMSD_TEST_POCO_ZIP_SHARED_INTERFACE ZipTestSuite
 {
 public:
 	static CppUnit::Test* suite();

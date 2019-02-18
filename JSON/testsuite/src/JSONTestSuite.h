@@ -16,8 +16,10 @@
 
 #include "Poco/CppUnit/TestSuite.h"
 
+#include "tp_json.h"
 
-class JSONTestSuite
+
+class JMSD_TEST_POCO_JSON_SHARED_INTERFACE JSONTestSuite
 {
 public:
 	static CppUnit::Test* suite();
