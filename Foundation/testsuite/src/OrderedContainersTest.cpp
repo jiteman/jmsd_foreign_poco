@@ -911,7 +911,7 @@ void OrderedContainersTest::testHeterogeneousLookups()
 		map.at(addr_unknown);
 		failmsg("must throw");
 	}
-	catch (std::out_of_range) {}
+	catch (std::out_of_range const &) {}
 
 	assertTrue(map.find(addr1) != map.end());
 	assertEqual(*map.find(addr1)->first, 1);

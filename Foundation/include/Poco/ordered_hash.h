@@ -268,6 +268,8 @@ public:
         ordered_iterator(const ordered_iterator<false>& other) noexcept: m_iterator(other.m_iterator) {
         }
 
+		ordered_iterator &operator =( ordered_iterator const &other ) = default;
+
         const typename ordered_hash::key_type& key() const {
             return KeySelect()(*m_iterator);
         }

@@ -196,6 +196,9 @@ public:
 		}
 	}
 
+	PriorityStrategy() = default;
+	PriorityStrategy(const PriorityStrategy& s) = default;
+
 	PriorityStrategy& operator = (const PriorityStrategy& s)
 	{
 		if (this != &s)

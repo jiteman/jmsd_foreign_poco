@@ -90,6 +90,8 @@ protected:
 			lastModified(f.getLastModified())
 		{
 		}
+
+		ItemInfo &operator =( ItemInfo const &other ) = default;
 		
 		std::string path;
 		File::FileSize size;

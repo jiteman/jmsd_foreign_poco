@@ -70,7 +70,7 @@ void NamedEventTest::testNamedEvent()
 	try {
 		testEvent.set();
 	}
-	catch(Poco::NotImplementedException e)
+	catch(Poco::NotImplementedException const &e)
 	{
 #if POCO_OS != POCO_OS_ANDROID
 		throw e;
@@ -87,7 +87,7 @@ void NamedEventTest::testNamedEvent()
 	try {
 		testEvent.set();
 	}
-	catch(Poco::NotImplementedException e)
+	catch(Poco::NotImplementedException const &e)
 	{
 #if POCO_OS != POCO_OS_ANDROID
 		throw e;

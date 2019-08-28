@@ -527,7 +527,7 @@ void FileChannelTest::testWrongPurgeOption()
 	{
 		pChannel->setProperty(FileChannel::PROP_PURGEAGE, "peace");
 		failmsg("must fail");
-	} catch (InvalidArgumentException)
+	} catch (InvalidArgumentException const &)
 	{
 		assertTrue (pChannel->getProperty(FileChannel::PROP_PURGEAGE) == "5 seconds");
 	}
@@ -536,7 +536,7 @@ void FileChannelTest::testWrongPurgeOption()
 	{
 		pChannel->setProperty(FileChannel::PROP_PURGECOUNT, "peace");
 		failmsg("must fail");
-	} catch (InvalidArgumentException)
+	} catch (InvalidArgumentException const &)
 	{
 		assertTrue (pChannel->getProperty(FileChannel::PROP_PURGEAGE) == "5 seconds");
 	}
